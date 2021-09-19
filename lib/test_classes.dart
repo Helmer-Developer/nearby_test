@@ -1,7 +1,7 @@
 class DiscoverDevice {
   String id;
   String username;
-  MyConnectionStatus? connectionStatus;
+  ConnectionStatus? connectionStatus;
   DiscoverDevice({
     required this.id,
     required this.username,
@@ -9,4 +9,4 @@ class DiscoverDevice {
   });
 }
 
-enum MyConnectionStatus { waitng, done, error }
+enum ConnectionStatus { waitng, done, error }
