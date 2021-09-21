@@ -31,4 +31,4 @@ jobs:
       - run: flutter build apk
       - uses: actions/upload-artifact@v2
         with:
-          path: build\app\outputs\flutter-apk\app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
