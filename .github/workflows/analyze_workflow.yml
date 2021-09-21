@@ -1,6 +1,5 @@
 name: Analyze
-on:
-  commit:
+on: [push, pull_request, pull_request_target, commit_comment, create, delete, release,]
 jobs:
   build:
     runs-on: ubuntu-latest
