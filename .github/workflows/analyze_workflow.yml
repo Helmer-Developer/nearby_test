@@ -1,7 +1,7 @@
 name: Analyze
-on: [push, pull_request, pull_request_target, create, delete, release, check_run]
+on: [push, pull_request]
 jobs:
-  build:
+  analyze:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
