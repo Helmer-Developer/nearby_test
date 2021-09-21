@@ -1,5 +1,5 @@
 name: Analyze
-on: [push, pull_request, pull_request_target, commit_comment, create, delete, release,]
+on: [push, pull_request, pull_request_target, create, delete, release, check_run]
 jobs:
   build:
     runs-on: ubuntu-latest
