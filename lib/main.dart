@@ -3,7 +3,7 @@ import 'package:nearby_connections/nearby_connections.dart';
 import 'package:nearby_test/discover_widget.dart';
 import 'advertise_widget.dart';
 
-void main() {
+voi main() {
   runApp(const NearbyTestApp());
 }
 
