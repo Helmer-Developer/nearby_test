@@ -73,7 +73,6 @@ class _AdvertiseWidgetState extends State<AdvertiseWidget> {
                         'connection result🎁 id: $id status: $status',
                       );
                       if (status == Status.CONNECTED) {
-                        nearby.stopAdvertising();
                         discoverdDevices.add(
                           DiscoverDevice(
                             id: id,

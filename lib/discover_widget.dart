@@ -72,7 +72,6 @@ class _DiscoverWidgetState extends State<DiscoverWidget> {
                                 'connection result🎁 id: $id status: $status',
                               );
                               if (status == Status.CONNECTED) {
-                                nearby.stopDiscovery();
                                 final device =
                                     discoverdDevices.firstWhere((device) {
                                   print('compairng $id and ${device.id}');
