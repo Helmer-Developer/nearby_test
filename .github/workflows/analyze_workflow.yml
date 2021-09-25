@@ -11,4 +11,5 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
-      - run: flutter analyze
+      - name: Flutter Analyze 
+        run: flutter analyze
