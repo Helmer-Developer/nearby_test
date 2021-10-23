@@ -87,19 +87,33 @@ class NickNameDialog extends StatefulWidget {
 }
 
 class _NickNameDialogState extends State<NickNameDialog> {
+  final controller = TextEditingController();
+  @override
+  void initState() {
+    controller.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    String text = '';
     return AlertDialog(
       title: const Text('NickName'),
       content: TextField(
-        onChanged: (value) => setState(() => text = value),
+        controller: controller,
       ),
       actions: [
         TextButton(
-          onPressed: text.isNotEmpty
+          onPressed: controller.value.text.isNotEmpty
               ? () {
-                  nickName = text;
+                  nickName = controller.value.text;
                   Navigator.pop(context);
                 }
               : null,
