@@ -2,9 +2,9 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:nearby_connections/nearby_connections.dart';
-import 'package:uuid/uuid.dart';
 
 import 'connection_diaologs.dart';
+import 'globals.dart';
 import 'test_classes.dart';
 
 class DiscoverWidget extends StatefulWidget {
@@ -58,7 +58,7 @@ class _DiscoverWidgetState extends State<DiscoverWidget> {
                         subtitle: Text(device.username),
                         onTap: () async {
                           nearby.requestConnection(
-                            device.username,
+                            nickName,
                             device.id,
                             onConnectionInitiated: (id, info) async {
                               print(
@@ -103,7 +103,7 @@ class _DiscoverWidgetState extends State<DiscoverWidget> {
                 ),
                 onPressed: () async {
                   await nearby.startDiscovery(
-                    const Uuid().v4(),
+                    nickName,
                     Strategy.P2P_CLUSTER,
                     onEndpointFound: (id, username, serviceId) {
                       if (discoverdDevices.any((device) => device.id == id)) {

@@ -2,8 +2,8 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:nearby_connections/nearby_connections.dart';
+import 'package:nearby_test/globals.dart';
 import 'package:nearby_test/test_classes.dart';
-import 'package:uuid/uuid.dart';
 
 import 'connection_diaologs.dart';
 
@@ -28,6 +28,7 @@ class _AdvertiseWidgetState extends State<AdvertiseWidget> {
                     .map(
                       (device) => ListTile(
                         title: Text(device.id),
+                        subtitle: Text(device.username),
                         leading:
                             device.connectionStatus == ConnectionStatus.done
                                 ? IconButton(
@@ -60,33 +61,40 @@ class _AdvertiseWidgetState extends State<AdvertiseWidget> {
             : ElevatedButton(
                 onPressed: () async {
                   nearby.startAdvertising(
-                    const Uuid().v4(),
+                    nickName,
                     Strategy.P2P_CLUSTER,
-                    onConnectionInitiated: (id, info) {
+                    onConnectionInitiated: (id, info) async {
                       print(
                         'new connection🆕 id: $id info: (token: ${info.authenticationToken}, name: ${info.endpointName})',
                       );
-                      ConnectionDialogs.acceptConnection(id, context, nearby);
+                      if (await ConnectionDialogs.acceptConnection(
+                              id, context, nearby) ??
+                          false) {
+                        discoverdDevices.add(
+                          DiscoverDevice(
+                            id: id,
+                            username: info.endpointName,
+                            connectionStatus: ConnectionStatus.waitng,
+                          ),
+                        );
+                      }
                     },
                     onConnectionResult: (id, Status status) {
                       print(
                         'connection result🎁 id: $id status: $status',
                       );
                       if (status == Status.CONNECTED) {
-                        discoverdDevices.add(
-                          DiscoverDevice(
-                            id: id,
-                            username: 'unknown',
-                            connectionStatus: ConnectionStatus.done,
-                          ),
-                        );
-                        setState(() {});
+                        setState(() {
+                          discoverdDevices
+                              .firstWhere((device) => device.id == id)
+                              .connectionStatus = ConnectionStatus.done;
+                        });
                       }
                     },
                     onDisconnected: (id) {
                       setState(() {
-                        discoverdDevices.removeWhere((device) =>
-                            device.id == id );
+                        discoverdDevices
+                            .removeWhere((device) => device.id == id);
                       });
                     },
                     serviceId: 'com.example.nearby_test',

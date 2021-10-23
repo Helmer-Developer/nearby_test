@@ -3,8 +3,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nearby_connections/nearby_connections.dart';
 
 class ConnectionDialogs {
-  static void acceptConnection(String id, BuildContext context, Nearby nearby) {
-    showModalBottomSheet(
+  static Future<bool?> acceptConnection(
+      String id, BuildContext context, Nearby nearby) async {
+    return await showModalBottomSheet<bool>(
       context: context,
       builder: (context) => Column(
         children: [
@@ -20,14 +21,14 @@ class ConnectionDialogs {
                       ),
                     );
                   });
-                  Navigator.pop(context);
+                  Navigator.pop<bool>(context, true);
                 },
                 child: const Text('Ja'),
               ),
               TextButton(
                 onPressed: () {
                   nearby.rejectConnection(id);
-                  Navigator.pop(context);
+                  Navigator.pop<bool>(context, false);
                 },
                 child: const Text('Nein'),
               ),

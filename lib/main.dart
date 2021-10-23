@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nearby_connections/nearby_connections.dart';
 import 'package:nearby_test/discover_widget.dart';
+import 'package:nearby_test/globals.dart';
 import 'advertise_widget.dart';
 
 void main() {
@@ -17,43 +18,94 @@ class NearbyTestApp extends StatefulWidget {
 class _NearbyTestAppState extends State<NearbyTestApp> {
   final nearby = Nearby();
 
-  initialise() async {
-    await nearby.askLocationPermission();
+  initialise(BuildContext context) async {
+    if (!await nearby.checkLocationPermission()) {
+      await showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Standort'),
+          content: const Text(
+              'Deine Zustimmung ist erforderlich, damit die App funktioniert'),
+          actions: [
+            TextButton(
+              onPressed: () async {
+                if (await nearby.askLocationPermission()) {
+                  Navigator.pop(context);
+                }
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+    showDialog(
+      context: context,
+      builder: (context) => const NickNameDialog(),
+    );
     await nearby.enableLocationServices();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    initialise();
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Nearby Test'),
-          actions: [
-            IconButton(
-              onPressed: () async {
-                await nearby.stopAdvertising();
-                await nearby.stopDiscovery();
-                await nearby.stopAllEndpoints();
-                setState(() {});
-              },
-              icon: const Icon(Icons.stop),
-            ),
-          ],
-        ),
-        body: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: const [
-            AdvertiseWidget(),
-            DiscoverWidget(),
-          ],
-        ),
+      home: Builder(builder: (context) {
+        initialise(context);
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Nearby Test'),
+            actions: [
+              IconButton(
+                onPressed: () async {
+                  await nearby.stopAdvertising();
+                  await nearby.stopDiscovery();
+                  await nearby.stopAllEndpoints();
+                  setState(() {});
+                },
+                icon: const Icon(Icons.stop),
+              ),
+            ],
+          ),
+          body: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: const [
+              AdvertiseWidget(),
+              DiscoverWidget(),
+            ],
+          ),
+        );
+      }),
+    );
+  }
+}
+
+class NickNameDialog extends StatefulWidget {
+  const NickNameDialog({Key? key}) : super(key: key);
+
+  @override
+  _NickNameDialogState createState() => _NickNameDialogState();
+}
+
+class _NickNameDialogState extends State<NickNameDialog> {
+  @override
+  Widget build(BuildContext context) {
+    String text = '';
+    return AlertDialog(
+      title: const Text('NickName'),
+      content: TextField(
+        onChanged: (value) => setState(() => text = value),
       ),
+      actions: [
+        TextButton(
+          onPressed: text.isNotEmpty
+              ? () {
+                  nickName = text;
+                  Navigator.pop(context);
+                }
+              : null,
+          child: const Text('OK'),
+        ),
+      ],
     );
   }
 }
