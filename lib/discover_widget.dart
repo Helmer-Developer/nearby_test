@@ -3,9 +3,9 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:nearby_connections/nearby_connections.dart';
 
-import 'connection_diaologs.dart';
+import 'widgets/dialogs/connection_diaologs.dart';
 import 'globals.dart';
-import 'test_classes.dart';
+import 'difinitions.dart';
 
 class DiscoverWidget extends StatefulWidget {
   const DiscoverWidget({Key? key}) : super(key: key);
