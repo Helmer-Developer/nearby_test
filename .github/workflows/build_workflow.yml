@@ -17,6 +17,11 @@ jobs:
           channel: 'stable'
       - name: Build fat APK file
         run: flutter build apk
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: fat APK file
+          paht: build/app/outputs/flutter-apk/app-release.apk
       - uses: softprops/action-gh-release@v1
         with:
           files: build/app/outputs/flutter-apk/app-release.apk
