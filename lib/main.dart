@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nearby_connections/nearby_connections.dart';
-import 'package:nearby_test/discover_widget.dart';
+import 'package:nearby_test/widgets/main/discover_widget.dart';
 import 'package:nearby_test/widgets/dialogs/nick_name_dialog.dart';
-import 'advertise_widget.dart';
+import 'widgets/main/advertise_widget.dart';
 
 void main() {
   runApp(const NearbyTestApp());

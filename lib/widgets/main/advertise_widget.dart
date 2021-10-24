@@ -5,7 +5,7 @@ import 'package:nearby_connections/nearby_connections.dart';
 import 'package:nearby_test/globals.dart';
 import 'package:nearby_test/difinitions.dart';
 
-import 'widgets/dialogs/connection_diaologs.dart';
+import '../dialogs/connection_diaologs.dart';
 
 class AdvertiseWidget extends StatefulWidget {
   const AdvertiseWidget({Key? key}) : super(key: key);
