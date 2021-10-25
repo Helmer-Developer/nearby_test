@@ -16,7 +16,7 @@ class NearbyHelpers {
           .where((device) =>
               device.connectionStatus == ConnectionStatus.done &&
               device.id != id)
-          .map<String>((device) => device.toJson)
+          .map<String>((device) => device.toJson())
           .toList();
       final Map data = {'connectedDevices': deviceData};
       final String jsonData = jsonEncode(data);
