@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nearby_connections/nearby_connections.dart';
+import 'package:nearby_test/widgets/dialogs/location_dialog.dart';
 import 'package:nearby_test/widgets/main/discover_widget.dart';
 import 'package:nearby_test/widgets/dialogs/nick_name_dialog.dart';
 import 'widgets/main/advertise_widget.dart';
@@ -22,21 +23,7 @@ class _NearbyTestAppState extends State<NearbyTestApp> {
     if (!await nearby.checkLocationPermission()) {
       await showDialog(
         context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Standort'),
-          content: const Text(
-              'Deine Zustimmung ist erforderlich, damit die App funktioniert'),
-          actions: [
-            TextButton(
-              onPressed: () async {
-                if (await nearby.askLocationPermission()) {
-                  Navigator.pop(context);
-                }
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        ),
+        builder: (context) => LocationDialog(),
       );
     }
     showDialog(
@@ -60,7 +47,6 @@ class _NearbyTestAppState extends State<NearbyTestApp> {
                   await nearby.stopAdvertising();
                   await nearby.stopDiscovery();
                   await nearby.stopAllEndpoints();
-                  setState(() {});
                 },
                 icon: const Icon(Icons.stop),
               ),

@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:nearby_connections/nearby_connections.dart';
 
 import '../dialogs/connection_diaologs.dart';
-import '../../globals.dart';
-import '../../difinitions.dart';
+import '../../global/globals.dart';
+import '../../global/difinitions.dart';
+import 'package:nearby_test/global/discoverd_device.dart';
 
 class DiscoverWidget extends StatefulWidget {
   const DiscoverWidget({Key? key}) : super(key: key);
@@ -84,8 +85,8 @@ class _DiscoverWidgetState extends State<DiscoverWidget> {
                             onDisconnected: (id) {
                               print('lost connection to $id');
                               setState(() {
-                                discoverdDevices.removeWhere((device) =>
-                                    device.id == id );
+                                discoverdDevices
+                                    .removeWhere((device) => device.id == id);
                               });
                             },
                           );
@@ -116,8 +117,8 @@ class _DiscoverWidgetState extends State<DiscoverWidget> {
                     onEndpointLost: (id) {
                       print('lost connection to $id');
                       setState(() {
-                        discoverdDevices.removeWhere((device) =>
-                            device.id == id );
+                        discoverdDevices
+                            .removeWhere((device) => device.id == id);
                       });
                     },
                     serviceId: 'com.example.nearby_test',

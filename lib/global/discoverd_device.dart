@@ -1,3 +1,5 @@
+import 'package:nearby_test/global/difinitions.dart';
+
 class DiscoverDevice {
   String id;
   String username;
@@ -7,6 +9,6 @@ class DiscoverDevice {
     required this.username,
     this.connectionStatus,
   });
-}
 
-enum ConnectionStatus { waitng, done, error }
+  String get toJson => '';
+}

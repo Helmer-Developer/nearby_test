@@ -2,8 +2,9 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:nearby_connections/nearby_connections.dart';
-import 'package:nearby_test/globals.dart';
-import 'package:nearby_test/difinitions.dart';
+import 'package:nearby_test/global/globals.dart';
+import 'package:nearby_test/global/difinitions.dart';
+import 'package:nearby_test/global/discoverd_device.dart';
 
 import '../dialogs/connection_diaologs.dart';
 

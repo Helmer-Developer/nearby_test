@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nearby_test/globals.dart';
+import 'package:nearby_test/global/globals.dart';
 
 class NickNameDialog extends StatefulWidget {
   const NickNameDialog({Key? key}) : super(key: key);
