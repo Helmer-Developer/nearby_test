@@ -5,10 +5,18 @@ import 'package:nearby_test/widgets/main/discover_widget.dart';
 import 'package:nearby_test/widgets/dialogs/nick_name_dialog.dart';
 import 'widgets/main/advertise_widget.dart';
 
+///The main entry pont for a dart application
+///
+///Adds the Widget NearbyTestApp to the flutter engin
 void main() {
   runApp(const NearbyTestApp());
 }
 
+///The root of the Application
+///
+///Paints the Advertise and Discover Buttons to the Screen
+///Adds AppBar with text and stop button
+///Asks user for requered permissions and nickname
 class NearbyTestApp extends StatefulWidget {
   const NearbyTestApp({Key? key}) : super(key: key);
 

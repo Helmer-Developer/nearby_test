@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nearby_connections/nearby_connections.dart';
 
-class ConnectionDialogs {
+///The abstract class for 
+abstract class ConnectionDialogs {
   static Future<bool?> acceptConnection(
       String id, BuildContext context, Nearby nearby) async {
     return await showModalBottomSheet<bool>(
