@@ -2,14 +2,21 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:nearby_connections/nearby_connections.dart';
-import 'package:nearby_test/global/difinitions.dart';
-import 'package:nearby_test/global/discoverd_device.dart';
+import 'package:nearby_test/global/globals.dart';
 
+
+///Helper Class to combine several Nearby Helper functions
+///
+///parameter nearby is requerd (implicitly)
 class NearbyHelpers {
   final Nearby nearby;
 
   NearbyHelpers(this.nearby);
 
+  ///Sends connected devices exept applicant to device in a standardized way
+  ///
+  ///converts a list to json sting and the encodabele format for NCA transmission
+  ///[id] and [devices] are requerd (implicetly)
   sendConnectedDevicesToId(String id, List<DiscoverDevice> devices) async {
     try {
       final List<String> deviceData = devices

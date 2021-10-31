@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:nearby_connections/nearby_connections.dart';
+part of 'dialogs.dart';
 
+///Dialog the inform about requerd location permission
+///
+///Prompts the user with a Dialog to ask for location permission
 class LocationDialog extends StatelessWidget {
   LocationDialog({
     Key? key,

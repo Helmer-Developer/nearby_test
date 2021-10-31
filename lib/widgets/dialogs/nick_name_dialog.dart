@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:nearby_test/global/globals.dart';
+part of 'dialogs.dart';
 
+///Dialog to collect nickname of User
+///
+///Promts the user with a dialog and a text field to enter a nickname
 class NickNameDialog extends StatefulWidget {
   const NickNameDialog({Key? key}) : super(key: key);
 
@@ -35,6 +37,10 @@ class _NickNameDialogState extends State<NickNameDialog> {
         TextButton(
           onPressed: controller.value.text.isNotEmpty
               ? () {
+                  ///storing nickname in a global variable
+                  ///
+                  ///Definitely not a long-term solution; will change in the future
+                  ///not save and permantent storing
                   nickName = controller.value.text;
                   Navigator.pop(context);
                 }

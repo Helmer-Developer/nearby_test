@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nearby_connections/nearby_connections.dart';
-import 'package:nearby_test/widgets/dialogs/location_dialog.dart';
-import 'package:nearby_test/widgets/main/discover_widget.dart';
-import 'package:nearby_test/widgets/dialogs/nick_name_dialog.dart';
-import 'widgets/main/advertise_widget.dart';
+import 'package:nearby_test/widgets/dialogs/dialogs.dart';
+import 'package:nearby_test/widgets/main/main_widgets.dart';
+
 
 ///The main entry pont for a dart application
 ///

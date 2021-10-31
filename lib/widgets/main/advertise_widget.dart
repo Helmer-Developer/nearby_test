@@ -1,13 +1,9 @@
-import 'dart:typed_data';
+part of 'main_widgets.dart';
 
-import 'package:flutter/material.dart';
-import 'package:nearby_connections/nearby_connections.dart';
-import 'package:nearby_test/global/globals.dart';
-import 'package:nearby_test/global/difinitions.dart';
-import 'package:nearby_test/global/discoverd_device.dart';
-
-import '../dialogs/connection_diaologs.dart';
-
+///The Advertising widget enabling NCA advertisment
+///
+///Displays an advertising Button to start advertising
+///If one or more connectd device exists, will display information about device
 class AdvertiseWidget extends StatefulWidget {
   const AdvertiseWidget({Key? key}) : super(key: key);
 

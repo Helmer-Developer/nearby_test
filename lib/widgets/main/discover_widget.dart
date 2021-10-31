@@ -1,13 +1,9 @@
-import 'dart:typed_data';
+part of 'main_widgets.dart';
 
-import 'package:flutter/material.dart';
-import 'package:nearby_connections/nearby_connections.dart';
-
-import '../dialogs/connection_diaologs.dart';
-import '../../global/globals.dart';
-import '../../global/difinitions.dart';
-import 'package:nearby_test/global/discoverd_device.dart';
-
+///The Discovering widget enabling NCA advertisment
+///
+///Displays a dicover Button to start discovering
+///If one or more connectd device exists, will display information about device
 class DiscoverWidget extends StatefulWidget {
   const DiscoverWidget({Key? key}) : super(key: key);
 

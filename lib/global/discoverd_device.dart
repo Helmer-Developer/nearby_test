@@ -1,7 +1,9 @@
-import 'dart:convert';
+part of 'globals.dart';
 
-import 'package:nearby_test/global/difinitions.dart';
-
+///Data Class to hold all data about a discoverd device
+///
+///[id] and [username] are required
+///povides all necessary functions lik converting to json and back
 class DiscoverDevice {
   String id;
   String username;
@@ -12,6 +14,7 @@ class DiscoverDevice {
     this.connectionStatus,
   });
 
+  ///functions to create new DiscoverdDevice while replacing some or no parameters
   DiscoverDevice copyWith({
     String? id,
     String? username,
@@ -24,6 +27,7 @@ class DiscoverDevice {
     );
   }
 
+  ///converts to a JS Object like strukture
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -31,7 +35,8 @@ class DiscoverDevice {
       'connectionStatus': connectionStatus?.toString(),
     };
   }
-
+  
+  ///reverts map to a dart object
   factory DiscoverDevice.fromMap(Map<String, dynamic> map) {
     return DiscoverDevice(
       id: map['id'],
@@ -43,15 +48,19 @@ class DiscoverDevice {
     );
   }
 
+  ///converts to json string
   String toJson() => json.encode(toMap());
 
+  ///converts josn string to dart object
   factory DiscoverDevice.fromJson(String source) =>
       DiscoverDevice.fromMap(json.decode(source));
 
+  ///converts object to a readable string
   @override
   String toString() =>
       'DiscoverDevice(id: $id, username: $username, connectionStatus: $connectionStatus)';
 
+  ///overrides equality operator due to dart's strict equality
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -62,6 +71,7 @@ class DiscoverDevice {
         other.connectionStatus == connectionStatus;
   }
 
+  ///overrides hashCode as dart's best practise suggests
   @override
   int get hashCode =>
       id.hashCode ^ username.hashCode ^ connectionStatus.hashCode;
