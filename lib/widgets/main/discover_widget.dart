@@ -1,9 +1,9 @@
 part of 'main_widgets.dart';
 
-///The Discovering widget enabling NCA advertisment
+///The discovering widget enabling NCA discovering
 ///
-///Displays a dicover Button to start discovering
-///If one or more connectd device exists, will display information about device
+///Displays a "Dicover" button to start discovering
+///If one or more connected devices exist widget displays information about device
 class DiscoverWidget extends StatefulWidget {
   const DiscoverWidget({Key? key}) : super(key: key);
 

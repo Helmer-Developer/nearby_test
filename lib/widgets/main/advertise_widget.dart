@@ -1,6 +1,6 @@
 part of 'main_widgets.dart';
 
-///The Advertising widget enabling NCA advertisment
+///The advertising widget enabling NCA advertisement
 ///
 ///Displays an advertising Button to start advertising
 ///If one or more connectd device exists, will display information about device

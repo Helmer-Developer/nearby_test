@@ -1,4 +1,4 @@
 part of 'globals.dart';
 
-///enum to streamline handling of discoverd devices
+///enum to streamline handling of discovered devices
 enum ConnectionStatus { waitng, done, error }

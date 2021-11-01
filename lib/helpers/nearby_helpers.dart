@@ -5,18 +5,18 @@ import 'package:nearby_connections/nearby_connections.dart';
 import 'package:nearby_test/global/globals.dart';
 
 
-///Helper Class to combine several Nearby Helper functions
+///Helper class to combine several [NearbyHelper] functions
 ///
-///parameter nearby is requerd (implicitly)
+///Parameter [nearby] is required (implicitly)
 class NearbyHelpers {
   final Nearby nearby;
 
   NearbyHelpers(this.nearby);
 
-  ///Sends connected devices exept applicant to device in a standardized way
+  ///Sends connected devices exept applicant to device in a standardised way
   ///
-  ///converts a list to json sting and the encodabele format for NCA transmission
-  ///[id] and [devices] are requerd (implicetly)
+  ///Converts a list to json sting and the encodabele format for NCA transmission
+  ///[id] and [devices] are required (implicitly)
   sendConnectedDevicesToId(String id, List<DiscoverDevice> devices) async {
     try {
       final List<String> deviceData = devices

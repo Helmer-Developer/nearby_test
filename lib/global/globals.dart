@@ -1,7 +1,7 @@
 ///The libary globals
 ///
-///The libary containig all globaly shared information
-///May be replaced in the future with a inherited strukture like the provider package
+///The libary containing all globally shared information
+///May be replaced with a inherited structure in the future (just like the provider package)
 
 library globals;
 
@@ -11,5 +11,5 @@ part 'difinitions.dart';
 part 'discoverd_device.dart';
 
 
-///the globaly shared nickname
+///The globally shared nickname
 late String nickName;

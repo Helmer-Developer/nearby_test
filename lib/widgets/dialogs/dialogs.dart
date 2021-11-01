@@ -1,4 +1,4 @@
-///The libyry for includion all dialogs
+///The libary for including all dialogs
 ///
 ///Including all UI components which are displayed to the user
 library dialogs;

@@ -4,18 +4,18 @@ import 'package:nearby_test/widgets/dialogs/dialogs.dart';
 import 'package:nearby_test/widgets/main/main_widgets.dart';
 
 
-///The main entry pont for a dart application
+///The main entry point for a dart application
 ///
-///Adds the Widget NearbyTestApp to the flutter engin
+///Adds the widget NearbyTestApp to the flutter engine
 void main() {
   runApp(const NearbyTestApp());
 }
 
-///The root of the Application
+///Root of the application
 ///
-///Paints the Advertise and Discover Buttons to the Screen
-///Adds AppBar with text and stop button
-///Asks user for requered permissions and nickname
+///Paints the "Advertise" and "Discover" buttons to the screen
+///Adds AppBar with text and "Stop" button
+///Asks user for required permissions and nickname
 class NearbyTestApp extends StatefulWidget {
   const NearbyTestApp({Key? key}) : super(key: key);
 

@@ -1,15 +1,15 @@
 part of './dialogs.dart';
 
-///The abstract class for holding all dialogs associated with the Nearby Connections Api
+///The abstract class for containing all dialogs associated with the Nearby Connections API
 ///
-///Currently holding only [acceptConnection]
+///Currently containing only [acceptConnection]
 abstract class ConnectionDialogs {
 
-  ///Asking the user wether he/she wants to connect to another device 
+  ///Asking the user whether they want to connect to another device 
   ///
-  ///needs an [id], a [context] and an instance of the [Nearby]
-  ///all parameters are requerd (implicitly)
-  ///returns [bool] wether the user accepted the connection or not
+  ///Needs an [id], a [context] and an instance of the [Nearby]
+  ///All parameters are required (implicitly)
+  ///Returns [bool] whether the user accepted the connection or not
   static Future<bool?> acceptConnection(
       String id, BuildContext context, Nearby nearby) async {
     return await showModalBottomSheet<bool>(
@@ -22,7 +22,7 @@ abstract class ConnectionDialogs {
               ElevatedButton(
                 onPressed: () {
                   nearby.acceptConnection(id, onPayLoadRecieved: (id, payload) {
-                    ///Display a Toast (depending on OS level and software skin) when ever a divces sends a message
+                    ///Displays a toast (depending on OS level and software skin) whenever a device sends a message
                     Fluttertoast.showToast(
                       msg: String.fromCharCodes(
                         payload.bytes!.toList(),
