@@ -1,6 +1,6 @@
 # nearby_test
 
-[![Analyze](https://github.com/Hgamo/nearby_test/actions/workflows/analyze_workflow.yml/badge.svg)](https://github.com/Hgamo/nearby_test/actions/workflows/analyze_workflow.yml)
+[![Analyze](https://github.com/Helmer-Developer/nearby_test/actions/workflows/analyze_workflow.yml/badge.svg)](https://github.com/Helmer-Developer/nearby_test/actions/workflows/analyze_workflow.yml)
 
 A new Flutter project.
 
