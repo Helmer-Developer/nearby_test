@@ -10,6 +10,5 @@ import 'dart:convert';
 part 'difinitions.dart';
 part 'discoverd_device.dart';
 
-
 ///The globally shared nickname
 late String nickName;

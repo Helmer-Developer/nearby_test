@@ -35,7 +35,7 @@ class DiscoverDevice {
       'connectionStatus': connectionStatus?.toString(),
     };
   }
-  
+
   ///converts map (JS Object-alike structure) to a dart object
   factory DiscoverDevice.fromMap(Map<String, dynamic> map) {
     return DiscoverDevice(

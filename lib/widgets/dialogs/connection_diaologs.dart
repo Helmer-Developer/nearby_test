@@ -4,8 +4,7 @@ part of './dialogs.dart';
 ///
 ///Currently containing only [acceptConnection]
 abstract class ConnectionDialogs {
-
-  ///Asking the user whether they want to connect to another device 
+  ///Asking the user whether they want to connect to another device
   ///
   ///Needs an [id], a [context] and an instance of the [Nearby]
   ///All parameters are required (implicitly)

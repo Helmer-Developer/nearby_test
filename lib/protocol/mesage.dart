@@ -33,6 +33,7 @@ class Message {
   ///
   ///shoulde be coresponding with the [messageType]
   dynamic payload;
+
   ///representing the type of the message
   ///
   ///shoulde be coresoinding with the [payload]
