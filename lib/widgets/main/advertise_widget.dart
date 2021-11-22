@@ -27,7 +27,7 @@ class _AdvertiseWidgetState extends State<AdvertiseWidget> {
                         title: Text(device.id),
                         subtitle: Text(device.username),
                         leading:
-                            device.connectionStatus == ConnectionStatus.done
+                            device.connectionStatus == ConnectionStatus.connected
                                 ? IconButton(
                                     onPressed: () {
                                       nearby.disconnectFromEndpoint(device.id);
@@ -40,7 +40,7 @@ class _AdvertiseWidgetState extends State<AdvertiseWidget> {
                                   )
                                 : null,
                         trailing: device.connectionStatus ==
-                                ConnectionStatus.done
+                                ConnectionStatus.connected
                             ? IconButton(
                                 onPressed: () {
                                   nearby.sendBytesPayload(
@@ -84,7 +84,7 @@ class _AdvertiseWidgetState extends State<AdvertiseWidget> {
                         setState(() {
                           discoverdDevices
                               .firstWhere((device) => device.id == id)
-                              .connectionStatus = ConnectionStatus.done;
+                              .connectionStatus = ConnectionStatus.connected;
                         });
                       }
                     },

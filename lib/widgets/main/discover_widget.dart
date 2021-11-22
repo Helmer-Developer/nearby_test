@@ -27,7 +27,7 @@ class _DiscoverWidgetState extends State<DiscoverWidget> {
                         leading: device.connectionStatus ==
                                 ConnectionStatus.waitng
                             ? const CircularProgressIndicator()
-                            : device.connectionStatus == ConnectionStatus.done
+                            : device.connectionStatus == ConnectionStatus.connected
                                 ? IconButton(
                                     onPressed: () {
                                       nearby.disconnectFromEndpoint(device.id);
@@ -40,7 +40,7 @@ class _DiscoverWidgetState extends State<DiscoverWidget> {
                                   )
                                 : null,
                         trailing: device.connectionStatus ==
-                                ConnectionStatus.done
+                                ConnectionStatus.connected
                             ? IconButton(
                                 onPressed: () {
                                   nearby.sendBytesPayload(
@@ -74,7 +74,7 @@ class _DiscoverWidgetState extends State<DiscoverWidget> {
                                   print('compairng $id and ${device.id}');
                                   return device.id == id;
                                 });
-                                device.connectionStatus = ConnectionStatus.done;
+                                device.connectionStatus = ConnectionStatus.connected;
                                 setState(() {});
                               }
                             },

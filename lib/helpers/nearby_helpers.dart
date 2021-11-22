@@ -20,7 +20,7 @@ class NearbyHelpers {
     try {
       final List<String> deviceData = devices
           .where((device) =>
-              device.connectionStatus == ConnectionStatus.done &&
+              device.connectionStatus == ConnectionStatus.connected &&
               device.id != id)
           .map<String>((device) => device.toJson())
           .toList();
