@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:nearby_test/protocol/communication/communication.dart';
 import 'package:nearby_test/protocol/protocol.dart';
 import 'package:uuid/uuid.dart';
 
