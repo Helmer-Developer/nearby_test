@@ -15,6 +15,4 @@ void comSendNeighborsToId({
     payload: data,
     messageType: MessageType.neighborsResponse,
   );
-  print(message.toString());
-  //TODO: Message Sending (abstract implementaiton recomended)
 }

@@ -2,7 +2,7 @@
 
 library protocol;
 
-part 'mesage.dart';
+part 'message.dart';
 part 'route_node.dart';
 part 'message_type.dart';
 
