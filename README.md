@@ -23,3 +23,4 @@ The development so far has mainly been about working out the basics of all the d
 ## Next steps
 The next steps include several points. The most important will be to develop a unified and decentralized method that creates a map of the network showing a device's own position relative to all others.
 Furthermore, a protocol must be developed, which standardizes the communication between the devices and thus enables communication over several "nodes" in a network. This protocol then contains information about the sender, the receiver, the route of a message and information about what type of request it is, e.g. whether it is a simple text communication or whether it is a request to create a map.
+
