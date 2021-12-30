@@ -13,3 +13,5 @@ jobs:
           channel: 'stable'
       - name: Flutter Analyze 
         run: flutter analyze
+      - name: Flutter test
+        run: flutter test
