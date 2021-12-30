@@ -4,8 +4,6 @@ import 'package:nearby_test/protocol/protocol.dart';
 import 'package:nearby_test/protocol/communication/ncp_service/ncp_service.dart';
 import 'package:uuid/uuid.dart';
 
-part 'dummy_route.dart';
-
 class Communications {
   Communications(this.ncpService);
 
