@@ -79,4 +79,40 @@ class Message {
   static Message fromJson(String jsonString) {
     return fromMap(json.decode(jsonString));
   }
+
+  /// Override toString
+  ///
+  /// Returns a string representation of the message
+  @override
+  String toString() {
+    return 'Message{id: $id, senderId: $senderId, receiverId: $receiverId, route: $route, payload: $payload, messageType: $messageType}';
+  }
+
+  /// Override ==
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Message &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          senderId == other.senderId &&
+          receiverId == other.receiverId &&
+          const ListEquality().equals(route, other.route) &&
+          payload == other.payload &&
+          messageType == other.messageType;
+
+  /// Override hashCode
+  @override
+  int get hashCode {
+    int routeHashCode = 0;
+    for (final node in route) {
+      routeHashCode += node.hashCode;
+    }
+    return id.hashCode ^
+        senderId.hashCode ^
+        receiverId.hashCode ^
+        routeHashCode ^
+        payload.hashCode ^
+        messageType.hashCode;
+  }
 }
