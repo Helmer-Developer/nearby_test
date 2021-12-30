@@ -51,5 +51,12 @@ main() {
         );
       }
     });
+    test('RouteNode to and form Map test', () {
+      final RouteNode node =
+          RouteNode(deviceId: 'test', isSender: false, isReceiver: false);
+      final map = node.toMap();
+      final nodeFromMap = RouteNode.fromMap(map);
+      expect(node, nodeFromMap, reason: 'Node and NodeFromMap shall be equal');
+    });
   });
 }

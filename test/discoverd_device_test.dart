@@ -8,8 +8,9 @@ import 'package:uuid/uuid.dart';
 main() {
   group('DiscoverdDevices unit test', () {
     test('CopyWith test', () {
+      nickName = 'test-name';
       final String id = const Uuid().v4();
-      final device = DiscoverDevice(id: id, username: 'test-name');
+      final device = DiscoverDevice(id: id, username: nickName);
       expect(device.id, id, reason: 'id and device id shall be the same');
       expect(device.username, 'test-name',
           reason: 'device username shall be "test-name"');
