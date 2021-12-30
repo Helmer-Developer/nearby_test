@@ -25,15 +25,16 @@ void main() {
         reason: 'the 4th device should be connected to 2, 0 and 5',
       );
       expect(
-        graph.getRoute(me, devices[2]),
-        [me, devices[1], devices[2]],
+        graph.getRoute(me, devices[2])!.map<String>((e) => e.deviceId).toList(),
+        ['me', '1', '2'],
         reason: 'the route from me to 2 should be [me, 1, 2]',
       );
       graph.removeDevice(devices[1]);
       expect(
-        graph.getRoute(me, devices[2]),
-        [me, devices[0], devices[4], devices[2]],
-        reason: 'the route from me to 2 should be [me, 0, 4, 2], because 1 is removed',
+        graph.getRoute(me, devices[2])!.map<String>((e) => e.deviceId).toList(),
+        ['me', '0', '4', '2'],
+        reason:
+            'the route from me to 2 should be [me, 0, 4, 2], because 1 is removed',
       );
     });
   });

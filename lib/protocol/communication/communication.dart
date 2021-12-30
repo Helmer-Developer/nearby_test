@@ -11,6 +11,10 @@ class Communications {
 
   final NcpService ncpService;
 
+  /// Sends all neigbors [devices] to receiver [receiverId]
+  /// 
+  /// Needs [receiverId] and [senderId] for proper sending
+  /// [devices] and [route] are required for proper routing
   void sendNeighborsToId({
     required String receiverId,
     required String senderId,
@@ -32,6 +36,7 @@ class Communications {
   ///
   ///Needs [ownId] to put message in context to device
   ///Retruns the Messsge if device is last node in messageroute
+  ///Function does not check if route is valid or operational because routing is always defined by the sender
   Message? handleMessage(Message message, String ownId) {
     if (message.receiverId == ownId) {
       return message;
@@ -43,6 +48,10 @@ class Communications {
     sendMessageToId(message, routeDeviceIdList[ownIndex + 1]);
   }
 
+  ///Sends [message] to [id]
+  ///
+  ///Uses [ncpService] defined in constructor to send message
+  ///[message] and [id] are required
   sendMessageToId(Message message, String id) {
     ncpService.sendMessageToId(message, id);
   }
