@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:nearby_connections/nearby_connections.dart';
 import 'package:nearby_test/global/globals.dart';
+import 'package:nearby_test/protocol/protocol.dart';
 
 ///Helper class to combine several [NearbyHelper] functions
 ///

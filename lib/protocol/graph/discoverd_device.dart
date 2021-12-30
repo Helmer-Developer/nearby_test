@@ -1,4 +1,4 @@
-part of 'globals.dart';
+part of '../protocol.dart';
 
 ///Data class to contain all information about a discoverd device
 ///
@@ -58,7 +58,7 @@ class DiscoverDevice {
   ///converts object to a readable string
   @override
   String toString() =>
-      'DiscoverDevice(id: $id, username: $username, connectionStatus: $connectionStatus)';
+      'DiscoverDevice(id: $id)';
 
   ///overrides equality operator (due to dart's strict equality)
   @override
