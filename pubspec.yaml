@@ -34,6 +34,7 @@ dependencies:
   nearby_connections: ^3.1.0
   uuid: ^3.0.4
   fluttertoast: ^8.0.8
+  directed_graph: ^0.3.6
 
 dev_dependencies:
   flutter_test:

@@ -57,6 +57,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  directed_graph:
+    dependency: "direct main"
+    description:
+      name: directed_graph
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.6"
+  exception_templates:
+    dependency: transitive
+    description:
+      name: exception_templates
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   fake_async:
     dependency: transitive
     description:
@@ -93,6 +107,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "8.0.8"
+  graphs:
+    dependency: transitive
+    description:
+      name: graphs
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   js:
     dependency: transitive
     description:
@@ -100,6 +121,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.3"
+  lazy_memo:
+    dependency: transitive
+    description:
+      name: lazy_memo
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.2"
   lints:
     dependency: transitive
     description:
@@ -135,6 +163,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
+  quote_buffer:
+    dependency: transitive
+    description:
+      name: quote_buffer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.3"
   sky_engine:
     dependency: transitive
     description: flutter
