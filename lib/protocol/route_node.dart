@@ -39,4 +39,19 @@ class RouteNode {
       isReceiver: map['isReceiver'],
     );
   }
+
+  /// Override hashCode
+  @override
+  int get hashCode =>
+      deviceId.hashCode ^ isSender.hashCode ^ isReceiver.hashCode;
+
+  /// Override == operator
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RouteNode &&
+          runtimeType == other.runtimeType &&
+          deviceId == other.deviceId &&
+          isSender == other.isSender &&
+          isReceiver == other.isReceiver;
 }
