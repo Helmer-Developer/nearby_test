@@ -1,6 +1,7 @@
 # nearby_test
 
 [![Analyze](https://github.com/Helmer-Developer/nearby_test/actions/workflows/analyze_workflow.yml/badge.svg)](https://github.com/Helmer-Developer/nearby_test/actions/workflows/analyze_workflow.yml)
+[![codecov](https://codecov.io/gh/Helmer-Developer/nearby_test/branch/master/graph/badge.svg?token=ZGLSVHLR2M)](https://codecov.io/gh/Helmer-Developer/nearby_test)
 
 ## Idea
 The basic idea is actually relatively simple to describe: Different Android™ devices each establish a communication link with their available neighbors, thus forming the basis for a network that functions independently of any other infrastructure or ISP. The connected devices can then exchange messages on the network beyond the boundaries of their own connection area. For reasons of simplification and the limited possibilities to use Android™ device functions, the "Nearby" API of Google Mobile Services (GMS) is used, which only works on Android™ devices with preinstalled Google Apps. However, this should not be a problem in Europe, since the distribution is close to 100%. It is important to note that the GMS is not open source software like the Android™ Open Source Project (AOSP), but a proprietary product.
