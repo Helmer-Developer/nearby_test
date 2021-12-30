@@ -1,8 +1,8 @@
 part of 'protocol.dart';
 
-///Class to abscarct all infomation about a node in a message route
+/// Class to abscarct all infomation about a node in a message route
 ///
-///[isSender] and [isReceiver] can't be true at the same time.
+/// [isSender] and [isReceiver] can't be true at the same time.
 class RouteNode {
   RouteNode({
     required this.deviceId,
@@ -13,16 +13,16 @@ class RouteNode {
           'isSender and isReciver can not be true at the same time',
         );
 
-  ///Id to identify the device
+  /// Id to identify the device
   String deviceId;
 
-  ///Boolean value wether [RouteNode] is sender or not
+  /// Boolean value wether [RouteNode] is sender or not
   bool isSender;
 
-  ///Boolean value wether [RouteNode] is receiver or not
+  /// Boolean value wether [RouteNode] is receiver or not
   bool isReceiver;
 
-  ///Convert [RouteNode] to [Map]
+  /// Convert [RouteNode] to [Map]
   Map<String, dynamic> toMap() {
     return {
       'deviceId': deviceId,
@@ -31,13 +31,19 @@ class RouteNode {
     };
   }
 
-  ///Convert [Map] to [RouteNode]
+  /// Convert [Map] to [RouteNode]
   static RouteNode fromMap(Map<String, dynamic> map) {
     return RouteNode(
       deviceId: map['deviceId'],
       isSender: map['isSender'],
       isReceiver: map['isReceiver'],
     );
+  }
+
+  /// Override toString method
+  @override
+  String toString() {
+    return 'RouteNode{deviceId: $deviceId, isSender: $isSender, isReceiver: $isReceiver}';
   }
 
   /// Override hashCode
