@@ -45,8 +45,10 @@ main() {
         );
       } catch (e) {
         final asssertionError = e as AssertionError;
-        expect(asssertionError.message,
-            'isSender and isReciver can not be true at the same time');
+        expect(
+          asssertionError.message,
+          'isSender and isReciver can not be true at the same time',
+        );
       }
     });
   });
