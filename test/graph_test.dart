@@ -1,10 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nearby_test/global/globals.dart';
 import 'package:nearby_test/protocol/protocol.dart';
 
 void main() {
   group('Graph Test', () {
-    test('Simple graph test', () {
+    test('unified graph test', () {
       final graph = dummyGraph();
       final List<DiscoverDevice> devices = List.generate(
         8,
@@ -35,6 +37,21 @@ void main() {
         ['me', '0', '4', '2'],
         reason:
             'the route from me to 2 should be [me, 0, 4, 2], because 1 is removed',
+      );
+    });
+    test('toString test', () {
+      final graph = ConnectedDevicesGraph('me', 'me');
+      graph.addDeviceWithMe(
+        DiscoverDevice(
+          id: '1',
+          username: '1',
+          connectionStatus: ConnectionStatus.connected,
+        ),
+      );
+      expect(
+        graph.toString(),
+        '{\n DiscoverDevice(id: 1): {DiscoverDevice(id: me)},\n DiscoverDevice(id: me): {DiscoverDevice(id: 1)},\n}',
+        reason: 'toString should return a string representation of the graph',
       );
     });
   });

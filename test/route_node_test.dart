@@ -58,5 +58,19 @@ main() {
       final nodeFromMap = RouteNode.fromMap(map);
       expect(node, nodeFromMap, reason: 'Node and NodeFromMap shall be equal');
     });
+    test('hash code equality test', () {
+      final node1 = RouteNode(
+        deviceId: 'test',
+        isSender: false,
+        isReceiver: false,
+      );
+      final node2 = RouteNode(
+        deviceId: 'test',
+        isSender: false,
+        isReceiver: false,
+      );
+      expect(node1.hashCode, node2.hashCode,
+          reason: 'Node1 and Node2 hashCode shall be equal');
+    });
   });
 }

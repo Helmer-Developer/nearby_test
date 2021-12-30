@@ -42,5 +42,18 @@ main() {
       expect(device.connectionStatus, newDevice.connectionStatus);
       expect(device.username, newDevice.username);
     });
+    test('toString test', () {
+      final device = DiscoverDevice(
+        id: const Uuid().v4(),
+        username: 'test-username',
+        connectionStatus: ConnectionStatus.connected,
+      );
+      expect(
+        device.toString(),
+        'DiscoverDevice(id: ${device.id})',
+        reason:
+            'toString shall return a string representation of the device including the id',
+      );
+    });
   });
 }
