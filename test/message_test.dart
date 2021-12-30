@@ -24,7 +24,7 @@ void main() {
             'message and newMessage should be equal due to equality operator override',
       );
     });
-    test('hashCode test', () {
+    test('hashCode and toString test', () {
       final message1 = Message(
         id: 'test',
         senderId: '1',
@@ -51,6 +51,11 @@ void main() {
         message1.hashCode,
         message2.hashCode,
         reason: 'hashCode should be equal',
+      );
+      expect(
+        message1.toString(),
+        message2.toString(),
+        reason: 'toString should be equal',
       );
     });
   });

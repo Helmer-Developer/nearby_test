@@ -20,7 +20,8 @@ main() {
       expect(device.connectionStatus, ConnectionStatus.connected,
           reason: 'device connectionStatus shall now be connected');
       final String newId = const Uuid().v4();
-      final newDevice = device.copyWith(id: newId);
+      DiscoverDevice newDevice = device.copyWith();
+      newDevice = device.copyWith(id: newId);
       expect(newDevice.id, newId);
       expect(newDevice.id, isNot(equals(device.id)),
           reason:
