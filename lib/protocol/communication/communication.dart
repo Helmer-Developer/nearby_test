@@ -12,27 +12,28 @@ class Communications {
   final NcpService ncpService;
 
   /// Sends all neigbors [devices] to receiver [receiverId]
-  /// 
+  ///
   /// Needs [receiverId] and [senderId] for proper sending
   /// [devices] and [route] are required for proper routing
   void sendNeighborsToId({
     required String receiverId,
-    required String senderId,
+    required String owneId,
     required List<DiscoverDevice> devices,
     required MessageRoute route,
   }) {
     final List<Map> data = devices.map((device) => device.toMap()).toList();
     final Message message = Message(
       id: const Uuid().v4(),
-      senderId: senderId,
+      senderId: owneId,
       receiverId: receiverId,
       route: route,
       payload: data,
       messageType: MessageType.neighborsResponse,
     );
+    handleMessage(message, owneId);
   }
 
-  ///Handles and incomming message
+  ///Handles a message
   ///
   ///Needs [ownId] to put message in context to device
   ///Retruns the Messsge if device is last node in messageroute
