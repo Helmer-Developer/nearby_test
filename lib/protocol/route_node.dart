@@ -21,4 +21,22 @@ class RouteNode {
 
   ///Boolean value wether [RouteNode] is receiver or not
   bool isReceiver;
+
+  ///Convert [RouteNode] to [Map]
+  Map<String, dynamic> toMap() {
+    return {
+      'deviceId': deviceId,
+      'isSender': isSender,
+      'isReceiver': isReceiver,
+    };
+  }
+
+  ///Convert [Map] to [RouteNode]
+  static RouteNode fromMap(Map<String, dynamic> map) {
+    return RouteNode(
+      deviceId: map['deviceId'],
+      isSender: map['isSender'],
+      isReceiver: map['isReceiver'],
+    );
+  }
 }

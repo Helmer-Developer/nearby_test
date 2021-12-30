@@ -2,6 +2,8 @@
 
 library protocol;
 
+import 'dart:convert';
+
 part 'message.dart';
 part 'route_node.dart';
 part 'message_type.dart';
