@@ -6,6 +6,7 @@ import 'dart:convert';
 
 import 'package:directed_graph/directed_graph.dart';
 import 'package:nearby_test/global/globals.dart';
+import 'package:collection/collection.dart';
 
 part 'message.dart';
 part 'route_node.dart';
