@@ -1,6 +1,6 @@
 # nearby_test
 
-[![Analyze](https://github.com/Helmer-Developer/nearby_test/actions/workflows/analyze_workflow.yml/badge.svg)](https://github.com/Helmer-Developer/nearby_test/actions/workflows/analyze_workflow.yml)
+[![Analyze and Test](https://github.com/Helmer-Developer/nearby_test/actions/workflows/analyze_and_test_workflow.yml/badge.svg)](https://github.com/Helmer-Developer/nearby_test/actions/workflows/analyze_and_test_workflow.yml)
 [![codecov](https://codecov.io/gh/Helmer-Developer/nearby_test/branch/master/graph/badge.svg?token=ZGLSVHLR2M)](https://codecov.io/gh/Helmer-Developer/nearby_test)
 
 ## Idea
