@@ -42,4 +42,41 @@ class Message {
   ///
   ///shoulde be coresoinding with the [payload]
   MessageType messageType;
+
+  ///Convert [Message] to [Map]
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'senderId': senderId,
+      'receiverId': receiverId,
+      'route': route.map((node) => node.toMap()).toList(),
+      'payload': payload,
+      'messageType': messageType.name,
+    };
+  }
+
+  ///Convert [Map] to [Message]
+  static Message fromMap(Map<String, dynamic> map) {
+    return Message(
+      id: map['id'],
+      senderId: map['senderId'],
+      receiverId: map['receiverId'],
+      route: (map['route'] as List)
+          .map((node) => RouteNode.fromMap(node))
+          .toList()
+          .cast<RouteNode>(),
+      payload: map['payload'],
+      messageType: MessageType.values.byName(map['messageType']),
+    );
+  }
+
+  ///Convert [Message] to Json
+  String toJson() {
+    return json.encode(toMap());
+  }
+
+  ///Convert Json to [Message]
+  static Message fromJson(String jsonString) {
+    return fromMap(json.decode(jsonString));
+  }
 }
