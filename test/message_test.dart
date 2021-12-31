@@ -25,10 +25,44 @@ void main() {
       final jsonMessage = message.toJson();
       final newMessage = Message.fromJson(jsonMessage);
       expect(
+        message.hashCode,
+        isNot(newMessage.hashCode),
+        reason: 'hashCode should be different',
+      );
+      expect(
         message.toString(),
         newMessage.toString(),
-        reason:
-            'message and newMessage should be equal',
+        reason: 'message and newMessage string representation should be equal',
+      );
+    });
+    //equality test
+    test('Equality test', () {
+      final message = Message(
+        id: 'test',
+        senderId: '1',
+        receiverId: '2',
+        route: [
+          RouteNode(deviceId: '1', isSender: true, isReceiver: false),
+          RouteNode(deviceId: '2', isSender: false, isReceiver: true),
+        ],
+        payload: 'test',
+        messageType: MessageType.text,
+      );
+      final message2 = Message(
+        id: 'test',
+        senderId: '1',
+        receiverId: '2',
+        route: [
+          RouteNode(deviceId: '1', isSender: true, isReceiver: false),
+          RouteNode(deviceId: '2', isSender: false, isReceiver: true),
+        ],
+        payload: 'test',
+        messageType: MessageType.text,
+      );
+      expect(
+        message,
+        message2,
+        reason: 'message and message2 should be equal due to equality override',
       );
     });
     test('hashCode and toString test', () {
