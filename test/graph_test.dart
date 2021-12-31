@@ -6,16 +6,9 @@ void main() {
   group('Graph Test', () {
     test('unified graph test', () {
       final graph = dummyGraph();
-      final List<DiscoverDevice> devices = List.generate(
-        8,
-        (index) => DiscoverDevice(
-          id: '$index',
-          username: '$index',
-          connectionStatus: ConnectionStatus.connected,
-        ),
-      );
+      final devices = dummyDevices();
       final me = graph.me;
-      expect(graph.me.id, 'me',
+      expect(me.id, 'me',
           reason: 'test graph should be created with dummyGraph');
       expect(graph.graph.vertices.length, 9,
           reason: 'test graph should have 9 vertices (8 devices + me)');
@@ -35,6 +28,26 @@ void main() {
         ['me', '0', '4', '2'],
         reason:
             'the route from me to 2 should be [me, 0, 4, 2], because 1 is removed',
+      );
+    });
+    test('route Test', () {
+      final graph = dummyGraph();
+      final devices = dummyDevices();
+      final route = graph.getRoute(devices[2], devices[0]);
+      expect(
+        route!.map<String>((e) => e.deviceId).toList(),
+        ['2', '4', '0'],
+        reason: 'the route from 2 to 0 should be [2, 4, 0]',
+      );
+      expect(
+        route.first.isSender,
+        true,
+        reason: 'the first device should be the sender',
+      );
+      expect(
+        route.last.isReceiver,
+        true,
+        reason: 'the last device should be the receiver',
       );
     });
     test('toString test', () {
@@ -77,3 +90,12 @@ ConnectedDevicesGraph dummyGraph() {
   graph.addDeviceWithAncestors(devices[7], [devices[5]]);
   return graph;
 }
+
+List<DiscoverDevice> dummyDevices() => List.generate(
+      8,
+      (index) => DiscoverDevice(
+        id: '$index',
+        username: '$index',
+        connectionStatus: ConnectionStatus.connected,
+      ),
+    );
