@@ -100,4 +100,68 @@ void main() {
       );
     });
   });
+  group('Message Interpreter Test', () {
+    test('MessageType.text test', () {
+      final message = Message(
+        id: 'test',
+        senderId: '1',
+        receiverId: '2',
+        route: [
+          RouteNode(deviceId: '1', isSender: true, isReceiver: false),
+          RouteNode(deviceId: '2', isSender: false, isReceiver: true),
+        ],
+        payload: 'test payload',
+        messageType: MessageType.text,
+      );
+      final interpretation = message.interpret();
+      expect(
+        interpretation.runtimeType,
+        String,
+        reason:
+            'interpretation should be a string because MessageType is MessageType.text',
+      );
+      expect(
+        interpretation,
+        'test payload',
+        reason: 'interpretation should be equal to payload',
+      );
+    });
+    test('MessageType.neighborsResponse', () {
+      final message = Message(
+        id: 'test',
+        senderId: '1',
+        receiverId: '2',
+        route: [
+          RouteNode(deviceId: '1', isSender: true, isReceiver: false),
+          RouteNode(deviceId: '2', isSender: false, isReceiver: true),
+        ],
+        payload: [
+          DiscoverDevice(
+            id: 'device',
+            username: 'device',
+            connectionStatus: ConnectionStatus.connected,
+          ),
+        ].map((e) => e.toMap()).toList(),
+        messageType: MessageType.neighborsResponse,
+      );
+      final interpretation = message.interpret();
+      expect(
+        interpretation.runtimeType,
+        List<DiscoverDevice>,
+        reason:
+            'interpretation should be a list because MessageType is MessageType.neighborsResponse',
+      );
+      expect(
+        interpretation,
+        [
+          DiscoverDevice(
+            id: 'device',
+            username: 'device',
+            connectionStatus: ConnectionStatus.connected,
+          ),
+        ],
+        reason: 'interpretation should be equal to payload',
+      );
+    });
+  });
 }
