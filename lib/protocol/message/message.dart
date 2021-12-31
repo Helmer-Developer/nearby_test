@@ -1,4 +1,4 @@
-part of 'protocol.dart';
+part of '../protocol.dart';
 
 ///Class to streamline all information between a device connection
 ///

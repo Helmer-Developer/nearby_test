@@ -1,4 +1,4 @@
-part of 'protocol.dart';
+part of '../protocol.dart';
 
 //TODO: more types
 enum MessageType {
