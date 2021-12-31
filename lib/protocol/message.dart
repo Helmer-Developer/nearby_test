@@ -33,7 +33,7 @@ class Message {
   ///List of [RouteNode] represending the rout chossen by the sender
   MessageRoute route;
 
-  ///payload of the message
+  ///payload of the message needs to be convertable to a json like object
   ///
   ///shoulde be coresponding with the [messageType]
   dynamic payload;

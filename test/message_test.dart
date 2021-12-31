@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:nearby_test/global/globals.dart';
 import 'package:nearby_test/protocol/protocol.dart';
 
 void main() {
@@ -12,16 +13,22 @@ void main() {
           RouteNode(deviceId: '1', isSender: true, isReceiver: false),
           RouteNode(deviceId: '2', isSender: false, isReceiver: true),
         ],
-        payload: 'test payload',
-        messageType: MessageType.text,
+        payload: [
+          DiscoverDevice(
+            id: 'test',
+            username: 'test',
+            connectionStatus: ConnectionStatus.connected,
+          ),
+        ].map((e) => e.toMap()).toList(),
+        messageType: MessageType.neighborsResponse,
       );
       final jsonMessage = message.toJson();
       final newMessage = Message.fromJson(jsonMessage);
       expect(
-        message,
-        newMessage,
+        message.toString(),
+        newMessage.toString(),
         reason:
-            'message and newMessage should be equal due to equality operator override',
+            'message and newMessage should be equal',
       );
     });
     test('hashCode and toString test', () {
