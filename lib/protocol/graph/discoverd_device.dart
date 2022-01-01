@@ -39,11 +39,12 @@ class DiscoverDevice {
   ///converts map (JS Object-alike structure) to a dart object
   factory DiscoverDevice.fromMap(Map<String, dynamic> map) {
     return DiscoverDevice(
-      id: map['id'],
-      username: map['username'],
+      id: map['id'] as String,
+      username: map['username'] as String,
       connectionStatus: map['connectionStatus'] != null
           ? ConnectionStatus.values.firstWhere(
-              (status) => status.toString() == map['connectionStatus'])
+              (status) => status.toString() == map['connectionStatus'],
+            )
           : null,
     );
   }
@@ -53,12 +54,11 @@ class DiscoverDevice {
 
   ///converts json string to dart object
   factory DiscoverDevice.fromJson(String source) =>
-      DiscoverDevice.fromMap(json.decode(source));
+      DiscoverDevice.fromMap(json.decode(source) as Map<String, dynamic>);
 
   ///converts object to a readable string
   @override
-  String toString() =>
-      'DiscoverDevice(id: $id)';
+  String toString() => 'DiscoverDevice(id: $id)';
 
   ///overrides equality operator (due to dart's strict equality)
   @override

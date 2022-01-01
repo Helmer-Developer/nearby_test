@@ -25,7 +25,7 @@ class NearbyTestApp extends StatefulWidget {
 class _NearbyTestAppState extends State<NearbyTestApp> {
   final nearby = Nearby();
 
-  initialise(BuildContext context) async {
+  Future<void> initialise(BuildContext context) async {
     if (!await nearby.checkLocationPermission()) {
       await showDialog(
         context: context,
@@ -42,31 +42,32 @@ class _NearbyTestAppState extends State<NearbyTestApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Builder(builder: (context) {
-        initialise(context);
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('Nearby Test'),
-            actions: [
-              IconButton(
-                onPressed: () async {
-                  await nearby.stopAdvertising();
-                  await nearby.stopDiscovery();
-                  await nearby.stopAllEndpoints();
-                },
-                icon: const Icon(Icons.stop),
-              ),
-            ],
-          ),
-          body: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: const [
-              AdvertiseWidget(),
-              DiscoverWidget(),
-            ],
-          ),
-        );
-      }),
+      home: Builder(
+        builder: (context) {
+          initialise(context);
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Nearby Test'),
+              actions: [
+                IconButton(
+                  onPressed: () async {
+                    await nearby.stopAdvertising();
+                    await nearby.stopDiscovery();
+                    await nearby.stopAllEndpoints();
+                  },
+                  icon: const Icon(Icons.stop),
+                ),
+              ],
+            ),
+            body: Column(
+              children: const [
+                AdvertiseWidget(),
+                DiscoverWidget(),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

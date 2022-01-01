@@ -10,8 +10,11 @@ abstract class ConnectionDialogs {
   ///All parameters are required (implicitly)
   ///Returns [bool] whether the user accepted the connection or not
   static Future<bool?> acceptConnection(
-      String id, BuildContext context, Nearby nearby) async {
-    return await showModalBottomSheet<bool>(
+    String id,
+    BuildContext context,
+    Nearby nearby,
+  ) async {
+    return showModalBottomSheet<bool>(
       context: context,
       builder: (context) => Column(
         children: [
@@ -20,14 +23,17 @@ abstract class ConnectionDialogs {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  nearby.acceptConnection(id, onPayLoadRecieved: (id, payload) {
-                    ///Displays a toast (depending on OS level and software skin) whenever a device sends a message
-                    Fluttertoast.showToast(
-                      msg: String.fromCharCodes(
-                        payload.bytes!.toList(),
-                      ),
-                    );
-                  });
+                  nearby.acceptConnection(
+                    id,
+                    onPayLoadRecieved: (id, payload) {
+                      ///Displays a toast (depending on OS level and software skin) whenever a device sends a message
+                      Fluttertoast.showToast(
+                        msg: String.fromCharCodes(
+                          payload.bytes!.toList(),
+                        ),
+                      );
+                    },
+                  );
                   Navigator.pop<bool>(context, true);
                 },
                 child: const Text('Ja'),

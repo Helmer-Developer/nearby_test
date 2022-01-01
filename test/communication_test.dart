@@ -5,7 +5,7 @@ import 'package:uuid/uuid.dart';
 
 import 'dummy_ncp_service.dart';
 
-main() {
+void main() {
   group('Communication library test ', () {
     final Communications communications = Communications(DummyNcpService());
     final message = Message(

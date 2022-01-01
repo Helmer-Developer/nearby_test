@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:nearby_test/protocol/protocol.dart';
 import 'package:uuid/uuid.dart';
 
-main() {
+void main() {
   group('RouteNode Basic test', () {
     test('Device id equals generated id', () {
       final id = const Uuid().v4();
@@ -14,7 +14,7 @@ main() {
         isReceiver: false,
       );
       expect(routeNode.deviceId, id,
-          reason: 'RouteNode.deviceId shall be equale to id');
+          reason: 'RouteNode.deviceId shall be equale to id',);
     });
     test('RouteNode isSender and isReceiver test', () {
       final random = Random();
@@ -70,7 +70,7 @@ main() {
         isReceiver: false,
       );
       expect(node1.hashCode, node2.hashCode,
-          reason: 'Node1 and Node2 hashCode shall be equal');
+          reason: 'Node1 and Node2 hashCode shall be equal',);
     });
   });
 }

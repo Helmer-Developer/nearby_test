@@ -32,11 +32,11 @@ class RouteNode {
   }
 
   /// Convert [Map] to [RouteNode]
-  static RouteNode fromMap(Map<String, dynamic> map) {
+  factory RouteNode.fromMap(Map<String, dynamic> map) {
     return RouteNode(
-      deviceId: map['deviceId'],
-      isSender: map['isSender'],
-      isReceiver: map['isReceiver'],
+      deviceId: map['deviceId'] as String,
+      isSender: map['isSender'] as bool,
+      isReceiver: map['isReceiver'] as bool,
     );
   }
 

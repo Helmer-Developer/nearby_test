@@ -33,7 +33,7 @@ class _AdvertiseWidgetState extends State<AdvertiseWidget> {
                                       nearby.disconnectFromEndpoint(device.id);
                                       setState(() {
                                         discoverdDevices.removeWhere(
-                                            (device) => device.id == device.id);
+                                            (device) => device.id == device.id,);
                                       });
                                     },
                                     icon: const Icon(Icons.stop),
@@ -65,7 +65,7 @@ class _AdvertiseWidgetState extends State<AdvertiseWidget> {
                         'new connection🆕 id: $id info: (token: ${info.authenticationToken}, name: ${info.endpointName})',
                       );
                       if (await ConnectionDialogs.acceptConnection(
-                              id, context, nearby) ??
+                              id, context, nearby,) ??
                           false) {
                         discoverdDevices.add(
                           DiscoverDevice(

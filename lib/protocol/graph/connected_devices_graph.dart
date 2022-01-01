@@ -9,9 +9,10 @@ class ConnectedDevicesGraph {
   /// Constructor to initailize the graph with [ownId] and [ownUsername] as the root node (me)
   ConnectedDevicesGraph(String ownId, String ownUsername) {
     me = DiscoverDevice(
-        id: ownId,
-        username: ownUsername,
-        connectionStatus: ConnectionStatus.connected);
+      id: ownId,
+      username: ownUsername,
+      connectionStatus: ConnectionStatus.connected,
+    );
     graph.addEdges(me, {});
   }
 
@@ -43,9 +44,11 @@ class ConnectedDevicesGraph {
   ///
   /// Use this function if you want to add devices which are acncestors of allready added devices.
   void addDeviceWithAncestors(
-      DiscoverDevice device, List<DiscoverDevice> ancestors) {
+    DiscoverDevice device,
+    List<DiscoverDevice> ancestors,
+  ) {
     graph.addEdges(device, ancestors.toSet());
-    for (var ancestor in ancestors) {
+    for (final ancestor in ancestors) {
       graph.addEdges(ancestor, {device});
     }
   }

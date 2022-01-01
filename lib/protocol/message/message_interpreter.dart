@@ -7,7 +7,7 @@ extension MessageInterpreter on Message {
   /// Interpret the [message]
   ///
   /// returns a dynamic value due different message interpretation.
-   dynamic interpret() {
+  dynamic interpret() {
     final message = this;
     switch (message.messageType) {
       case MessageType.text:
@@ -15,7 +15,8 @@ extension MessageInterpreter on Message {
           return message.payload;
         } else {
           throw Exception(
-              'Message payload is not a String as messageType suggests');
+            'Message payload is not a String as messageType suggests',
+          );
         }
       case MessageType.neighborsResponse:
         if (message.payload is List<Map>) {
@@ -26,7 +27,8 @@ extension MessageInterpreter on Message {
           return devices;
         } else {
           throw Exception(
-              'Message payload is not a List<Map> as messageType suggests');
+            'Message payload is not a List<Map> as messageType suggests',
+          );
         }
     }
   }

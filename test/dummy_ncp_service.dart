@@ -8,6 +8,6 @@ class DummyNcpService with NcpService {
     Would send:
     Message: $message
     To: $id
-    ''');
+    ''',);
   }
 }

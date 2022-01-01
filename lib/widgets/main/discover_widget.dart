@@ -33,7 +33,7 @@ class _DiscoverWidgetState extends State<DiscoverWidget> {
                                       nearby.disconnectFromEndpoint(device.id);
                                       setState(() {
                                         discoverdDevices.removeWhere(
-                                            (device) => device.id == device.id);
+                                            (device) => device.id == device.id,);
                                       });
                                     },
                                     icon: const Icon(Icons.stop),
@@ -62,7 +62,7 @@ class _DiscoverWidgetState extends State<DiscoverWidget> {
                                 'new connection🆕 id: $id info: (token: ${info.authenticationToken}, name: ${info.endpointName})',
                               );
                               ConnectionDialogs.acceptConnection(
-                                  id, context, nearby);
+                                  id, context, nearby,);
                             },
                             onConnectionResult: (id, status) {
                               print(

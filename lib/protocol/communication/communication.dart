@@ -1,7 +1,7 @@
 library communication;
 
-import 'package:nearby_test/protocol/protocol.dart';
 import 'package:nearby_test/protocol/communication/ncp_service/ncp_service.dart';
+import 'package:nearby_test/protocol/protocol.dart';
 import 'package:uuid/uuid.dart';
 
 class Communications {
@@ -51,7 +51,7 @@ class Communications {
   ///
   ///Uses [ncpService] defined in constructor to send message
   ///[message] and [id] are required
-  sendMessageToId(Message message, String id) {
+  void sendMessageToId(Message message, String id) {
     ncpService.sendMessageToId(message, id);
   }
 }

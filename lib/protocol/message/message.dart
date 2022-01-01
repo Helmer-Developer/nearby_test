@@ -56,17 +56,17 @@ class Message {
   }
 
   ///Convert [Map] to [Message]
-  static Message fromMap(Map<String, dynamic> map) {
+  factory Message.fromMap(Map<String, dynamic> map) {
     return Message(
-      id: map['id'],
-      senderId: map['senderId'],
-      receiverId: map['receiverId'],
+      id: map['id'] as String,
+      senderId: map['senderId'] as String,
+      receiverId: map['receiverId'] as String,
       route: (map['route'] as List)
-          .map((node) => RouteNode.fromMap(node))
+          .map((node) => RouteNode.fromMap(node as Map<String, dynamic>))
           .toList()
           .cast<RouteNode>(),
       payload: map['payload'],
-      messageType: MessageType.values.byName(map['messageType']),
+      messageType: MessageType.values.byName(map['messageType'] as String),
     );
   }
 
@@ -76,8 +76,8 @@ class Message {
   }
 
   ///Convert Json to [Message]
-  static Message fromJson(String jsonString) {
-    return fromMap(json.decode(jsonString));
+  factory Message.fromJson(String jsonString) {
+    return Message.fromMap(json.decode(jsonString) as Map<String, dynamic>);
   }
 
   /// Override toString

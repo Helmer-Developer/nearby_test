@@ -7,7 +7,7 @@
 
 # The following line activates a set of recommended lints for Flutter apps,
 # packages, and plugins designed to encourage good coding practices.
-include: package:flutter_lints/flutter.yaml
+include: package:lint/analysis_options.yaml
 
 linter:
   # The lint rules applied to this project can be customized in the
@@ -24,6 +24,8 @@ linter:
   rules:
     avoid_print: false  
     prefer_single_quotes: true
+    sort_pub_dependencies: false
+    avoid_classes_with_only_static_members: false
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
