@@ -9,9 +9,24 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: '12.x'
-      - uses: subosito/flutter-action@v1
+      - name: Flutter SDK Cache
+        id: flutter-sdk
+        uses: actions/cache@v2
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: flutter-sdk
+      - name: Install flutter SDK    
+        uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
+      - name: Cache flutter
+        uses: actions/cache@v2
+        with:
+          key: flutter-cache
+          path: |
+            .dart_tool
+            build
+            ${{env.PUB_CACHE}}
       - name: Build fat APK file
         run: flutter build apk --debug
       - name: Upload Build Artifacts
