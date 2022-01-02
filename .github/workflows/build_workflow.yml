@@ -13,11 +13,10 @@ jobs:
         with:
           java-version: '12.x'
       - name: Flutter SDK Cache
-        id: flutter-sdk
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
-          key: flutter-sdk
+          key: flutter-sdk-build
       - name: Install flutter SDK    
         uses: subosito/flutter-action@v1
         with:
