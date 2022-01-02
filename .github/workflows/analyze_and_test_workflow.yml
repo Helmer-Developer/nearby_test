@@ -8,7 +8,15 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: '12.x'
-      - uses: subosito/flutter-action@v1
+      - name: Flutter SDK Cache
+        id: flutter-sdk
+        uses: actions/cache@v2
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: flutter-sdk
+      - name: Install flutter SDK    
+        uses: subosito/flutter-action@v1
+        if: steps.flutter-sdk.outputs.cache-hit != 'true'
         with:
           channel: 'stable'
       - name: Cache flutter
@@ -28,7 +36,15 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: '12.x'
-      - uses: subosito/flutter-action@v1
+      - name: Flutter SDK Cache
+        id: flutter-sdk
+        uses: actions/cache@v2
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: flutter-sdk
+      - name: Install flutter SDK    
+        uses: subosito/flutter-action@v1
+        if: steps.flutter-sdk.outputs.cache-hit != 'true'
         with:
           channel: 'stable'
       - name: Cache flutter
