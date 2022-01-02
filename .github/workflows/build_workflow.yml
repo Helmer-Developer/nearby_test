@@ -30,6 +30,7 @@ jobs:
             .dart_tool
             build
             ${{env.PUB_CACHE}}
+      - run: echo ${{github.event}}
       - name: Build fat APK file
         run: flutter build apk
       - name: Upload Build Artifacts
