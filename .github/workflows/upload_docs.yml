@@ -9,7 +9,6 @@ jobs:
         with:
           java-version: '12.x'
       - name: Flutter SDK Cache
-        id: flutter-sdk
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
