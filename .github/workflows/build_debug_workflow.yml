@@ -21,7 +21,7 @@ jobs:
       - name: Cache flutter
         uses: actions/cache@v2
         with:
-          key: flutter-cache
+          key: flutter-cache-build-debug
           path: |
             .dart_tool
             build
