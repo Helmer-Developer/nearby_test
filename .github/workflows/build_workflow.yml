@@ -30,7 +30,7 @@ jobs:
             .dart_tool
             build
             ${{env.PUB_CACHE}}
-      - run: echo ${{github.event}}
+      - run: echo ${{github.event_name}}      
       - name: Build fat APK file
         run: flutter build apk
       - name: Upload Build Artifacts
@@ -39,5 +39,6 @@ jobs:
           name: fat APK file
           path: build/app/outputs/flutter-apk/app-release.apk
       - uses: softprops/action-gh-release@v1
+        if: github.event_name == 'tag'
         with:
           files: build/app/outputs/flutter-apk/app-release.apk
