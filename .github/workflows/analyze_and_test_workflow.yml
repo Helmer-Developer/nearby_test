@@ -27,7 +27,7 @@ jobs:
         uses: actions/cache@v2
         with:
           key: flutter-cache
-          paht: |
+          path: |
             .dart_tool
             build
       - name: Flutter test
