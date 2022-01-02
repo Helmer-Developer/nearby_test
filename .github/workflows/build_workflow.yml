@@ -24,12 +24,11 @@ jobs:
       - name: Cache flutter
         uses: actions/cache@v2
         with:
-          key: flutter-cache
+          key: flutter-cache-build
           path: |
             .dart_tool
             build
             ${{env.PUB_CACHE}}
-      - run: echo ${{github.event_name}}      
       - name: Build fat APK file
         run: flutter build apk
       - name: Upload Build Artifacts
