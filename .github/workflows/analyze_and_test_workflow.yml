@@ -18,7 +18,7 @@ jobs:
           path: |
             .dart_tool
             build
-            ${{PUB_CACHE}}
+            ${{env.PUB_CACHE}}
       - name: Flutter Analyze 
         run: flutter analyze
   Test:
@@ -38,7 +38,7 @@ jobs:
           path: |
             .dart_tool
             build
-            ${{PUB_CACHE}}
+            ${{env.PUB_CACHE}}
       - name: Flutter test
         run: flutter test --coverage
       - name: Upload to codecov
