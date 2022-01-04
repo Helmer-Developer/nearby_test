@@ -26,19 +26,20 @@ class _AdvertiseWidgetState extends State<AdvertiseWidget> {
                       (device) => ListTile(
                         title: Text(device.id),
                         subtitle: Text(device.username),
-                        leading:
-                            device.connectionStatus == ConnectionStatus.connected
-                                ? IconButton(
-                                    onPressed: () {
-                                      nearby.disconnectFromEndpoint(device.id);
-                                      setState(() {
-                                        discoverdDevices.removeWhere(
-                                            (device) => device.id == device.id,);
-                                      });
-                                    },
-                                    icon: const Icon(Icons.stop),
-                                  )
-                                : null,
+                        leading: device.connectionStatus ==
+                                ConnectionStatus.connected
+                            ? IconButton(
+                                onPressed: () {
+                                  nearby.disconnectFromEndpoint(device.id);
+                                  setState(() {
+                                    discoverdDevices.removeWhere(
+                                      (device) => device.id == device.id,
+                                    );
+                                  });
+                                },
+                                icon: const Icon(Icons.stop),
+                              )
+                            : null,
                         trailing: device.connectionStatus ==
                                 ConnectionStatus.connected
                             ? IconButton(
@@ -65,7 +66,10 @@ class _AdvertiseWidgetState extends State<AdvertiseWidget> {
                         'new connection🆕 id: $id info: (token: ${info.authenticationToken}, name: ${info.endpointName})',
                       );
                       if (await ConnectionDialogs.acceptConnection(
-                              id, context, nearby,) ??
+                            id,
+                            context,
+                            nearby,
+                          ) ??
                           false) {
                         discoverdDevices.add(
                           DiscoverDevice(

@@ -27,13 +27,15 @@ class _DiscoverWidgetState extends State<DiscoverWidget> {
                         leading: device.connectionStatus ==
                                 ConnectionStatus.waitng
                             ? const CircularProgressIndicator()
-                            : device.connectionStatus == ConnectionStatus.connected
+                            : device.connectionStatus ==
+                                    ConnectionStatus.connected
                                 ? IconButton(
                                     onPressed: () {
                                       nearby.disconnectFromEndpoint(device.id);
                                       setState(() {
                                         discoverdDevices.removeWhere(
-                                            (device) => device.id == device.id,);
+                                          (device) => device.id == device.id,
+                                        );
                                       });
                                     },
                                     icon: const Icon(Icons.stop),
@@ -62,7 +64,10 @@ class _DiscoverWidgetState extends State<DiscoverWidget> {
                                 'new connection🆕 id: $id info: (token: ${info.authenticationToken}, name: ${info.endpointName})',
                               );
                               ConnectionDialogs.acceptConnection(
-                                  id, context, nearby,);
+                                id,
+                                context,
+                                nearby,
+                              );
                             },
                             onConnectionResult: (id, status) {
                               print(
@@ -74,7 +79,8 @@ class _DiscoverWidgetState extends State<DiscoverWidget> {
                                   print('compairng $id and ${device.id}');
                                   return device.id == id;
                                 });
-                                device.connectionStatus = ConnectionStatus.connected;
+                                device.connectionStatus =
+                                    ConnectionStatus.connected;
                                 setState(() {});
                               }
                             },

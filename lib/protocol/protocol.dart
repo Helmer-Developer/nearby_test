@@ -15,5 +15,4 @@ part 'message/message_interpreter.dart';
 part 'message/message_type.dart';
 part 'route_node.dart';
 
-
 typedef MessageRoute = List<RouteNode>;

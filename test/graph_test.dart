@@ -8,10 +8,16 @@ void main() {
       final graph = dummyGraph();
       final devices = dummyDevices();
       final me = graph.me;
-      expect(me.id, 'me',
-          reason: 'test graph should be created with dummyGraph',);
-      expect(graph.graph.vertices.length, 9,
-          reason: 'test graph should have 9 vertices (8 devices + me)',);
+      expect(
+        me.id,
+        'me',
+        reason: 'test graph should be created with dummyGraph',
+      );
+      expect(
+        graph.graph.vertices.length,
+        9,
+        reason: 'test graph should have 9 vertices (8 devices + me)',
+      );
       expect(
         graph.graph.data[devices[4]],
         {devices[2], devices[0], devices[5]},

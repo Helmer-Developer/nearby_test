@@ -15,7 +15,8 @@ class LocationDialog extends StatelessWidget {
     return AlertDialog(
       title: const Text('Standort'),
       content: const Text(
-          'Deine Zustimmung ist erforderlich, damit die App funktioniert',),
+        'Deine Zustimmung ist erforderlich, damit die App funktioniert',
+      ),
       actions: [
         TextButton(
           onPressed: () async {

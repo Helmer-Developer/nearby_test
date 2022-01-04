@@ -12,20 +12,32 @@ void main() {
       final String id = const Uuid().v4();
       final device = DiscoverDevice(id: id, username: nickName);
       expect(device.id, id, reason: 'id and device id shall be the same');
-      expect(device.username, 'test-name',
-          reason: 'device username shall be "test-name"',);
-      expect(device.connectionStatus, null,
-          reason: 'ConnectionStatus of device shall be null',);
+      expect(
+        device.username,
+        'test-name',
+        reason: 'device username shall be "test-name"',
+      );
+      expect(
+        device.connectionStatus,
+        null,
+        reason: 'ConnectionStatus of device shall be null',
+      );
       device.connectionStatus = ConnectionStatus.connected;
-      expect(device.connectionStatus, ConnectionStatus.connected,
-          reason: 'device connectionStatus shall now be connected',);
+      expect(
+        device.connectionStatus,
+        ConnectionStatus.connected,
+        reason: 'device connectionStatus shall now be connected',
+      );
       final String newId = const Uuid().v4();
       DiscoverDevice newDevice = device.copyWith();
       newDevice = device.copyWith(id: newId);
       expect(newDevice.id, newId);
-      expect(newDevice.id, isNot(equals(device.id)),
-          reason:
-              'new and old device id shall not be the same (random error possible but very unlikely)',);
+      expect(
+        newDevice.id,
+        isNot(equals(device.id)),
+        reason:
+            'new and old device id shall not be the same (random error possible but very unlikely)',
+      );
     });
     test('to and from json test (for communication trough NCP)', () {
       final device = DiscoverDevice(

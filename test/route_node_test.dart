@@ -13,8 +13,11 @@ void main() {
         isSender: false,
         isReceiver: false,
       );
-      expect(routeNode.deviceId, id,
-          reason: 'RouteNode.deviceId shall be equale to id',);
+      expect(
+        routeNode.deviceId,
+        id,
+        reason: 'RouteNode.deviceId shall be equale to id',
+      );
     });
     test('RouteNode isSender and isReceiver test', () {
       final random = Random();
@@ -69,8 +72,11 @@ void main() {
         isSender: false,
         isReceiver: false,
       );
-      expect(node1.hashCode, node2.hashCode,
-          reason: 'Node1 and Node2 hashCode shall be equal',);
+      expect(
+        node1.hashCode,
+        node2.hashCode,
+        reason: 'Node1 and Node2 hashCode shall be equal',
+      );
     });
   });
 }
