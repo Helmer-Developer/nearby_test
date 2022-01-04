@@ -33,6 +33,11 @@ void main() {
         );
       }
       expect(
+        () => communications.sendMessageToId(message, '2'),
+        prints('Would send:\nMessage: ${message.toString()}\nTo: 2\n'),
+        reason: 'should print message',
+      );
+      expect(
         message.runtimeType,
         Message,
         reason: 'should be Message',

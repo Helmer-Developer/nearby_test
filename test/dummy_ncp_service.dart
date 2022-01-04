@@ -3,11 +3,9 @@ import 'package:nearby_test/protocol/protocol.dart';
 
 class DummyNcpService with NcpService {
   @override
-  void sendMessageToId(Message message, String id) {
-    print('''
-    Would send:
-    Message: $message
-    To: $id
-    ''',);
+  Future<void> sendMessageToId(Message message, String id) async {
+    print(
+      'Would send:\nMessage: $message\nTo: $id',
+    );
   }
 }
