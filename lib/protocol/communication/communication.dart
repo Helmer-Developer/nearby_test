@@ -51,7 +51,7 @@ class Communications {
   ///
   ///Uses [ncpService] defined in constructor to send message
   ///[message] and [id] are required
-  void sendMessageToId(Message message, String id) {
-    ncpService.sendMessageToId(message, id);
+  Future<void> sendMessageToId(Message message, String id) async {
+    await ncpService.sendMessageToId(message, id);
   }
 }

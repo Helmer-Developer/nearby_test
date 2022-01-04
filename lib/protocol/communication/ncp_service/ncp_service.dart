@@ -12,5 +12,5 @@ part 'nca_service.dart';
 ///This class is used to define the methods that a NCP service must implement
 ///Curretnly only the method for sending data is required
 abstract class NcpService {
-  void sendMessageToId(Message message, String id);
+  Future<void> sendMessageToId(Message message, String id);
 }
