@@ -64,7 +64,7 @@ class ConnectedDevicesGraph {
   /// Generates the shortest paht form [from] to [to]
   ///
   /// Returns a [List] of [RouteNode]s (converted from [DiscoverDevice]s
-  /// with [isSender] and [isReceiver] set to true at first and last node)
+  /// with [RouteNode.isSender] and [RouteNode.isReceiver] set to true at first and last node)
   MessageRoute? getRoute(DiscoverDevice from, DiscoverDevice to) {
     final path = graph.path(from, to);
     if (path.isEmpty) return null;
