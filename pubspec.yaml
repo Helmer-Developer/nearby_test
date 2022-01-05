@@ -36,6 +36,7 @@ dependencies:
   fluttertoast: ^8.0.8
   directed_graph: ^0.3.6
   collection: ^1.15.0
+  flutter_riverpod: ^1.0.3
 
 dev_dependencies:
   flutter_test:
