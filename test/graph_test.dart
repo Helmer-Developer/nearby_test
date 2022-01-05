@@ -56,8 +56,14 @@ void main() {
         reason: 'the last device should be the receiver',
       );
     });
+    test('Connected Devices Test', () {
+      final graph = dummyGraph();
+      final devices = dummyDevices();
+      final connectedDevices = graph.connectedDevices();
+      expect(connectedDevices, [devices[0], devices[1], devices[7]]);
+    });
     test('toString test', () {
-      final graph = ConnectedDevicesGraph('me', 'me');
+      final graph = ConnectedDevicesGraph('me');
       graph.addDeviceWithMe(
         DiscoverDevice(
           id: '1',
@@ -75,7 +81,7 @@ void main() {
 }
 
 ConnectedDevicesGraph dummyGraph() {
-  final graph = ConnectedDevicesGraph('me', 'me');
+  final graph = ConnectedDevicesGraph('me');
   final List<DiscoverDevice> devices = List.generate(
     8,
     (index) => DiscoverDevice(
