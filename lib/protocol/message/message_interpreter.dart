@@ -12,10 +12,18 @@ extension MessageInterpreter on Message {
     switch (message.messageType) {
       case MessageType.text:
         if (message.payload is String) {
-          return message.payload;
+          return message.payload as String;
         } else {
           throw Exception(
             'Message payload is not a String as messageType suggests',
+          );
+        }
+      case MessageType.neighborsRequest:
+        if (message.payload == null) {
+          return;
+        } else {
+          throw Exception(
+            'Message payload is not null as messageType suggests',
           );
         }
       case MessageType.neighborsResponse:

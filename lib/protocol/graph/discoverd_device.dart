@@ -65,14 +65,11 @@ class DiscoverDevice {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is DiscoverDevice &&
-        other.id == id &&
-        other.username == username &&
-        other.connectionStatus == connectionStatus;
+    return other is DiscoverDevice && other.id == id;
   }
 
   ///overrides [hashCode] as dart's best practise suggests
   @override
   int get hashCode =>
-      id.hashCode ^ username.hashCode ^ connectionStatus.hashCode;
+      id.hashCode ^ runtimeType.hashCode;
 }
