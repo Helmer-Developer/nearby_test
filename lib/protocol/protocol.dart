@@ -17,7 +17,7 @@ part 'communication/communication.dart';
 part 'message/message.dart';
 part 'message/message_interpreter.dart';
 part 'message/message_type.dart';
-part 'route_node.dart';
+part 'graph/route_node.dart';
 part 'communication/ncp_service/ncp_service.dart';
 part 'communication/ncp_service/nca_service.dart';
 

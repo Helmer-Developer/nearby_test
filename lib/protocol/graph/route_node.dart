@@ -1,4 +1,4 @@
-part of 'protocol.dart';
+part of '../protocol.dart';
 
 /// Class to abscarct all infomation about a node in a message route
 ///
