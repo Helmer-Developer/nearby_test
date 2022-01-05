@@ -3,7 +3,6 @@ import 'package:nearby_connections/nearby_connections.dart';
 import 'package:nearby_test/provider/provider.dart';
 import 'package:nearby_test/script/script.dart';
 import 'package:nearby_test/widgets/dialogs/dialogs.dart';
-import 'package:nearby_test/widgets/main/main_widgets.dart';
 
 ///The main entry point for a dart application
 ///
