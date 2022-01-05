@@ -7,10 +7,10 @@ part of '../protocol.dart';
 /// or the [addDeviceWithAncestors] function if you want to add devices which are acncestors of allready added devices.
 class ConnectedDevicesGraph {
   /// Constructor to initailize the graph with [ownId] and [ownUsername] as the root node (me)
-  ConnectedDevicesGraph(String ownId, String ownUsername) {
+  ConnectedDevicesGraph(String ownId) {
     me = DiscoverDevice(
       id: ownId,
-      username: ownUsername,
+      username: ownId,
       connectionStatus: ConnectionStatus.connected,
     );
     graph.addEdges(me, {});
