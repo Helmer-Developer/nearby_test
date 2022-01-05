@@ -164,4 +164,91 @@ void main() {
       );
     });
   });
+  group('Message InterpreterTest', () {
+    final Message message = Message(
+      id: 'test',
+      senderId: '1',
+      receiverId: '2',
+      route: [
+        RouteNode(deviceId: '1', isSender: true, isReceiver: false),
+        RouteNode(deviceId: '2', isSender: false, isReceiver: true),
+      ],
+      payload: 'test payload',
+      messageType: MessageType.text,
+    );
+    test('payload: text', () {
+      final interpretation = message.interpret();
+      expect(
+        interpretation.runtimeType,
+        String,
+        reason:
+            'interpretation should be a string because MessageType is MessageType.text',
+      );
+      expect(
+        interpretation,
+        message.payload,
+        reason: 'interpretation should be equal to payload',
+      );
+      message.payload = 1;
+      expect(
+        () => message.interpret(),
+        throwsException,
+        reason:
+            'interpretation should throw an exception because payload don not has expected type',
+      );
+    });
+    test('payload: neighborsResponse', () {
+      message.payload = [
+        DiscoverDevice(
+          id: 'device',
+          username: 'device',
+          connectionStatus: ConnectionStatus.connected,
+        ),
+      ].map((device) => device.toMap()).toList();
+      message.messageType = MessageType.neighborsResponse;
+      final interpretation = message.interpret();
+      expect(
+        interpretation.runtimeType,
+        List<DiscoverDevice>,
+        reason:
+            'interpretation should be a list because MessageType is MessageType.neighborsResponse',
+      );
+      expect(
+        interpretation,
+        [
+          DiscoverDevice(
+            id: 'device',
+            username: 'device',
+            connectionStatus: ConnectionStatus.connected,
+          ),
+        ],
+        reason: 'interpretation should be equal to payload',
+      );
+      message.payload = 1;
+      expect(
+        () => message.interpret(),
+        throwsException,
+        reason:
+            'interpretation should throw an exception because payload don not has expected type',
+      );
+    });
+    test('payload: neighborsRequest', () {
+      message.messageType = MessageType.neighborsRequest;
+      message.payload = null;
+      final interpretation = message.interpret();
+      expect(
+        interpretation,
+        null,
+        reason:
+            'interpretation should be null because MessageType is MessageType.neighborsRequest',
+      );
+      message.payload = 1;
+      expect(
+        () => message.interpret(),
+        throwsException,
+        reason:
+            'interpretation should throw an exception because payload don not has expected type',
+      );
+    });
+  });
 }
