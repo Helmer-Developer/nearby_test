@@ -53,6 +53,14 @@ class ConnectedDevicesGraph {
     }
   }
 
+  /// Returns a list of all devices in the graph wich are connected to me
+  ///
+  /// This function is used to get a list of all devices which are connected to me.
+  /// Returns all vertices wich have a edge to me.
+  List<DiscoverDevice> connectedDevices() {
+    return graph.edges(me).toList();
+  }
+
   /// Generates the shortest paht form [from] to [to]
   ///
   /// Returns a [List] of [RouteNode]s (converted from [DiscoverDevice]s
