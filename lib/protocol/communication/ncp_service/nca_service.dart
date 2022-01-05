@@ -1,4 +1,4 @@
-part of 'ncp_service.dart';
+part of '../../protocol.dart';
 
 /// The NCA service impelementation
 ///

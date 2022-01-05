@@ -1,8 +1,4 @@
-library communication;
-
-import 'package:nearby_test/protocol/communication/ncp_service/ncp_service.dart';
-import 'package:nearby_test/protocol/protocol.dart';
-import 'package:uuid/uuid.dart';
+part of '../protocol.dart';
 
 class Communications {
   Communications(this.ncpService);
