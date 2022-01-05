@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nearby_connections/nearby_connections.dart';
 import 'package:nearby_test/global/globals.dart';
+import 'package:nearby_test/provider/provider.dart';
 
 part 'connection_diaologs.dart';
 part 'location_dialog.dart';

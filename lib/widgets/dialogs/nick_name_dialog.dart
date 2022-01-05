@@ -41,7 +41,8 @@ class _NickNameDialogState extends State<NickNameDialog> {
                   ///
                   ///Definitely not a long-term solution; will change in the future
                   ///Not safe and permantent storing
-                  nickName = controller.value.text;
+                  ProviderContainer().read(meProvider).ownName =
+                      controller.value.text;
                   Navigator.pop(context);
                 }
               : null,

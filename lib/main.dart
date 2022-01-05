@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nearby_connections/nearby_connections.dart';
+import 'package:nearby_test/provider/provider.dart';
+import 'package:nearby_test/script/script.dart';
 import 'package:nearby_test/widgets/dialogs/dialogs.dart';
 import 'package:nearby_test/widgets/main/main_widgets.dart';
 
@@ -7,7 +9,9 @@ import 'package:nearby_test/widgets/main/main_widgets.dart';
 ///
 ///Adds the widget NearbyTestApp to the flutter engine
 void main() {
-  runApp(const NearbyTestApp());
+  runApp(
+    const ProviderScope(child: MaterialApp(home: NearbyTestApp())),
+  );
 }
 
 ///Root of the application
@@ -15,56 +19,80 @@ void main() {
 ///Paints the "Advertise" and "Discover" buttons to the screen
 ///Adds AppBar with text and "Stop" button
 ///Asks user for required permissions and nickname
-class NearbyTestApp extends StatefulWidget {
+class NearbyTestApp extends ConsumerStatefulWidget {
   const NearbyTestApp({Key? key}) : super(key: key);
 
   @override
-  State<NearbyTestApp> createState() => _NearbyTestAppState();
+  ConsumerState<NearbyTestApp> createState() => _NearbyTestAppState();
 }
 
-class _NearbyTestAppState extends State<NearbyTestApp> {
+class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
   final nearby = Nearby();
 
-  Future<void> initialise(BuildContext context) async {
+  Future<void> initialise() async {
     if (!await nearby.checkLocationPermission()) {
       await showDialog(
         context: context,
         builder: (context) => LocationDialog(),
       );
     }
-    showDialog(
+    await showDialog(
       context: context,
       builder: (context) => const NickNameDialog(),
     );
     await nearby.enableLocationServices();
+    swithcAdDi();
+  }
+
+  Future<void> swithcAdDi() async {
+    while (true) {
+      advertisment(nearby, ref);
+      await Future.delayed(const Duration(seconds: 1));
+      discoverment(nearby, ref);
+      await Future.delayed(const Duration(seconds: 1));
+      nearby.stopDiscovery();
+      await Future.delayed(const Duration(seconds: 8));
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initialise();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Builder(
-        builder: (context) {
-          initialise(context);
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Nearby Test'),
-              actions: [
-                IconButton(
-                  onPressed: () async {
-                    await nearby.stopAdvertising();
-                    await nearby.stopDiscovery();
-                    await nearby.stopAllEndpoints();
-                  },
-                  icon: const Icon(Icons.stop),
-                ),
-              ],
-            ),
-            body: Column(
-              children: const [
-                AdvertiseWidget(),
-                DiscoverWidget(),
-              ],
-            ),
+    final _scrollController = ScrollController();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeOut,
+      );
+    });
+    final logs = ref.watch(logProvider).logs;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Nearby Test'),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              await nearby.stopAdvertising();
+              await nearby.stopDiscovery();
+              await nearby.stopAllEndpoints();
+            },
+            icon: const Icon(Icons.stop),
+          ),
+        ],
+      ),
+      body: ListView.builder(
+        controller: _scrollController,
+        itemCount: logs.length,
+        itemBuilder: (context, index) {
+          final log = logs[index];
+          return ListTile(
+            title: Text(log),
           );
         },
       ),
