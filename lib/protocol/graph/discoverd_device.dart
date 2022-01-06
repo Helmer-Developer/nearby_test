@@ -70,6 +70,5 @@ class DiscoverDevice {
 
   ///overrides [hashCode] as dart's best practise suggests
   @override
-  int get hashCode =>
-      id.hashCode ^ runtimeType.hashCode;
+  int get hashCode => id.hashCode ^ runtimeType.hashCode;
 }

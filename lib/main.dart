@@ -42,6 +42,7 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
     );
     await nearby.enableLocationServices();
     swithcAdDi();
+    getneigbours(ref);
   }
 
   Future<void> swithcAdDi() async {

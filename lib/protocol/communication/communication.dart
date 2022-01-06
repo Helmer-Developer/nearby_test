@@ -72,7 +72,7 @@ class Communications {
   }
 
   /// Inputpint for received messages
-  /// 
+  ///
   /// Needs [message] and [graph] to handle message
   String? messageInput(Message message, ConnectedDevicesGraph graph) {
     final messageForMe = handleMessage(message, message.senderId);

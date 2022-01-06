@@ -5,6 +5,8 @@ import 'package:nearby_test/global/globals.dart';
 import 'package:nearby_test/protocol/protocol.dart';
 import 'package:nearby_test/provider/provider.dart';
 
+final Communications communication = Communications(NcaService());
+
 void advertise(Nearby nearby, WidgetRef ref) {
   final me = ref.read(meProvider);
   final graph = ref.read(graphProvider);
@@ -26,7 +28,13 @@ void advertise(Nearby nearby, WidgetRef ref) {
       nearby.acceptConnection(
         endpointId,
         onPayLoadRecieved: (endpointId, payload) {
-          log.addLog('onPayLoadRecieved: $endpointId, payload: $payload');
+          log.addLog(
+            'onPayLoadRecieved: $endpointId, payload: ${String.fromCharCodes(payload.bytes!.toList())}',
+          );
+          communication.messageInput(
+            Message.fromJson(String.fromCharCodes(payload.bytes!.toList())),
+            graph,
+          );
         },
       );
     },
@@ -97,7 +105,11 @@ void discover(Nearby nearby, WidgetRef ref) {
             endpointId,
             onPayLoadRecieved: (endpointId, payload) {
               log.addLog(
-                'onPayLoadRecieved: $endpointId, payload: $payload',
+                'onPayLoadRecieved: $endpointId, payload: ${String.fromCharCodes(payload.bytes!.toList())}',
+              );
+              communication.messageInput(
+                Message.fromJson(String.fromCharCodes(payload.bytes!.toList())),
+                graph,
               );
             },
           );
@@ -140,4 +152,24 @@ void discover(Nearby nearby, WidgetRef ref) {
     },
     serviceId: 'com.example.nearby_test',
   );
+}
+
+Future<void> getneigbours(WidgetRef ref) async {
+  while (true) {
+    final graph = ref.read(graphProvider);
+    final me = ref.read(meProvider);
+    for (final node in graph.graph.vertices) {
+      if (node.id != me.ownId) {
+        communication.requestNeighbors(
+          receiverId: node.id,
+          ownId: me.ownId,
+          route: graph.getRoute(
+            DiscoverDevice(id: me.ownId, username: me.ownName),
+            DiscoverDevice(id: node.id, username: node.id),
+          )!,
+        );
+      }
+    }
+    await Future.delayed(const Duration(seconds: 5));
+  }
 }
