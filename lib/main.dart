@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nearby_connections/nearby_connections.dart';
 import 'package:nearby_test/provider/provider.dart';
+import 'package:nearby_test/screens/graph_screen.dart';
 import 'package:nearby_test/script/script.dart';
 import 'package:nearby_test/widgets/dialogs/dialogs.dart';
 
@@ -45,12 +46,10 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
 
   Future<void> swithcAdDi() async {
     while (true) {
-      advertisment(nearby, ref);
-      await Future.delayed(const Duration(seconds: 1));
-      discoverment(nearby, ref);
-      await Future.delayed(const Duration(seconds: 1));
-      nearby.stopDiscovery();
-      await Future.delayed(const Duration(seconds: 8));
+      advertise(nearby, ref);
+      await Future.delayed(const Duration(seconds: 5));
+      discover(nearby, ref);
+      await Future.delayed(const Duration(seconds: 5));
     }
   }
 
@@ -82,6 +81,15 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
               await nearby.stopAllEndpoints();
             },
             icon: const Icon(Icons.stop),
+          ),
+          IconButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const GraphScreen(),
+              ),
+            ),
+            icon: const Icon(Icons.auto_graph),
           ),
         ],
       ),

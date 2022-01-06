@@ -37,6 +37,7 @@ dependencies:
   directed_graph: ^0.3.6
   collection: ^1.15.0
   flutter_riverpod: ^1.0.3
+  graphview: ^1.1.1
 
 dev_dependencies:
   flutter_test:

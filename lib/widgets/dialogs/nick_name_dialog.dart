@@ -3,14 +3,14 @@ part of 'dialogs.dart';
 ///Dialog to collect nickname of user
 ///
 ///Promts the user with a dialog and a text field to enter a nickname
-class NickNameDialog extends StatefulWidget {
+class NickNameDialog extends ConsumerStatefulWidget {
   const NickNameDialog({Key? key}) : super(key: key);
 
   @override
   _NickNameDialogState createState() => _NickNameDialogState();
 }
 
-class _NickNameDialogState extends State<NickNameDialog> {
+class _NickNameDialogState extends ConsumerState<NickNameDialog> {
   final controller = TextEditingController();
   @override
   void initState() {
@@ -41,8 +41,7 @@ class _NickNameDialogState extends State<NickNameDialog> {
                   ///
                   ///Definitely not a long-term solution; will change in the future
                   ///Not safe and permantent storing
-                  ProviderContainer().read(meProvider).ownName =
-                      controller.value.text;
+                  ref.read(meProvider).ownName = controller.value.text;
                   Navigator.pop(context);
                 }
               : null,

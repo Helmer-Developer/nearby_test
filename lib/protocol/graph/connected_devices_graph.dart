@@ -53,6 +53,14 @@ class ConnectedDevicesGraph {
     }
   }
 
+  void replaceDevice(DiscoverDevice device) {
+    (graph.vertices.firstWhere((device) => device == device))
+      ..connectionStatus = device.connectionStatus
+      ..username = device.username;
+  }
+
+  bool contains(DiscoverDevice device) => graph.contains(device);
+
   /// Returns a list of all devices in the graph wich are connected to me
   ///
   /// This function is used to get a list of all devices which are connected to me.
