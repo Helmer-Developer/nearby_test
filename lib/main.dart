@@ -10,7 +10,9 @@ import 'package:nearby_test/widgets/dialogs/dialogs.dart';
 ///Adds the widget NearbyTestApp to the flutter engine
 void main() {
   runApp(
-    const ProviderScope(child: MaterialApp(home: NearbyTestApp())),
+    const ProviderScope(
+      child: MaterialApp(home: NearbyTestApp()),
+    ),
   );
 }
 
@@ -78,6 +80,8 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
           IconButton(
             onPressed: () async {
               ref.refresh(graphProvider);
+              ref.read(graphProvider).clean();
+              ref.refresh(meProvider);
               await nearby.stopAdvertising();
               await nearby.stopDiscovery();
               await nearby.stopAllEndpoints();

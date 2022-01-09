@@ -18,7 +18,7 @@ class DiscoverDevice {
   DiscoverDevice copyWith({
     String? id,
     String? username,
-    ConnectionStatus? connectionStatus,
+    ConnectionStatus? connectionStatus = ConnectionStatus.connected,
   }) {
     return DiscoverDevice(
       id: id ?? this.id,

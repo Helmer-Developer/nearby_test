@@ -2,7 +2,7 @@ part of 'provider.dart';
 
 class Me extends ChangeNotifier {
   String _ownId = 'me';
-  String _ownName = '';
+  String _ownName = 'me';
 
   String get ownId => _ownId;
   String get ownName => _ownName;

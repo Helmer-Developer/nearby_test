@@ -67,6 +67,11 @@ class ConnectedDevicesGraph extends ChangeNotifier {
     notifyListeners();
   }
 
+  void clean() {
+    _graph.clear();
+    notifyListeners();
+  }
+
   bool contains(DiscoverDevice device) => _graph.contains(device);
 
   /// Returns a list of all devices in the graph wich are connected to me
@@ -99,8 +104,10 @@ class ConnectedDevicesGraph extends ChangeNotifier {
   }
 
   DiscoverDevice? getDeviceById(String id) {
-    if(!contains(DiscoverDevice(id: id, username: id))) return null;
-    return _graph.vertices.firstWhere((device) => device.id == id,);
+    if (!contains(DiscoverDevice(id: id, username: id))) return null;
+    return _graph.vertices.firstWhere(
+      (device) => device.id == id,
+    );
   }
 
   /// Overriding the toString function to return the [graph] as a string representation

@@ -74,22 +74,23 @@ class Communications {
   /// Inputpint for received messages
   ///
   /// Needs [message] and [graph] to handle message
-  String? messageInput(Message message, ConnectedDevicesGraph graph) {
-    final messageForMe = handleMessage(message, message.senderId);
+  String? messageInput(Message message, ConnectedDevicesGraph graph, Me me) {
+    print('messageInput: $message');
+    final messageForMe = handleMessage(message, me.ownId);
     if (messageForMe != null) {
-      final ownId = messageForMe.receiverId;
+      print('got message for me: $messageForMe');
       final senderId = messageForMe.senderId;
       if (messageForMe.messageType == MessageType.neighborsRequest) {
         messageForMe.interpret();
         sendNeighborsToId(
           receiverId: senderId,
-          ownId: ownId,
+          ownId: me.ownId,
           devices: graph.connectedDevices(),
           route: messageForMe.route.reversed.toList(),
         );
       } else if (messageForMe.messageType == MessageType.neighborsResponse) {
         final response = messageForMe.interpret() as List<DiscoverDevice>;
-        graph.addDeviceWithAncestors(graph.me, response);
+        graph.addDeviceWithAncestors(DiscoverDevice(id: senderId, username: senderId), response);
       } else if (messageForMe.messageType == MessageType.text) {
         return messageForMe.interpret() as String;
       }

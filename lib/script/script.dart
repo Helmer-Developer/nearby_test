@@ -1,5 +1,7 @@
 library script;
 
+import 'dart:typed_data';
+
 import 'package:nearby_connections/nearby_connections.dart';
 import 'package:nearby_test/global/globals.dart';
 import 'package:nearby_test/protocol/protocol.dart';
@@ -21,19 +23,30 @@ void advertise(Nearby nearby, WidgetRef ref) {
             DiscoverDevice(
               id: endpointId,
               username: connectionInfo.endpointName,
-              connectionStatus: ConnectionStatus.waitng,
+              connectionStatus: ConnectionStatus.connected,
             ),
           );
       nearby.acceptConnection(
         endpointId,
         onPayLoadRecieved: (endpointId, payload) {
+          final decodedPayload = String.fromCharCodes(payload.bytes!.toList());
           log.addLog(
-            'onPayLoadRecieved: $endpointId, payload: ${String.fromCharCodes(payload.bytes!.toList())}',
+            'onPayLoadRecieved: $endpointId, payload: $decodedPayload',
           );
-          communication.messageInput(
-            Message.fromJson(String.fromCharCodes(payload.bytes!.toList())),
-            ref.read(graphProvider),
-          );
+          if (decodedPayload == 'idrequest') {
+            nearby.sendBytesPayload(
+              endpointId,
+              Uint8List.fromList(endpointId.codeUnits),
+            );
+          } else if (!decodedPayload.startsWith('{')) {
+            ref.read(meProvider).ownId = decodedPayload;
+          } else {
+            communication.messageInput(
+              Message.fromJson(decodedPayload),
+              ref.read(graphProvider),
+              ref.read(meProvider),
+            );
+          }
         },
       );
     },
@@ -52,6 +65,12 @@ void advertise(Nearby nearby, WidgetRef ref) {
                 connectionStatus: ConnectionStatus.connected,
               ),
             );
+        if (ref.read(meProvider).ownId == 'me') {
+          nearby.sendBytesPayload(
+            endpointId,
+            Uint8List.fromList('idrequest'.codeUnits),
+          );
+        }
       } else if (status == Status.ERROR) {
         ref.read(graphProvider).replaceDevice(
               DiscoverDevice(
@@ -96,7 +115,7 @@ void discover(Nearby nearby, WidgetRef ref) {
             DiscoverDevice(
               id: endpointId,
               username: name,
-              connectionStatus: ConnectionStatus.waitng,
+              connectionStatus: ConnectionStatus.connected,
             ),
           );
       nearby.requestConnection(
@@ -109,13 +128,25 @@ void discover(Nearby nearby, WidgetRef ref) {
           nearby.acceptConnection(
             endpointId,
             onPayLoadRecieved: (endpointId, payload) {
+              final decodedPayload =
+                  String.fromCharCodes(payload.bytes!.toList());
               log.addLog(
-                'onPayLoadRecieved: $endpointId, payload: ${String.fromCharCodes(payload.bytes!.toList())}',
+                'onPayLoadRecieved: $endpointId, payload: $decodedPayload',
               );
-              communication.messageInput(
-                Message.fromJson(String.fromCharCodes(payload.bytes!.toList())),
-                ref.read(graphProvider),
-              );
+              if (decodedPayload == 'idrequest') {
+                nearby.sendBytesPayload(
+                  endpointId,
+                  Uint8List.fromList(endpointId.codeUnits),
+                );
+              } else if (!decodedPayload.startsWith('{')) {
+                ref.read(meProvider).ownId = decodedPayload;
+              } else {
+                communication.messageInput(
+                  Message.fromJson(decodedPayload),
+                  ref.read(graphProvider),
+                  ref.read(meProvider),
+                );
+              }
             },
           );
         },
@@ -130,6 +161,12 @@ void discover(Nearby nearby, WidgetRef ref) {
                     connectionStatus: ConnectionStatus.connected,
                   ),
                 );
+            if (ref.read(meProvider).ownId == 'me') {
+              nearby.sendBytesPayload(
+                endpointId,
+                Uint8List.fromList('idrequest'.codeUnits),
+              );
+            }
           } else if (status == Status.ERROR) {
             ref.read(graphProvider).replaceDevice(
                   DiscoverDevice(
@@ -170,7 +207,8 @@ Future<void> getneigbours(WidgetRef ref) async {
     final graph = ref.read(graphProvider);
     final me = ref.read(meProvider);
     for (final node in graph.graph.vertices) {
-      if (node.id != me.ownId) {
+      if (node.id != me.ownId &&
+          node.connectionStatus == ConnectionStatus.connected) {
         final route = graph.getRoute(
           DiscoverDevice(id: me.ownId, username: me.ownName),
           DiscoverDevice(id: node.id, username: node.username),
