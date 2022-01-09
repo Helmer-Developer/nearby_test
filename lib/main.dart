@@ -77,6 +77,7 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
         actions: [
           IconButton(
             onPressed: () async {
+              ref.refresh(graphProvider);
               await nearby.stopAdvertising();
               await nearby.stopDiscovery();
               await nearby.stopAllEndpoints();

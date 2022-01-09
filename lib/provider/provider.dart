@@ -9,8 +9,9 @@ export 'package:flutter_riverpod/flutter_riverpod.dart';
 part 'log.dart';
 part 'me.dart';
 
-final graphProvider = Provider<ConnectedDevicesGraph>((ref) {
-  return ConnectedDevicesGraph(ref.watch(meProvider)._ownId);
+final graphProvider = ChangeNotifierProvider<ConnectedDevicesGraph>((ref) {
+  final me = ref.watch(meProvider);
+  return ConnectedDevicesGraph(me.ownId, me.ownName);
 });
 
 final meProvider = ChangeNotifierProvider<Me>((ref) => Me());

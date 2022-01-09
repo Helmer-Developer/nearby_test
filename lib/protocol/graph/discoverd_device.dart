@@ -58,7 +58,7 @@ class DiscoverDevice {
 
   ///converts object to a readable string
   @override
-  String toString() => 'DiscoverDevice(id: $id)';
+  String toString() => 'DiscoverDevice(id: $id, username: $username, connectionStatus: $connectionStatus)';
 
   ///overrides equality operator (due to dart's strict equality)
   @override

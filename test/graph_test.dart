@@ -62,18 +62,35 @@ void main() {
       final connectedDevices = graph.connectedDevices();
       expect(connectedDevices, [devices[0], devices[1], devices[7]]);
     });
-    test('toString test', () {
-      final graph = ConnectedDevicesGraph('me');
-      graph.addDeviceWithMe(
+    test('Replace Test', () {
+      final graph = dummyGraph();
+      final devices = dummyDevices();
+      graph.replaceDevice(
         DiscoverDevice(
-          id: '1',
-          username: '1',
-          connectionStatus: ConnectionStatus.connected,
+          id: devices[1].id,
+          username: devices[1].username,
+          connectionStatus: ConnectionStatus.error,
         ),
       );
       expect(
+        graph.getDeviceById(devices[1].id)?.connectionStatus,
+        ConnectionStatus.error,
+      );
+    });
+    test('toString test', () {
+      final graph = ConnectedDevicesGraph('me', 'me');
+      final me = graph.me;
+      final device = DiscoverDevice(
+        id: '1',
+        username: '1',
+        connectionStatus: ConnectionStatus.error,
+      );
+      graph.addDeviceWithMe(
+        device,
+      );
+      expect(
         graph.toString(),
-        '{\n DiscoverDevice(id: 1): {DiscoverDevice(id: me)},\n DiscoverDevice(id: me): {DiscoverDevice(id: 1)},\n}',
+        '{\n $device: {$me},\n $me: {$device},\n}',
         reason: 'toString should return a string representation of the graph',
       );
     });
@@ -81,7 +98,7 @@ void main() {
 }
 
 ConnectedDevicesGraph dummyGraph() {
-  final graph = ConnectedDevicesGraph('me');
+  final graph = ConnectedDevicesGraph('me', 'me');
   final List<DiscoverDevice> devices = List.generate(
     8,
     (index) => DiscoverDevice(

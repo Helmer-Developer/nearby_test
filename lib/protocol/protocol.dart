@@ -7,6 +7,7 @@ import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
 import 'package:directed_graph/directed_graph.dart';
+import 'package:flutter/foundation.dart';
 import 'package:nearby_connections/nearby_connections.dart';
 import 'package:nearby_test/global/globals.dart';
 import 'package:uuid/uuid.dart';

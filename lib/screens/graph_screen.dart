@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphview/GraphView.dart';
+import 'package:nearby_test/protocol/protocol.dart';
 import 'package:nearby_test/provider/provider.dart';
 
 class GraphScreen extends ConsumerWidget {
@@ -11,7 +12,7 @@ class GraphScreen extends ConsumerWidget {
     final newGraph = Graph();
     for (final node in graph.graph.vertices) {
       for (final edge in graph.graph.edges(node)) {
-        newGraph.addEdge(Node.Id(node.id), Node.Id(edge.id));
+        newGraph.addEdge(Node.Id(node), Node.Id(edge));
       }
     }
     return Scaffold(
@@ -21,13 +22,15 @@ class GraphScreen extends ConsumerWidget {
       body: Center(
         child: InteractiveViewer(
           constrained: false,
-          boundaryMargin: const EdgeInsets.all(100),
+          boundaryMargin: const EdgeInsets.all(1000),
           minScale: 0.01,
           maxScale: 5.6,
           child: GraphView(
             graph: newGraph,
             algorithm: FruchtermanReingoldAlgorithm(),
-            builder: (node) => Chip(label: Text(node.key!.value.toString())),
+            builder: (node) => Chip(
+              label: Text((node.key!.value as DiscoverDevice).toString()),
+            ),
           ),
         ),
       ),

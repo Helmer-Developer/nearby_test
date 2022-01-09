@@ -63,7 +63,7 @@ void main() {
       );
       expect(
         device.toString(),
-        'DiscoverDevice(id: ${device.id})',
+        'DiscoverDevice(id: ${device.id}, username: ${device.username}, connectionStatus: ${device.connectionStatus})',
         reason:
             'toString shall return a string representation of the device including the id',
       );
