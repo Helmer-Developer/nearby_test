@@ -9,4 +9,9 @@ class Log extends ChangeNotifier {
     _logs.add(log);
     notifyListeners();
   }
+
+  void clear() {
+    _logs.clear();
+    notifyListeners();
+  }
 }

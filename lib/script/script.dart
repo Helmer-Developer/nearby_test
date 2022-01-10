@@ -23,7 +23,7 @@ void advertise(Nearby nearby, WidgetRef ref) {
             DiscoverDevice(
               id: endpointId,
               username: connectionInfo.endpointName,
-              connectionStatus: ConnectionStatus.connected,
+              connectionStatus: ConnectionStatus.waitng,
             ),
           );
       nearby.acceptConnection(
@@ -115,7 +115,7 @@ void discover(Nearby nearby, WidgetRef ref) {
             DiscoverDevice(
               id: endpointId,
               username: name,
-              connectionStatus: ConnectionStatus.connected,
+              connectionStatus: ConnectionStatus.waitng,
             ),
           );
       nearby.requestConnection(
@@ -183,7 +183,7 @@ void discover(Nearby nearby, WidgetRef ref) {
                 DiscoverDevice(id: endpointId, username: endpointId),
               );
         },
-      );
+      ).then((value) => log.addLog('request connection returned: $value'));
     },
     onEndpointLost: (endpointId) {
       log.addLog('onEndpointLost: $endpointId');
