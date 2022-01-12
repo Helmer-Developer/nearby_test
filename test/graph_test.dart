@@ -100,7 +100,7 @@ void main() {
       expect(
         graph.connectedDevices().length,
         0,
-        reason: 'The graph should not contain any deive after clean comand',
+        reason: 'The graph should not contain any device after clean command',
       );
     });
   });

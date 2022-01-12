@@ -16,7 +16,7 @@ void main() {
       expect(
         routeNode.deviceId,
         id,
-        reason: 'RouteNode.deviceId shall be equale to id',
+        reason: 'RouteNode.deviceId shall be equal to id',
       );
     });
     test('RouteNode isSender and isReceiver test', () {
@@ -38,7 +38,7 @@ void main() {
       expect(routeNode.isReceiver, receiver);
       expect(routeNode.isSender, sender);
     });
-    test('trigger assert falue', () {
+    test('trigger assert fault', () {
       try {
         // ignore: unused_local_variable
         final RouteNode routeNode = RouteNode(
@@ -47,10 +47,10 @@ void main() {
           isReceiver: true,
         );
       } catch (e) {
-        final asssertionError = e as AssertionError;
+        final assertionError = e as AssertionError;
         expect(
-          asssertionError.message,
-          'isSender and isReciver can not be true at the same time',
+          assertionError.message,
+          'isSender and isReceiver can not be true at the same time',
         );
       }
     });
