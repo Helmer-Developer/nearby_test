@@ -3,11 +3,11 @@ library script;
 import 'dart:typed_data';
 
 import 'package:nearby_connections/nearby_connections.dart';
-import 'package:nearby_test/global/globals.dart';
 import 'package:nearby_test/protocol/protocol.dart';
 import 'package:nearby_test/provider/provider.dart';
 
 final Communications communication = Communications(NcaService());
+const Strategy strategy = Strategy.P2P_CLUSTER;
 
 void advertise(Nearby nearby, WidgetRef ref) {
   final me = ref.read(meProvider);
@@ -23,7 +23,7 @@ void advertise(Nearby nearby, WidgetRef ref) {
             DiscoverDevice(
               id: endpointId,
               username: connectionInfo.endpointName,
-              connectionStatus: ConnectionStatus.connected,
+              connectionStatus: ConnectionStatus.waitng,
             ),
           );
       nearby.acceptConnection(
@@ -115,7 +115,7 @@ void discover(Nearby nearby, WidgetRef ref) {
             DiscoverDevice(
               id: endpointId,
               username: name,
-              connectionStatus: ConnectionStatus.connected,
+              connectionStatus: ConnectionStatus.waitng,
             ),
           );
       nearby.requestConnection(
@@ -183,7 +183,7 @@ void discover(Nearby nearby, WidgetRef ref) {
                 DiscoverDevice(id: endpointId, username: endpointId),
               );
         },
-      );
+      ).then((value) => log.addLog('request connection returned: $value'));
     },
     onEndpointLost: (endpointId) {
       log.addLog('onEndpointLost: $endpointId');

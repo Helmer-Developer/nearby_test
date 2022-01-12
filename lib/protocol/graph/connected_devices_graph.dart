@@ -114,3 +114,6 @@ class ConnectedDevicesGraph extends ChangeNotifier {
   @override
   String toString() => _graph.toString();
 }
+
+///enum to streamline handling of discovered devices
+enum ConnectionStatus { waitng, connected, error }

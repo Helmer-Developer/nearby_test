@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:nearby_test/global/globals.dart';
 import 'package:nearby_test/protocol/protocol.dart';
 
 void main() {
@@ -92,6 +91,16 @@ void main() {
         graph.toString(),
         '{\n $device: {$me},\n $me: {$device},\n}',
         reason: 'toString should return a string representation of the graph',
+      );
+    });
+
+    test('clear test', () {
+      final graph = dummyGraph();
+      graph.clean();
+      expect(
+        graph.connectedDevices().length,
+        0,
+        reason: 'The graph should not contain any deive after clean comand',
       );
     });
   });

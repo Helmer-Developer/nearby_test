@@ -12,6 +12,7 @@ class DiscoverWidget extends StatefulWidget {
 }
 
 class _DiscoverWidgetState extends State<DiscoverWidget> {
+  final String nickName = 'nickname';
   List<DiscoverDevice> discoverdDevices = [];
   final nearby = Nearby();
   @override

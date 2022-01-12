@@ -81,7 +81,8 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
             onPressed: () async {
               ref.refresh(graphProvider);
               ref.read(graphProvider).clean();
-              ref.refresh(meProvider);
+              ref.read(meProvider).ownId = 'unknonw';
+              ref.read(logProvider).clear();
               await nearby.stopAdvertising();
               await nearby.stopDiscovery();
               await nearby.stopAllEndpoints();

@@ -14,10 +14,11 @@ class Communications {
     required String ownId,
     required List<DiscoverDevice> devices,
     required MessageRoute route,
+    final String? id,
   }) {
     final List<Map> data = devices.map((device) => device.toMap()).toList();
     final Message message = Message(
-      id: const Uuid().v4(),
+      id: id ?? const Uuid().v4(),
       senderId: ownId,
       receiverId: receiverId,
       route: route,
@@ -35,9 +36,10 @@ class Communications {
     required String receiverId,
     required String ownId,
     required MessageRoute route,
+    final String? id,
   }) {
     final Message message = Message(
-      id: const Uuid().v4(),
+      id: id ?? const Uuid().v4(),
       senderId: ownId,
       receiverId: receiverId,
       route: route,
@@ -90,7 +92,10 @@ class Communications {
         );
       } else if (messageForMe.messageType == MessageType.neighborsResponse) {
         final response = messageForMe.interpret() as List<DiscoverDevice>;
-        graph.addDeviceWithAncestors(DiscoverDevice(id: senderId, username: senderId), response);
+        graph.addDeviceWithAncestors(
+          DiscoverDevice(id: senderId, username: senderId),
+          response,
+        );
       } else if (messageForMe.messageType == MessageType.text) {
         return messageForMe.interpret() as String;
       }
