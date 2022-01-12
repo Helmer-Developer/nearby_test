@@ -2,8 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:nearby_test/protocol/protocol.dart';
 import 'package:uuid/uuid.dart';
 
-import 'dummy_ncp_service.dart';
-
 void main() {
   group('Communication library test ', () {
     final Communications communications = Communications(DummyNcpService());

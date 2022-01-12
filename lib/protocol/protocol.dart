@@ -21,5 +21,6 @@ part 'message/message_type.dart';
 part 'graph/route_node.dart';
 part 'communication/ncp_service/ncp_service.dart';
 part 'communication/ncp_service/nca_service.dart';
+part 'communication/ncp_service/dummy_ncp_service.dart';
 
 typedef MessageRoute = List<RouteNode>;

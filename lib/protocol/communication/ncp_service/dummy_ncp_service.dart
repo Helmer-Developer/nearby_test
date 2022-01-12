@@ -1,4 +1,4 @@
-import 'package:nearby_test/protocol/protocol.dart';
+part of '../../protocol.dart';
 
 class DummyNcpService with NcpService {
   @override
