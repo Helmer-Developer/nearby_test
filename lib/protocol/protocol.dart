@@ -1,4 +1,4 @@
-///The libary containing all information and classes about the Nearby Connections Protocol (NCP)
+///The library containing all information and classes about the Nearby Connections Protocol (NCP)
 
 library protocol;
 
