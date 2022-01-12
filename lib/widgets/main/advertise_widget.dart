@@ -12,6 +12,7 @@ class AdvertiseWidget extends StatefulWidget {
 }
 
 class _AdvertiseWidgetState extends State<AdvertiseWidget> {
+  final String nickName = 'nickname';
   final nearby = Nearby();
   List<DiscoverDevice> discoverdDevices = [];
   @override

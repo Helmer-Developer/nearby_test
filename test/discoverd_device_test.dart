@@ -1,14 +1,13 @@
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:nearby_test/global/globals.dart';
 import 'package:nearby_test/protocol/protocol.dart';
 import 'package:uuid/uuid.dart';
 
 void main() {
   group('DiscoverdDevices unit test', () {
     test('CopyWith test', () {
-      nickName = 'test-name';
+      const String nickName = 'test-name';
       final String id = const Uuid().v4();
       final device = DiscoverDevice(id: id, username: nickName);
       expect(device.id, id, reason: 'id and device id shall be the same');

@@ -3,11 +3,11 @@ library script;
 import 'dart:typed_data';
 
 import 'package:nearby_connections/nearby_connections.dart';
-import 'package:nearby_test/global/globals.dart';
 import 'package:nearby_test/protocol/protocol.dart';
 import 'package:nearby_test/provider/provider.dart';
 
 final Communications communication = Communications(NcaService());
+const Strategy strategy = Strategy.P2P_CLUSTER;
 
 void advertise(Nearby nearby, WidgetRef ref) {
   final me = ref.read(meProvider);
