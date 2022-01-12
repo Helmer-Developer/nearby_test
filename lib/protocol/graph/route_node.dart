@@ -22,7 +22,7 @@ class RouteNode {
   /// Boolean value wether [RouteNode] is receiver or not
   bool isReceiver;
 
-  /// Convert [RouteNode] to [Map]
+  /// Converts [RouteNode] to [Map]
   Map<String, dynamic> toMap() {
     return {
       'deviceId': deviceId,
@@ -31,7 +31,7 @@ class RouteNode {
     };
   }
 
-  /// Convert [Map] to [RouteNode]
+  /// Converts [Map] to [RouteNode]
   factory RouteNode.fromMap(Map<String, dynamic> map) {
     return RouteNode(
       deviceId: map['deviceId'] as String,
@@ -40,7 +40,7 @@ class RouteNode {
     );
   }
 
-  /// Override toString method
+  /// Overrides toString method
   @override
   String toString() {
     return 'RouteNode{deviceId: $deviceId, isSender: $isSender, isReceiver: $isReceiver}';
