@@ -23,7 +23,7 @@ void advertise(Nearby nearby, WidgetRef ref) {
             DiscoverDevice(
               id: endpointId,
               username: connectionInfo.endpointName,
-              connectionStatus: ConnectionStatus.waitng,
+              connectionStatus: ConnectionStatus.waiting,
             ),
           );
       nearby.acceptConnection(
@@ -115,7 +115,7 @@ void discover(Nearby nearby, WidgetRef ref) {
             DiscoverDevice(
               id: endpointId,
               username: name,
-              connectionStatus: ConnectionStatus.waitng,
+              connectionStatus: ConnectionStatus.waiting,
             ),
           );
       nearby.requestConnection(

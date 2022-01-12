@@ -76,7 +76,7 @@ class _AdvertiseWidgetState extends State<AdvertiseWidget> {
                           DiscoverDevice(
                             id: id,
                             username: info.endpointName,
-                            connectionStatus: ConnectionStatus.waitng,
+                            connectionStatus: ConnectionStatus.waiting,
                           ),
                         );
                       }

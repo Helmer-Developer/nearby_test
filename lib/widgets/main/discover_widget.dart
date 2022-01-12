@@ -26,7 +26,7 @@ class _DiscoverWidgetState extends State<DiscoverWidget> {
                     .map<ListTile>(
                       (device) => ListTile(
                         leading: device.connectionStatus ==
-                                ConnectionStatus.waitng
+                                ConnectionStatus.waiting
                             ? const CircularProgressIndicator()
                             : device.connectionStatus ==
                                     ConnectionStatus.connected
@@ -94,7 +94,7 @@ class _DiscoverWidgetState extends State<DiscoverWidget> {
                             },
                           );
                           setState(() {
-                            device.connectionStatus = ConnectionStatus.waitng;
+                            device.connectionStatus = ConnectionStatus.waiting;
                           });
                         },
                       ),

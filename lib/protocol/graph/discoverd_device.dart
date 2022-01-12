@@ -3,7 +3,7 @@ part of '../protocol.dart';
 ///Data class to contain all information about a discoverd device
 ///
 ///[id] and [username] are required
-///povides all necessary functions like converting to json and back to dart object
+///provides all necessary functions like converting to json and back to dart object
 class DiscoverDevice {
   String id;
   String username;
@@ -69,7 +69,7 @@ class DiscoverDevice {
     return other is DiscoverDevice && other.id == id;
   }
 
-  ///overrides [hashCode] as dart's best practise suggests
+  ///overrides [hashCode] as dart's best practice suggests
   @override
   int get hashCode => id.hashCode ^ runtimeType.hashCode;
 }

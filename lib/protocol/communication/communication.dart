@@ -5,7 +5,7 @@ class Communications {
 
   final NcpService ncpService;
 
-  /// Sends all neigbors [devices] to receiver [receiverId]
+  /// Sends all neighbors [devices] to receiver [receiverId]
   ///
   /// Needs [receiverId] and [senderId] for proper sending
   /// [devices] and [route] are required for proper routing
@@ -52,7 +52,7 @@ class Communications {
   ///Handles a message
   ///
   ///Needs [ownId] to put message in context to device
-  ///Retruns the Messsge if device is last node in messageroute
+  ///Returns the Message if device is last node in message route
   ///Function does not check if route is valid or operational because routing is always defined by the sender
   Message? handleMessage(Message message, String ownId) {
     if (message.receiverId == ownId) {
@@ -73,7 +73,7 @@ class Communications {
     await ncpService.sendMessageToId(message, id);
   }
 
-  /// Inputpint for received messages
+  /// Input method for received messages
   ///
   /// Needs [message] and [graph] to handle message
   String? messageInput(Message message, ConnectedDevicesGraph graph, Me me) {

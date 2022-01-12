@@ -1,6 +1,6 @@
 part of '../../protocol.dart';
 
-/// The NCA service impelementation
+/// The NCA service implementation
 ///
 /// This class is used to implement the NCA service for the NCP (real devices)
 class NcaService with NcpService {

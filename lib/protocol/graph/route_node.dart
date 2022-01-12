@@ -1,6 +1,6 @@
 part of '../protocol.dart';
 
-/// Class to abscarct all infomation about a node in a message route
+/// Class to abstract all information about a node in a message route
 ///
 /// [isSender] and [isReceiver] can't be true at the same time.
 class RouteNode {
@@ -10,7 +10,7 @@ class RouteNode {
     required this.isReceiver,
   }) : assert(
           (isSender && isReceiver) == false,
-          'isSender and isReciver can not be true at the same time',
+          'isSender and isReceiver can not be true at the same time',
         );
 
   /// Id to identify the device
