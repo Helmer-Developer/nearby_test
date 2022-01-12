@@ -93,6 +93,16 @@ void main() {
         reason: 'toString should return a string representation of the graph',
       );
     });
+
+    test('clear test', () {
+      final graph = dummyGraph();
+      graph.clean();
+      expect(
+        graph.connectedDevices().length,
+        0,
+        reason: 'The graph should not contain any deive after clean comand',
+      );
+    });
   });
 }
 

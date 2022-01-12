@@ -56,5 +56,58 @@ void main() {
         reason: 'should return null because own id is sender',
       );
     });
+    test('sendNeighborsToId test', () {
+      expect(
+        () {
+          communications.sendNeighborsToId(
+            receiverId: 'receiver',
+            ownId: 'me',
+            devices: [DiscoverDevice(id: '1', username: '1')],
+            route: [
+              RouteNode(
+                deviceId: 'me',
+                isSender: true,
+                isReceiver: false,
+              ),
+              RouteNode(
+                deviceId: 'receiver',
+                isSender: false,
+                isReceiver: true,
+              ),
+            ],
+            id: 'id',
+          );
+        },
+        prints(
+          'Would send:\nMessage: Message{id: id, senderId: me, receiverId: receiver, route: [RouteNode{deviceId: me, isSender: true, isReceiver: false}, RouteNode{deviceId: receiver, isSender: false, isReceiver: true}], payload: [{id: 1, username: 1, connectionStatus: null}], messageType: MessageType.neighborsResponse}\nTo: receiver\n',
+        ),
+      );
+    });
+    test('requestNeighbors test', () {
+      expect(
+        () {
+          communications.requestNeighbors(
+            receiverId: 'receiver',
+            ownId: 'me',
+            route: [
+              RouteNode(
+                deviceId: 'me',
+                isSender: true,
+                isReceiver: false,
+              ),
+              RouteNode(
+                deviceId: 'receiver',
+                isSender: false,
+                isReceiver: true,
+              ),
+            ],
+            id: 'id',
+          );
+        },
+        prints(
+          'Would send:\nMessage: Message{id: id, senderId: me, receiverId: receiver, route: [RouteNode{deviceId: me, isSender: true, isReceiver: false}, RouteNode{deviceId: receiver, isSender: false, isReceiver: true}], payload: null, messageType: MessageType.neighborsRequest}\nTo: receiver\n',
+        ),
+      );
+    });
   });
 }

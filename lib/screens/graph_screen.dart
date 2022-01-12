@@ -30,7 +30,10 @@ class GraphScreen extends ConsumerWidget {
             algorithm: FruchtermanReingoldAlgorithm(),
             builder: (node) => Chip(
               label: Text((node.key!.value as DiscoverDevice).toString()),
-              backgroundColor: (ref.watch(meProvider).ownId == (node.key!.value as DiscoverDevice).id)? Colors.blue : null,
+              backgroundColor: (ref.watch(meProvider).ownId ==
+                      (node.key!.value as DiscoverDevice).id)
+                  ? Colors.blue
+                  : null,
             ),
           ),
         ),

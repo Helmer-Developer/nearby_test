@@ -29,7 +29,7 @@ void main() {
       );
       final String newId = const Uuid().v4();
       DiscoverDevice newDevice = device.copyWith();
-      newDevice = device.copyWith(id: newId);
+      newDevice = device.copyWith(id: newId, connectionStatus: null);
       expect(newDevice.id, newId);
       expect(
         newDevice.id,
