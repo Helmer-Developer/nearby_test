@@ -93,7 +93,7 @@ class Communications {
       } else if (messageForMe.messageType == MessageType.neighborsResponse) {
         final response = messageForMe.interpret() as List<DiscoverDevice>;
         graph.addDeviceWithAncestors(
-          DiscoverDevice(id: senderId, username: senderId),
+          DiscoverDevice(id: senderId),
           response,
         );
       } else if (messageForMe.messageType == MessageType.text) {

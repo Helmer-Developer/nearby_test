@@ -6,11 +6,11 @@ part of '../protocol.dart';
 ///provides all necessary functions like converting to json and back to dart object
 class DiscoverDevice {
   String id;
-  String username;
+  String? username;
   ConnectionStatus? connectionStatus;
   DiscoverDevice({
     required this.id,
-    required this.username,
+    this.username,
     this.connectionStatus,
   });
 

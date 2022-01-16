@@ -53,15 +53,12 @@ void advertise(Nearby nearby, WidgetRef ref) {
     onConnectionResult: (endpointId, status) {
       log.addLog('onConnectionResult: $endpointId, status: $status');
       final oldDevice = ref
-          .read(graphProvider)
-          .graph
-          .vertices
-          .firstWhere((device) => device.id == endpointId);
+          .read(graphProvider).getDeviceById(endpointId);
       if (status == Status.CONNECTED) {
         ref.read(graphProvider).replaceDevice(
               DiscoverDevice(
                 id: endpointId,
-                username: oldDevice.username,
+                username: oldDevice?.username,
                 connectionStatus: ConnectionStatus.connected,
               ),
             );
@@ -75,7 +72,7 @@ void advertise(Nearby nearby, WidgetRef ref) {
         ref.read(graphProvider).replaceDevice(
               DiscoverDevice(
                 id: endpointId,
-                username: oldDevice.username,
+                username: oldDevice?.username,
                 connectionStatus: ConnectionStatus.error,
               ),
             );
@@ -84,7 +81,7 @@ void advertise(Nearby nearby, WidgetRef ref) {
     onDisconnected: (endpointId) {
       log.addLog('onDisconnected: $endpointId');
       ref.read(graphProvider).removeDevice(
-            DiscoverDevice(id: endpointId, username: endpointId),
+            DiscoverDevice(id: endpointId),
           );
     },
     serviceId: 'com.example.nearby_test',
@@ -106,7 +103,7 @@ void discover(Nearby nearby, WidgetRef ref) {
             )}',
       );
       if (ref.read(graphProvider).contains(
-            DiscoverDevice(id: endpointId, username: endpointId),
+            DiscoverDevice(id: endpointId),
           )) {
         log.addLog('$endpointId already in graph');
         return;
@@ -180,7 +177,7 @@ void discover(Nearby nearby, WidgetRef ref) {
         onDisconnected: (endpointId) {
           log.addLog('onDisconnected: $endpointId');
           ref.read(graphProvider).removeDevice(
-                DiscoverDevice(id: endpointId, username: endpointId),
+                DiscoverDevice(id: endpointId),
               );
         },
       ).then((value) => log.addLog('request connection returned: $value'));
@@ -194,7 +191,7 @@ void discover(Nearby nearby, WidgetRef ref) {
                 .connectionStatus ==
             ConnectionStatus.connected) return;
         ref.read(graphProvider).removeDevice(
-              DiscoverDevice(id: endpointId, username: endpointId),
+              DiscoverDevice(id: endpointId),
             );
       }
     },
@@ -210,8 +207,8 @@ Future<void> getneigbours(WidgetRef ref) async {
       if (node.id != me.ownId &&
           node.connectionStatus == ConnectionStatus.connected) {
         final route = graph.getRoute(
-          DiscoverDevice(id: me.ownId, username: me.ownName),
-          DiscoverDevice(id: node.id, username: node.username),
+          DiscoverDevice(id: me.ownId),
+          DiscoverDevice(id: node.id),
         );
         if (route != null) {
           communication.requestNeighbors(

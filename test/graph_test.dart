@@ -96,7 +96,12 @@ void main() {
 
     test('clear test', () {
       final graph = dummyGraph();
-      graph.clean();
+      expect(
+        graph.connectedDevices().length,
+        3,
+        reason: 'the graph should have 8 connected devices before clear',
+      );
+      graph.clear();
       expect(
         graph.connectedDevices().length,
         0,
@@ -108,14 +113,7 @@ void main() {
 
 ConnectedDevicesGraph dummyGraph() {
   final graph = ConnectedDevicesGraph('me', 'me');
-  final List<DiscoverDevice> devices = List.generate(
-    8,
-    (index) => DiscoverDevice(
-      id: '$index',
-      username: '$index',
-      connectionStatus: ConnectionStatus.connected,
-    ),
-  );
+  final List<DiscoverDevice> devices = dummyDevices();
   graph.addDeviceWithMe(devices[0]);
   graph.addDeviceWithMe(devices[1]);
   graph.addDeviceWithAncestors(devices[1], [devices[2], devices[3]]);

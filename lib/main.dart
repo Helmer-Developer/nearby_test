@@ -80,8 +80,8 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
           IconButton(
             onPressed: () async {
               ref.refresh(graphProvider);
-              ref.read(graphProvider).clean();
-              ref.read(meProvider).ownId = 'unknonw';
+              ref.read(graphProvider).clear();
+              ref.read(meProvider).ownId = 'unknown';
               ref.read(logProvider).clear();
               await nearby.stopAdvertising();
               await nearby.stopDiscovery();

@@ -60,6 +60,7 @@ class ConnectedDevicesGraph extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Replaces the [DiscoverDevice] with the same [DiscoverDevice.id] with the given properties from [device]
   void replaceDevice(DiscoverDevice device) {
     (_graph.vertices.firstWhere((e) => e == device))
       ..connectionStatus = device.connectionStatus
@@ -67,11 +68,17 @@ class ConnectedDevicesGraph extends ChangeNotifier {
     notifyListeners();
   }
 
-  void clean() {
+  /// Clears the graph
+  /// 
+  /// Removes all vertices and edges (devices) from the graph
+  void clear() {
     _graph.clear();
     notifyListeners();
   }
 
+  /// Returns a boolean indicating if the graph contains the [device]
+  /// 
+  /// Note: Only compares the [DiscoverDevice.id] due to == operator override
   bool contains(DiscoverDevice device) => _graph.contains(device);
 
   /// Returns a list of all devices in the graph which are connected to me
@@ -104,7 +111,7 @@ class ConnectedDevicesGraph extends ChangeNotifier {
   }
 
   DiscoverDevice? getDeviceById(String id) {
-    if (!contains(DiscoverDevice(id: id, username: id))) return null;
+    if (!contains(DiscoverDevice(id: id))) return null;
     return _graph.vertices.firstWhere(
       (device) => device.id == id,
     );

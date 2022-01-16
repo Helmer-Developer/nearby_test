@@ -60,7 +60,7 @@ void main() {
           communications.sendNeighborsToId(
             receiverId: 'receiver',
             ownId: 'me',
-            devices: [DiscoverDevice(id: '1', username: '1')],
+            devices: [DiscoverDevice(id: '1', username: '1', connectionStatus: ConnectionStatus.connected)],
             route: [
               RouteNode(
                 deviceId: 'me',
@@ -77,7 +77,7 @@ void main() {
           );
         },
         prints(
-          'Would send:\nMessage: Message{id: id, senderId: me, receiverId: receiver, route: [RouteNode{deviceId: me, isSender: true, isReceiver: false}, RouteNode{deviceId: receiver, isSender: false, isReceiver: true}], payload: [{id: 1, username: 1, connectionStatus: null}], messageType: MessageType.neighborsResponse}\nTo: receiver\n',
+          'Would send:\nMessage: Message{id: id, senderId: me, receiverId: receiver, route: [RouteNode{deviceId: me, isSender: true, isReceiver: false}, RouteNode{deviceId: receiver, isSender: false, isReceiver: true}], payload: [{id: 1, username: 1, connectionStatus: ConnectionStatus.connected}], messageType: MessageType.neighborsResponse}\nTo: receiver\n',
         ),
       );
     });
