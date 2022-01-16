@@ -6,6 +6,7 @@ part of '../protocol.dart';
 /// To add a device to the graph, use ether the [addDeviceWithMe] function if the device is a directly connected device,
 /// or the [addDeviceWithAncestors] function if you want to add devices which are ancestors of already added devices.
 class ConnectedDevicesGraph extends ChangeNotifier {
+  
   /// Constructor to initialize the graph with [ownId] and [ownUsername] as the root node (me)
   ConnectedDevicesGraph(String ownId, String ownUsername) {
     _me = DiscoverDevice(

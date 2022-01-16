@@ -2,7 +2,7 @@ part of '../protocol.dart';
 
 /// Extension to interpret a [Message]
 ///
-/// Use this Extension to interpret messages from [handleMessage] function.
+/// Use this Extension to interpret messages from [Communications.handleMessage] function.
 extension MessageInterpreter on Message {
   /// Interpret the [message]
   ///

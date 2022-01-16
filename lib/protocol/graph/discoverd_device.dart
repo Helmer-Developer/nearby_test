@@ -14,7 +14,7 @@ class DiscoverDevice {
     this.connectionStatus,
   });
 
-  ///functions to create new DiscoverdDevice while replacing some or no parameters
+  ///Function to create new DiscoverdDevice while replacing some or no parameters
   DiscoverDevice copyWith({
     String? id,
     String? username,
