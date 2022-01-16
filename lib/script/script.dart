@@ -1,7 +1,10 @@
+/// Library which defines the steps a device performs during being part of a network in a scripted manner.
+
 library script;
 
 import 'dart:typed_data';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nearby_connections/nearby_connections.dart';
 import 'package:nearby_test/protocol/protocol.dart';
 import 'package:nearby_test/provider/provider.dart';

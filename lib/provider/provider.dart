@@ -1,10 +1,10 @@
+/// Library which is responsible for all shared and changing data in the application.
+
 library provider;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nearby_test/protocol/protocol.dart';
-
-export 'package:flutter_riverpod/flutter_riverpod.dart';
 
 part 'log.dart';
 part 'me.dart';

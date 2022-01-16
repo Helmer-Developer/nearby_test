@@ -4,7 +4,7 @@ part of '../protocol.dart';
 ///
 /// Use this Extension to interpret messages from [Communications.handleMessage] function.
 extension MessageInterpreter on Message {
-  /// Interpret the [message]
+  /// Interprets a [Message]
   ///
   /// returns a dynamic value due different message interpretation.
   dynamic interpret() {

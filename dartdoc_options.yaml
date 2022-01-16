@@ -1,0 +1,2 @@
+dartdoc:
+  include: ["protocol", "script", "provider"]

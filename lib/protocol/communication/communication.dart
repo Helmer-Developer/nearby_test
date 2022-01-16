@@ -7,7 +7,7 @@ class Communications {
 
   /// Sends all neighbors [devices] to receiver [receiverId]
   ///
-  /// Needs [receiverId] and [senderId] for proper sending
+  /// Needs [receiverId] and [ownId] for proper sending
   /// [devices] and [route] are required for proper routing
   void sendNeighborsToId({
     required String receiverId,
