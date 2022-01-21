@@ -26,6 +26,7 @@ linter:
     prefer_single_quotes: true
     sort_pub_dependencies: false
     avoid_classes_with_only_static_members: false
+    depend_on_referenced_packages: false
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

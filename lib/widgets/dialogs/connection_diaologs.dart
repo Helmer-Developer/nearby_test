@@ -18,7 +18,7 @@ abstract class ConnectionDialogs {
       context: context,
       builder: (context) => Column(
         children: [
-          Text('Möchtest du eine Anfrage von $id annehmen?'),
+          Text(AppLocalizations.of(context)!.acceptConnectionFromId(id)),
           ButtonBar(
             children: [
               ElevatedButton(
@@ -36,14 +36,14 @@ abstract class ConnectionDialogs {
                   );
                   Navigator.pop<bool>(context, true);
                 },
-                child: const Text('Ja'),
+                child: Text(AppLocalizations.of(context)!.acceptConnectionButton),
               ),
               TextButton(
                 onPressed: () {
                   nearby.rejectConnection(id);
                   Navigator.pop<bool>(context, false);
                 },
-                child: const Text('Nein'),
+                child: Text(AppLocalizations.of(context)!.rejectConnectionButton),
               ),
             ],
           )

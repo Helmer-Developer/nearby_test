@@ -1,0 +1,48 @@
+{
+    "appTitle": "Nearby Test",
+    "@appTitle": {
+        "description": "Title of the application"
+    },
+    "graphScreenTitle": "Graph View",
+    "@graphScreenTitle": {
+        "description": "Title of the graph screen"
+    },
+    "acceptConnectionFromId": "Do you want to accept the connection from {id}",
+    "@acceptConnectionFromId": {
+        "description": "Message to ask the user if he wants to accept a connection from another device",
+        "placeholders": {
+            "id": {
+                "type": "String",
+                "example" : "exampleId"
+            }
+        }
+    },
+    "acceptConnectionButton": "Accept",
+    "@acceptConnectionButton": {
+        "description": "Accept button text"
+    },
+    "rejectConnectionButton": "Reject",
+    "@rejectConnectionButton": {
+        "description": "Reject button text"
+    },
+    "requestLocationPermissionDialogTitle": "Location",
+    "@requestLocationPermissionDialogTitle": {
+        "description": "Title of the location permission request dialog"
+    },
+    "requestLocationPermissionDialogMessage": "Nearby Test needs access to your location to work properly. Please allow access to your location.",
+    "@requestLocationPermissionDialogMessage": {
+        "description": "Message of the location permission request dialog"
+    },
+    "requestLocationPermissionButton": "Allow",
+    "@requestLocationPermissionButton": {
+        "description": "Button text of the location permission request dialog"
+    },
+    "nickNameDialogTitle": "Nickname",
+    "@nickNameDialogTitle": {
+        "description": "Title of the nickname dialog"
+    },
+    "nickNameDialogSubmitButtonText": "Save",
+    "@nickNameDialogSubmitButtonText": {
+        "description": "Button text of the nickname dialog"
+    }
+}

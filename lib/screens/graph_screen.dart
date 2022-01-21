@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphview/GraphView.dart';
 import 'package:nearby_test/protocol/protocol.dart';
@@ -18,7 +19,7 @@ class GraphScreen extends ConsumerWidget {
     }
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Graph'),
+        title: Text(AppLocalizations.of(context)!.graphScreenTitle),
       ),
       body: Center(
         child: InteractiveViewer(

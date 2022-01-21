@@ -13,9 +13,11 @@ class LocationDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Standort'),
-      content: const Text(
-        'Deine Zustimmung ist erforderlich, damit die App funktioniert',
+      title: Text(
+        AppLocalizations.of(context)!.requestLocationPermissionDialogTitle,
+      ),
+      content: Text(
+        AppLocalizations.of(context)!.requestLocationPermissionDialogMessage,
       ),
       actions: [
         TextButton(
@@ -24,7 +26,9 @@ class LocationDialog extends StatelessWidget {
               Navigator.pop(context);
             }
           },
-          child: const Text('OK'),
+          child: Text(
+            AppLocalizations.of(context)!.requestLocationPermissionButton,
+          ),
         ),
       ],
     );

@@ -30,6 +30,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_localizations:
+    sdk: flutter
+
   cupertino_icons: ^1.0.2
   nearby_connections: ^3.1.0
   uuid: ^3.0.4
@@ -38,6 +41,7 @@ dependencies:
   collection: ^1.15.0
   flutter_riverpod: ^1.0.3
   graphview: ^1.1.1
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +53,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

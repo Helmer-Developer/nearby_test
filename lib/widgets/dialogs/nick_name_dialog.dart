@@ -29,7 +29,7 @@ class _NickNameDialogState extends ConsumerState<NickNameDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('NickName'),
+      title:  Text(AppLocalizations.of(context)!.nickNameDialogTitle),
       content: TextField(
         controller: controller,
       ),
@@ -45,7 +45,7 @@ class _NickNameDialogState extends ConsumerState<NickNameDialog> {
                   Navigator.pop(context);
                 }
               : null,
-          child: const Text('OK'),
+          child:  Text(AppLocalizations.of(context)!.nickNameDialogSubmitButtonText),
         ),
       ],
     );

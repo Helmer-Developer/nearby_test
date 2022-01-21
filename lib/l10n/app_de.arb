@@ -1,0 +1,12 @@
+{
+    "appTitle": "Nearby Test",
+    "graphScreenTitle": "Graphen Ansicht",
+    "acceptConnectionFromId": "Möchtest du die An von {id} annehmen?",
+    "acceptConnectionButton": "Annehmen",
+    "rejectConnectionButton": "Ablehnen",
+    "requestLocationPermissionDialogTitle": "Standort",
+    "requestLocationPermissionDialogMessage": "Nearby Test benötigt Zugriff auf deinen Standort, um richtig zu funktionieren. Bitte erlaube den Zugriff auf deinen Standort.",
+    "requestLocationPermissionButton": "Erlauben",
+    "nickNameDialogTitle": "Spitzname",
+    "nickNameDialogSubmitButtonText": "Speichern"
+}

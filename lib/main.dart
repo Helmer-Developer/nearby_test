@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nearby_connections/nearby_connections.dart';
 import 'package:nearby_test/provider/provider.dart';
@@ -11,8 +12,13 @@ import 'package:nearby_test/widgets/dialogs/dialogs.dart';
 ///Adds the widget NearbyTestApp to the flutter engine
 void main() {
   runApp(
-    const ProviderScope(
-      child: MaterialApp(home: NearbyTestApp()),
+    ProviderScope(
+      child: MaterialApp(
+        onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: const NearbyTestApp(),
+      ),
     ),
   );
 }
@@ -76,7 +82,7 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
     final logs = ref.watch(logProvider).logs;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Nearby Test'),
+        title: Text(AppLocalizations.of(context)!.appTitle),
         actions: [
           IconButton(
             onPressed: () async {
