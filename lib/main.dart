@@ -16,7 +16,10 @@ void main() {
       child: MaterialApp(
         onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
+        supportedLocales: const [
+          Locale('en'),
+          Locale('de'),
+        ],
         home: const NearbyTestApp(),
       ),
     ),
