@@ -15,6 +15,7 @@ const Strategy strategy = Strategy.P2P_CLUSTER;
 void advertise(Nearby nearby, WidgetRef ref) {
   final me = ref.read(meProvider);
   final log = ref.read(logProvider);
+  final graph = ref.read(graphProvider);
   log.addLog('Advertisment started');
   nearby.stopDiscovery();
   nearby.startAdvertising(
@@ -22,13 +23,13 @@ void advertise(Nearby nearby, WidgetRef ref) {
     strategy,
     onConnectionInitiated: (endpointId, connectionInfo) {
       log.addLog('onConnectionInitiated: $endpointId, info: $connectionInfo');
-      ref.read(graphProvider).addDeviceWithMe(
-            DiscoverDevice(
-              id: endpointId,
-              username: connectionInfo.endpointName,
-              connectionStatus: ConnectionStatus.waiting,
-            ),
-          );
+      graph.addDeviceWithMe(
+        DiscoverDevice(
+          id: endpointId,
+          username: connectionInfo.endpointName,
+          connectionStatus: ConnectionStatus.waiting,
+        ),
+      );
       nearby.acceptConnection(
         endpointId,
         onPayLoadRecieved: (endpointId, payload) {
@@ -42,12 +43,12 @@ void advertise(Nearby nearby, WidgetRef ref) {
               Uint8List.fromList(endpointId.codeUnits),
             );
           } else if (!decodedPayload.startsWith('{')) {
-            ref.read(meProvider).ownId = decodedPayload;
+            me.ownId = decodedPayload;
           } else {
             communication.messageInput(
               Message.fromJson(decodedPayload),
-              ref.read(graphProvider),
-              ref.read(meProvider),
+              graph,
+              me,
             );
           }
         },
@@ -55,37 +56,36 @@ void advertise(Nearby nearby, WidgetRef ref) {
     },
     onConnectionResult: (endpointId, status) {
       log.addLog('onConnectionResult: $endpointId, status: $status');
-      final oldDevice = ref
-          .read(graphProvider).getDeviceById(endpointId);
+      final oldDevice = graph.getDeviceById(endpointId);
       if (status == Status.CONNECTED) {
-        ref.read(graphProvider).replaceDevice(
-              DiscoverDevice(
-                id: endpointId,
-                username: oldDevice?.username,
-                connectionStatus: ConnectionStatus.connected,
-              ),
-            );
-        if (ref.read(meProvider).ownId == 'me') {
+        graph.replaceDevice(
+          DiscoverDevice(
+            id: endpointId,
+            username: oldDevice?.username,
+            connectionStatus: ConnectionStatus.connected,
+          ),
+        );
+        if (me.ownId == 'me') {
           nearby.sendBytesPayload(
             endpointId,
             Uint8List.fromList('idrequest'.codeUnits),
           );
         }
       } else if (status == Status.ERROR) {
-        ref.read(graphProvider).replaceDevice(
-              DiscoverDevice(
-                id: endpointId,
-                username: oldDevice?.username,
-                connectionStatus: ConnectionStatus.error,
-              ),
-            );
+        graph.replaceDevice(
+          DiscoverDevice(
+            id: endpointId,
+            username: oldDevice?.username,
+            connectionStatus: ConnectionStatus.error,
+          ),
+        );
       }
     },
     onDisconnected: (endpointId) {
       log.addLog('onDisconnected: $endpointId');
-      ref.read(graphProvider).removeDevice(
-            DiscoverDevice(id: endpointId),
-          );
+      graph.removeDevice(
+        DiscoverDevice(id: endpointId),
+      );
     },
     serviceId: 'com.example.nearby_test',
   );
@@ -94,6 +94,7 @@ void advertise(Nearby nearby, WidgetRef ref) {
 void discover(Nearby nearby, WidgetRef ref) {
   final me = ref.read(meProvider);
   final log = ref.read(logProvider);
+  final graph = ref.read(graphProvider);
   log.addLog('Discoverment started');
   nearby.stopAdvertising();
   nearby.startDiscovery(
@@ -101,23 +102,23 @@ void discover(Nearby nearby, WidgetRef ref) {
     strategy,
     onEndpointFound: (endpointId, name, serviceId) {
       log.addLog(
-        'onEndpointFound: $endpointId, name: $name, serviceId: $serviceId, new: ${!ref.read(graphProvider).contains(
-              DiscoverDevice(id: endpointId, username: name),
-            )}',
+        'onEndpointFound: $endpointId, name: $name, serviceId: $serviceId, new: ${!graph.contains(
+          DiscoverDevice(id: endpointId, username: name),
+        )}',
       );
-      if (ref.read(graphProvider).contains(
-            DiscoverDevice(id: endpointId),
-          )) {
+      if (graph.contains(
+        DiscoverDevice(id: endpointId),
+      )) {
         log.addLog('$endpointId already in graph');
         return;
       }
-      ref.read(graphProvider).addDeviceWithMe(
-            DiscoverDevice(
-              id: endpointId,
-              username: name,
-              connectionStatus: ConnectionStatus.waiting,
-            ),
-          );
+      graph.addDeviceWithMe(
+        DiscoverDevice(
+          id: endpointId,
+          username: name,
+          connectionStatus: ConnectionStatus.waiting,
+        ),
+      );
       nearby.requestConnection(
         me.ownName,
         endpointId,
@@ -139,12 +140,12 @@ void discover(Nearby nearby, WidgetRef ref) {
                   Uint8List.fromList(endpointId.codeUnits),
                 );
               } else if (!decodedPayload.startsWith('{')) {
-                ref.read(meProvider).ownId = decodedPayload;
+                me.ownId = decodedPayload;
               } else {
                 communication.messageInput(
                   Message.fromJson(decodedPayload),
-                  ref.read(graphProvider),
-                  ref.read(meProvider),
+                  graph,
+                  me,
                 );
               }
             },
@@ -152,76 +153,49 @@ void discover(Nearby nearby, WidgetRef ref) {
         },
         onConnectionResult: (endpointId, status) {
           log.addLog('onConnectionResult: $endpointId, status: $status');
-          final oldDevice = ref.read(graphProvider).getDeviceById(endpointId)!;
+          final oldDevice = graph.getDeviceById(endpointId)!;
           if (status == Status.CONNECTED) {
-            ref.read(graphProvider).replaceDevice(
-                  DiscoverDevice(
-                    id: endpointId,
-                    username: oldDevice.username,
-                    connectionStatus: ConnectionStatus.connected,
-                  ),
-                );
-            if (ref.read(meProvider).ownId == 'me') {
+            graph.replaceDevice(
+              DiscoverDevice(
+                id: endpointId,
+                username: oldDevice.username,
+                connectionStatus: ConnectionStatus.connected,
+              ),
+            );
+            if (me.ownId == 'me') {
               nearby.sendBytesPayload(
                 endpointId,
                 Uint8List.fromList('idrequest'.codeUnits),
               );
             }
           } else if (status == Status.ERROR) {
-            ref.read(graphProvider).replaceDevice(
-                  DiscoverDevice(
-                    id: endpointId,
-                    username: oldDevice.username,
-                    connectionStatus: ConnectionStatus.error,
-                  ),
-                );
+            graph.replaceDevice(
+              DiscoverDevice(
+                id: endpointId,
+                username: oldDevice.username,
+                connectionStatus: ConnectionStatus.error,
+              ),
+            );
           }
         },
         onDisconnected: (endpointId) {
           log.addLog('onDisconnected: $endpointId');
-          ref.read(graphProvider).removeDevice(
-                DiscoverDevice(id: endpointId),
-              );
+          graph.removeDevice(
+            DiscoverDevice(id: endpointId),
+          );
         },
       ).then((value) => log.addLog('request connection returned: $value'));
     },
     onEndpointLost: (endpointId) {
       log.addLog('onEndpointLost: $endpointId');
       if (endpointId != null) {
-        if (ref
-                .read(graphProvider)
-                .getDeviceById(endpointId)!
-                .connectionStatus ==
+        if (graph.getDeviceById(endpointId)!.connectionStatus ==
             ConnectionStatus.connected) return;
-        ref.read(graphProvider).removeDevice(
-              DiscoverDevice(id: endpointId),
-            );
+        graph.removeDevice(
+          DiscoverDevice(id: endpointId),
+        );
       }
     },
     serviceId: 'com.example.nearby_test',
   );
-}
-
-Future<void> getneigbours(WidgetRef ref) async {
-  while (true) {
-    final graph = ref.read(graphProvider);
-    final me = ref.read(meProvider);
-    for (final node in graph.graph.vertices) {
-      if (node.id != me.ownId &&
-          node.connectionStatus == ConnectionStatus.connected) {
-        final route = graph.getRoute(
-          DiscoverDevice(id: me.ownId),
-          DiscoverDevice(id: node.id),
-        );
-        if (route != null) {
-          communication.requestNeighbors(
-            receiverId: node.id,
-            ownId: me.ownId,
-            route: route,
-          );
-        }
-      }
-    }
-    await Future.delayed(const Duration(seconds: 5));
-  }
 }
