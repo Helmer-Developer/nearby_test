@@ -76,7 +76,11 @@ class Communications {
   /// Input method for received messages
   ///
   /// Needs [message] and [graph] to handle message
-  String? messageInput(Message message, ConnectedDevicesGraph graph, Me me) {
+  String? messageInput({
+    required Message message,
+    required ConnectedDevicesGraph graph,
+    required Me me,
+  }) {
     print('messageInput: $message');
     final messageForMe = handleMessage(message, me.ownId);
     if (messageForMe != null) {

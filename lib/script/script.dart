@@ -46,9 +46,9 @@ void advertise(Nearby nearby, WidgetRef ref) {
             me.ownId = decodedPayload;
           } else {
             communication.messageInput(
-              Message.fromJson(decodedPayload),
-              graph,
-              me,
+              message: Message.fromJson(decodedPayload),
+              graph: graph,
+              me: me,
             );
           }
         },
@@ -143,9 +143,9 @@ void discover(Nearby nearby, WidgetRef ref) {
                 me.ownId = decodedPayload;
               } else {
                 communication.messageInput(
-                  Message.fromJson(decodedPayload),
-                  graph,
-                  me,
+                  message: Message.fromJson(decodedPayload),
+                  graph: graph,
+                  me: me,
                 );
               }
             },

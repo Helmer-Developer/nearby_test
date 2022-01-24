@@ -6,7 +6,6 @@ part of '../protocol.dart';
 /// To add a device to the graph, use ether the [addDeviceWithMe] function if the device is a directly connected device,
 /// or the [addDeviceWithAncestors] function if you want to add devices which are ancestors of already added devices.
 class ConnectedDevicesGraph extends ChangeNotifier {
-  
   /// Constructor to initialize the graph with [ownId] and [ownUsername] as the root node (me)
   ConnectedDevicesGraph(String ownId, String ownUsername) {
     _me = DiscoverDevice(
@@ -70,7 +69,7 @@ class ConnectedDevicesGraph extends ChangeNotifier {
   }
 
   /// Clears the graph
-  /// 
+  ///
   /// Removes all vertices and edges (devices) from the graph
   void clear() {
     _graph.clear();
@@ -78,7 +77,7 @@ class ConnectedDevicesGraph extends ChangeNotifier {
   }
 
   /// Returns a boolean indicating if the graph contains the [device]
-  /// 
+  ///
   /// Note: Only compares the [DiscoverDevice.id] due to == operator override
   bool contains(DiscoverDevice device) => _graph.contains(device);
 

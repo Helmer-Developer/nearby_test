@@ -26,7 +26,7 @@ class _AdvertiseWidgetState extends State<AdvertiseWidget> {
                     .map(
                       (device) => ListTile(
                         title: Text(device.id),
-                        subtitle: Text(device.username??''),
+                        subtitle: Text(device.username ?? ''),
                         leading: device.connectionStatus ==
                                 ConnectionStatus.connected
                             ? IconButton(

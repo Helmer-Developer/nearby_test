@@ -60,7 +60,12 @@ void main() {
           communications.sendNeighborsToId(
             receiverId: 'receiver',
             ownId: 'me',
-            devices: [DiscoverDevice(id: '1', username: '1', connectionStatus: ConnectionStatus.connected)],
+            devices: [
+              DiscoverDevice(
+                  id: '1',
+                  username: '1',
+                  connectionStatus: ConnectionStatus.connected,)
+            ],
             route: [
               RouteNode(
                 deviceId: 'me',

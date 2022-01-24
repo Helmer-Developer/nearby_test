@@ -36,14 +36,16 @@ abstract class ConnectionDialogs {
                   );
                   Navigator.pop<bool>(context, true);
                 },
-                child: Text(AppLocalizations.of(context)!.acceptConnectionButton),
+                child:
+                    Text(AppLocalizations.of(context)!.acceptConnectionButton),
               ),
               TextButton(
                 onPressed: () {
                   nearby.rejectConnection(id);
                   Navigator.pop<bool>(context, false);
                 },
-                child: Text(AppLocalizations.of(context)!.rejectConnectionButton),
+                child:
+                    Text(AppLocalizations.of(context)!.rejectConnectionButton),
               ),
             ],
           )

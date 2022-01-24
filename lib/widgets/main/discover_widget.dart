@@ -55,7 +55,7 @@ class _DiscoverWidgetState extends State<DiscoverWidget> {
                               )
                             : null,
                         title: Text(device.id),
-                        subtitle: Text(device.username??''),
+                        subtitle: Text(device.username ?? ''),
                         onTap: () async {
                           nearby.requestConnection(
                             nickName,
