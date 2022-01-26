@@ -2,6 +2,7 @@
 
 library script;
 
+import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,13 +17,15 @@ void advertise(Nearby nearby, WidgetRef ref) {
   final me = ref.read(meProvider);
   final log = ref.read(logProvider);
   final graph = ref.read(graphProvider);
-  log.addLog('Advertisment started');
+  log.addLog('Advertising started due to function call');
   nearby.stopDiscovery();
   nearby.startAdvertising(
     me.ownName,
     strategy,
     onConnectionInitiated: (endpointId, connectionInfo) {
-      log.addLog('onConnectionInitiated: $endpointId, info: $connectionInfo');
+      log.addLog(
+        'Device $endpointId wants to start handshake (details: $connectionInfo)',
+      );
       graph.addDeviceWithMe(
         DiscoverDevice(
           id: endpointId,
@@ -30,59 +33,89 @@ void advertise(Nearby nearby, WidgetRef ref) {
           connectionStatus: ConnectionStatus.waiting,
         ),
       );
+      log.addLog(
+        'Adding Device $endpointId to graph with connections status: waiting',
+      );
       nearby.acceptConnection(
         endpointId,
         onPayLoadRecieved: (endpointId, payload) {
           final decodedPayload = String.fromCharCodes(payload.bytes!.toList());
           log.addLog(
-            'onPayLoadRecieved: $endpointId, payload: $decodedPayload',
+            'Received payload $decodedPayload from Device: $endpointId.',
           );
           if (decodedPayload == 'idrequest') {
             nearby.sendBytesPayload(
               endpointId,
               Uint8List.fromList(endpointId.codeUnits),
             );
+            log.addLog(
+              'Got ID request form Device: $endpointId, responding with $endpointId.',
+            );
           } else if (!decodedPayload.startsWith('{')) {
             me.ownId = decodedPayload;
+            log.addLog(
+              'Got ID response form $endpointId. Overriding own ID with $decodedPayload.',
+            );
           } else {
             communication.messageInput(
               message: Message.fromJson(decodedPayload),
               graph: graph,
               me: me,
             );
+            log.addLog(
+              'Commit the message form $endpointId to the protocol library.',
+            );
           }
         },
       );
+      log.addLog('Trying to fulfill handshake with Device $endpointId');
     },
     onConnectionResult: (endpointId, status) {
-      log.addLog('onConnectionResult: $endpointId, status: $status');
+      log.addLog(
+        'Handshake with Device: $endpointId fulfilled with status: ${status.name}',
+      );
       final oldDevice = graph.getDeviceById(endpointId);
-      if (status == Status.CONNECTED) {
-        graph.replaceDevice(
-          DiscoverDevice(
-            id: endpointId,
-            username: oldDevice?.username,
-            connectionStatus: ConnectionStatus.connected,
-          ),
-        );
-        if (me.ownId == 'me') {
-          nearby.sendBytesPayload(
-            endpointId,
-            Uint8List.fromList('idrequest'.codeUnits),
+      if (graph.containsById(endpointId)) {
+        if (status == Status.CONNECTED) {
+          log.addLog('Handshake with Device: $endpointId succeeded');
+          graph.replaceDevice(
+            DiscoverDevice(
+              id: endpointId,
+              username: oldDevice?.username,
+              connectionStatus: ConnectionStatus.connected,
+            ),
           );
+          log.addLog(
+            'Replace connection status of Device: $endpointId with connected.',
+          );
+          if (me.ownId == 'me') {
+            nearby.sendBytesPayload(
+              endpointId,
+              Uint8List.fromList('idrequest'.codeUnits),
+            );
+            log.addLog(
+              'Send ID request to Device: $endpointId, because own ID is unknown',
+            );
+          }
+        } else if (status == Status.ERROR || status == Status.REJECTED) {
+          log.addLog('Handshake with Device: $endpointId failed');
+          graph.replaceDevice(
+            DiscoverDevice(
+              id: endpointId,
+              username: oldDevice?.username,
+              connectionStatus: ConnectionStatus.error,
+            ),
+          );
+          log.addLog(
+            'Replace connection status of Device: $endpointId with error.',
+          );
+        } else {
+          log.addLog('Error: Device does not exist in graph');
         }
-      } else if (status == Status.ERROR) {
-        graph.replaceDevice(
-          DiscoverDevice(
-            id: endpointId,
-            username: oldDevice?.username,
-            connectionStatus: ConnectionStatus.error,
-          ),
-        );
       }
     },
     onDisconnected: (endpointId) {
-      log.addLog('onDisconnected: $endpointId');
+      log.addLog('Device: $endpointId disconnected');
       graph.removeDevice(
         DiscoverDevice(id: endpointId),
       );

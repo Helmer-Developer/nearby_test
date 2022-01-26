@@ -89,12 +89,10 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
           IconButton(
             onPressed: () async {
               ref.refresh(graphProvider);
-              ref.read(graphProvider).clear();
               ref.read(meProvider).ownId = 'unknown';
               ref.read(logProvider).clear();
               await nearby.stopAdvertising();
               await nearby.stopDiscovery();
-              await nearby.stopAllEndpoints();
             },
             icon: const Icon(Icons.stop),
           ),

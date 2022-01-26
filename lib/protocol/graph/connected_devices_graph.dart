@@ -46,6 +46,8 @@ class ConnectedDevicesGraph extends ChangeNotifier {
     notifyListeners();
   }
 
+  void removeDeviceById(String id) => removeDevice(DiscoverDevice(id: id));
+
   /// Adds a [DiscoverDevice] to the graph with an edge to all its ancestors
   ///
   /// Use this function if you want to add devices which are ancestors of already added devices.
@@ -80,6 +82,8 @@ class ConnectedDevicesGraph extends ChangeNotifier {
   ///
   /// Note: Only compares the [DiscoverDevice.id] due to == operator override
   bool contains(DiscoverDevice device) => _graph.contains(device);
+
+  bool containsById(String id) => contains(DiscoverDevice(id: id));
 
   /// Returns a list of all devices in the graph which are connected to me
   ///
