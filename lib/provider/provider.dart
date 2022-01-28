@@ -10,12 +10,15 @@ import 'package:nearby_test/protocol/protocol.dart';
 part 'log.dart';
 part 'me.dart';
 
-final graphProvider = ChangeNotifierProvider<ConnectedDevicesGraph>((ref) {
-  final me = ref.watch(meProvider);
+final ChangeNotifierProvider<ConnectedDevicesGraph> graphProvider =
+    ChangeNotifierProvider<ConnectedDevicesGraph>((ref) {
+  final me = ref.read(meProvider);
   Nearby().stopAllEndpoints();
   return ConnectedDevicesGraph(me.ownId, me.ownName);
 });
 
-final meProvider = ChangeNotifierProvider<Me>((ref) => Me());
+final ChangeNotifierProvider<Me> meProvider =
+    ChangeNotifierProvider<Me>((ref) => Me());
 
-final logProvider = ChangeNotifierProvider<Log>((ref) => Log());
+final ChangeNotifierProvider<Log> logProvider =
+    ChangeNotifierProvider<Log>((ref) => Log());

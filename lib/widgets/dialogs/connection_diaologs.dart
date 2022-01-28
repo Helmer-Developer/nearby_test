@@ -12,9 +12,9 @@ abstract class ConnectionDialogs {
   static Future<bool?> acceptConnection(
     String id,
     BuildContext context,
-    Nearby nearby,
   ) async {
     return showModalBottomSheet<bool>(
+      isDismissible: false,
       context: context,
       builder: (context) => Column(
         children: [
@@ -22,28 +22,12 @@ abstract class ConnectionDialogs {
           ButtonBar(
             children: [
               ElevatedButton(
-                onPressed: () {
-                  nearby.acceptConnection(
-                    id,
-                    onPayLoadRecieved: (id, payload) {
-                      ///Displays a toast (depending on OS level and software skin) whenever a device sends a message
-                      Fluttertoast.showToast(
-                        msg: String.fromCharCodes(
-                          payload.bytes!.toList(),
-                        ),
-                      );
-                    },
-                  );
-                  Navigator.pop<bool>(context, true);
-                },
+                onPressed: () => Navigator.pop<bool>(context, true),
                 child:
                     Text(AppLocalizations.of(context)!.acceptConnectionButton),
               ),
               TextButton(
-                onPressed: () {
-                  nearby.rejectConnection(id);
-                  Navigator.pop<bool>(context, false);
-                },
+                onPressed: () => Navigator.pop<bool>(context, false),
                 child:
                     Text(AppLocalizations.of(context)!.rejectConnectionButton),
               ),

@@ -108,6 +108,31 @@ void main() {
         reason: 'The graph should not contain any device after clean command',
       );
     });
+
+    test('replace ownId test', () {
+      final graph = dummyGraph();
+      expect(
+        graph.containsById('me'),
+        isTrue,
+        reason: 'the graph should contain a device with id me',
+      );
+      graph.replaceOwnId('newId');
+      expect(
+        graph.containsById('newId'),
+        isTrue,
+        reason: 'the graph should contain a device with id newId',
+      );
+      final route = graph.getRoute(
+        DiscoverDevice(id: 'newId'),
+        DiscoverDevice(id: '3'),
+      );
+      expect(
+        route?.length,
+        equals(3),
+        reason: 'the device newId should be part of the network',
+      );
+      print(graph.toString());
+    });
   });
 }
 

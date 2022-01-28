@@ -40,6 +40,13 @@ class ConnectedDevicesGraph extends ChangeNotifier {
     notifyListeners();
   }
 
+  void replaceOwnId(String newId) {
+    final oldEdges = _graph.edges(_me).toList();
+    _me.id = newId;
+    _graph.addEdges(_me, oldEdges.toSet());
+    notifyListeners();
+  }
+
   /// Removes the [device] from the graph
   void removeDevice(DiscoverDevice device) {
     _graph.remove(device);

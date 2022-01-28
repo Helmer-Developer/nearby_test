@@ -58,9 +58,9 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
 
   Future<void> swithcAdDi() async {
     while (true) {
-      advertise(nearby, ref);
+      advertise(nearby, ref, context);
       await Future.delayed(const Duration(seconds: 5));
-      discover(nearby, ref);
+      discover(nearby, ref, context);
       await Future.delayed(const Duration(seconds: 5));
     }
   }
@@ -80,6 +80,10 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeOut,
       );
+    });
+    ref.listen<Me>(meProvider, (oldMe, me) {
+      print('fired me change');
+      ref.read(graphProvider).replaceOwnId(me.ownId);
     });
     final logs = ref.watch(logProvider).logs;
     return Scaffold(
