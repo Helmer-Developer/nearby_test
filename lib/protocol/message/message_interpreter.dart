@@ -27,10 +27,13 @@ extension MessageInterpreter on Message {
           );
         }
       case MessageType.neighborsResponse:
-        if (message.payload is List<Map>) {
-          final jsonDevices = message.payload as List<Map<String, dynamic>>;
+        if (message.payload is List) {
+          final jsonDevices = message.payload as List;
           final devices = jsonDevices
-              .map((jsonDevice) => DiscoverDevice.fromMap(jsonDevice))
+              .map(
+                (jsonDevice) =>
+                    DiscoverDevice.fromMap(jsonDevice as Map<String, dynamic>),
+              )
               .toList();
           return devices;
         } else {

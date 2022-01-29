@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -54,6 +57,7 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
     );
     await nearby.enableLocationServices();
     swithcAdDi();
+    getneigbours(ref);
   }
 
   Future<void> swithcAdDi() async {
@@ -83,7 +87,6 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
       );
     });
     ref.listen<Me>(meProvider, (oldMe, me) {
-      print('fired me change');
       ref.read(graphProvider).replaceOwnId(me.ownId);
     });
     final logs = ref.watch(logProvider).logs;

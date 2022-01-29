@@ -6,6 +6,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nearby_connections/nearby_connections.dart';
 import 'package:nearby_test/protocol/protocol.dart';
 import 'package:nearby_test/provider/provider.dart';
@@ -114,11 +115,14 @@ Future<void> onConnectionInitiated(
           'Got ID response form $endpointId. Overriding own ID with $decodedPayload.',
         );
       } else {
-        communication.messageInput(
+        final maybeTextForMe = communication.messageInput(
           message: Message.fromJson(decodedPayload),
           graph: graph,
           me: me,
         );
+        if (maybeTextForMe != null) {
+          Fluttertoast.showToast(msg: maybeTextForMe);
+        }
         log.addLog(
           'Commit the message form $endpointId to the protocol library.',
         );
@@ -191,4 +195,28 @@ void onDisconnected(String endpointId, WidgetRef ref) {
   log.addLog(
     'Remove Device: $endpointId from graph, because it disconnected',
   );
+}
+
+Future<void> getneigbours(WidgetRef ref) async {
+  while (true) {
+    final graph = ref.read(graphProvider);
+    final me = ref.read(meProvider);
+    for (final node in graph.graph.vertices) {
+      if (node.id != me.ownId &&
+          node.connectionStatus == ConnectionStatus.connected) {
+        final route = graph.getRoute(
+          DiscoverDevice(id: me.ownId),
+          DiscoverDevice(id: node.id),
+        );
+        if (route != null) {
+          communication.requestNeighbors(
+            receiverId: node.id,
+            ownId: me.ownId,
+            route: route,
+          );
+        }
+      }
+    }
+    await Future.delayed(const Duration(seconds: 5));
+  }
 }

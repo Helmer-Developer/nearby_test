@@ -49,6 +49,24 @@ class Communications {
     handleMessage(message, ownId);
   }
 
+  void sendTextToId({
+    required String receiverId,
+    required String ownId,
+    required String text,
+    required MessageRoute route,
+    final String? id,
+  }) {
+    final Message message = Message(
+      id: id ?? const Uuid().v4(),
+      senderId: ownId,
+      receiverId: receiverId,
+      route: route,
+      payload: text,
+      messageType: MessageType.text,
+    );
+    handleMessage(message, ownId);
+  }
+
   ///Handles a message
   ///
   ///Needs [ownId] to put message in context to device
@@ -81,10 +99,8 @@ class Communications {
     required ConnectedDevicesGraph graph,
     required Me me,
   }) {
-    print('messageInput: $message');
     final messageForMe = handleMessage(message, me.ownId);
     if (messageForMe != null) {
-      print('got message for me: $messageForMe');
       final senderId = messageForMe.senderId;
       if (messageForMe.messageType == MessageType.neighborsRequest) {
         messageForMe.interpret();

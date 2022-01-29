@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphview/GraphView.dart';
 import 'package:nearby_test/protocol/protocol.dart';
 import 'package:nearby_test/provider/provider.dart';
+import 'package:nearby_test/script/script.dart';
 
 class GraphScreen extends ConsumerWidget {
   const GraphScreen({Key? key}) : super(key: key);
@@ -30,11 +31,27 @@ class GraphScreen extends ConsumerWidget {
           child: GraphView(
             graph: newGraph,
             algorithm: FruchtermanReingoldAlgorithm(),
-            builder: (node) => Chip(
-              label: Text((node.key!.value as DiscoverDevice).toString()),
-              backgroundColor:
-                  graph.me == node.key!.value as DiscoverDevice ? Colors.blue : null,
-            ),
+            builder: (node) {
+              final device = node.key!.value as DiscoverDevice;
+              return ActionChip(
+                label: Text(device.toString()),
+                onPressed: () {
+                  if (graph.me == device) return;
+                  final route = graph.getRoute(
+                    DiscoverDevice(id: graph.me.id),
+                    DiscoverDevice(id: device.id),
+                  );
+                  if (route == null) return;
+                  communication.sendTextToId(
+                    receiverId: device.id,
+                    ownId: graph.me.id,
+                    text: 'Hi from ${graph.me.id}',
+                    route: route,
+                  );
+                },
+                backgroundColor: graph.me == device ? Colors.blue : null,
+              );
+            },
           ),
         ),
       ),
