@@ -131,7 +131,6 @@ void main() {
         equals(3),
         reason: 'the device newId should be part of the network',
       );
-      print(graph.toString());
     });
   });
 }

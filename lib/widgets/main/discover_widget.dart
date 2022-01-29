@@ -67,7 +67,6 @@ class _DiscoverWidgetState extends State<DiscoverWidget> {
                               ConnectionDialogs.acceptConnection(
                                 id,
                                 context,
-                                nearby,
                               );
                             },
                             onConnectionResult: (id, status) {

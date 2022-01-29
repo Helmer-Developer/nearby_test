@@ -69,7 +69,6 @@ class _AdvertiseWidgetState extends State<AdvertiseWidget> {
                       if (await ConnectionDialogs.acceptConnection(
                             id,
                             context,
-                            nearby,
                           ) ??
                           false) {
                         discoverdDevices.add(

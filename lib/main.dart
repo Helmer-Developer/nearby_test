@@ -60,6 +60,7 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
     while (true) {
       advertise(nearby, ref, context);
       await Future.delayed(const Duration(seconds: 5));
+      if (!mounted) return;
       discover(nearby, ref, context);
       await Future.delayed(const Duration(seconds: 5));
     }
