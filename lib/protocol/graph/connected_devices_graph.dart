@@ -90,11 +90,14 @@ class ConnectedDevicesGraph extends ChangeNotifier {
   /// Note: Only compares the [DiscoverDevice.id] due to == operator override
   bool contains(DiscoverDevice device) => _graph.contains(device);
 
+  /// Returns a boolean indicating if the graph contains a device with the given [id]
   bool containsById(String id) => contains(DiscoverDevice(id: id));
 
+  /// Returns a boolean indicating if the given [device] is directly connected to the root node [me]
   bool isConnectedToMe(DiscoverDevice device) =>
       _graph.edges(_me).contains(device);
 
+  /// Returns a boolean indicating if the deivce with the given [id] is directly connected to the root node [me]
   bool isConnectedToMeById(String id) =>
       isConnectedToMe(DiscoverDevice(id: id));
 
@@ -106,10 +109,11 @@ class ConnectedDevicesGraph extends ChangeNotifier {
     return _graph.edges(_me).toList();
   }
 
-  /// Generates the shortest path form [from] to [to]
+  /// Returns the shortest path form [from] to [to]
   ///
   /// Returns a [List] of [RouteNode]s (converted from [DiscoverDevice]s
   /// with [RouteNode.isSender] and [RouteNode.isReceiver] set to true at first and last node)
+  /// or null if no path exists
   MessageRoute? getRoute(DiscoverDevice from, DiscoverDevice to) {
     final path = _graph.path(from, to);
     if (path.isEmpty) return null;
@@ -127,10 +131,17 @@ class ConnectedDevicesGraph extends ChangeNotifier {
     return route;
   }
 
+  /// Returns the shortest path form [fromId] to [toId]
+  ///
+  /// Returns a [List] of [RouteNode]s (converted from [DiscoverDevice]s
+  /// with [RouteNode.isSender] and [RouteNode.isReceiver] set to true at first and last node)
+  /// or null if no path exists
   MessageRoute? getRouteById(String fromId, String toId) {
     return getRoute(DiscoverDevice(id: fromId), DiscoverDevice(id: toId));
   }
 
+
+  /// Returns the device with the given [id] or null if no device with the given [id] exists
   DiscoverDevice? getDeviceById(String id) {
     if (!contains(DiscoverDevice(id: id))) return null;
     return _graph.vertices.firstWhere(
