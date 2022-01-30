@@ -54,6 +54,8 @@ void main() {
         true,
         reason: 'the last device should be the receiver',
       );
+      final routeById = graph.getRouteById(devices[2].id, devices[0].id);
+      expect(routeById, equals(route));
     });
     test('Connected Devices Test', () {
       final graph = dummyGraph();
@@ -130,6 +132,31 @@ void main() {
         route?.length,
         equals(3),
         reason: 'the device newId should be part of the network',
+      );
+    });
+
+    test('is connected to me test', () {
+      final graph = dummyGraph();
+      final devices = dummyDevices();
+      expect(
+        graph.isConnectedToMe(devices[0]),
+        isTrue,
+        reason: 'the device 0 should be connected to me',
+      );
+      expect(
+        graph.isConnectedToMe(devices[4]),
+        isFalse,
+        reason: 'the device 4 should not be connected to me',
+      );
+      expect(
+        graph.isConnectedToMeById(devices[0].id),
+        isTrue,
+        reason: 'the device 0 should be connected to me',
+      );
+      expect(
+        graph.isConnectedToMeById(devices[4].id),
+        isFalse,
+        reason: 'the device 4 should not be connected to me',
       );
     });
   });
