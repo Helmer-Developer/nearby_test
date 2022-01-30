@@ -46,7 +46,8 @@ class _NickNameDialogState extends ConsumerState<NickNameDialog> {
                 }
               : null,
           child: Text(
-              AppLocalizations.of(context)!.nickNameDialogSubmitButtonText,),
+            AppLocalizations.of(context)!.nickNameDialogSubmitButtonText,
+          ),
         ),
       ],
     );

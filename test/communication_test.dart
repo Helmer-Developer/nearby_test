@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nearby_test/protocol/protocol.dart';
+import 'package:nearby_test/provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 void main() {
@@ -62,9 +63,10 @@ void main() {
             ownId: 'me',
             devices: [
               DiscoverDevice(
-                  id: '1',
-                  username: '1',
-                  connectionStatus: ConnectionStatus.connected,)
+                id: '1',
+                username: '1',
+                connectionStatus: ConnectionStatus.connected,
+              )
             ],
             route: [
               RouteNode(
@@ -110,6 +112,21 @@ void main() {
         prints(
           'Would send:\nMessage: Message{id: id, senderId: me, receiverId: receiver, route: [RouteNode{deviceId: me, isSender: true, isReceiver: false}, RouteNode{deviceId: receiver, isSender: false, isReceiver: true}], payload: null, messageType: MessageType.neighborsRequest}\nTo: receiver\n',
         ),
+      );
+    });
+
+    test('Message input test', () {
+      final maybeTextForMe = communications.messageInput(
+        message: message,
+        graph: ConnectedDevicesGraph('2', '2'),
+        me: Me()
+          ..ownId = '2'
+          ..ownName = '2',
+      );
+      expect(
+        maybeTextForMe,
+        'test',
+        reason: 'messageInput should return the text for me',
       );
     });
   });

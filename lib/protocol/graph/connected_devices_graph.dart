@@ -140,7 +140,6 @@ class ConnectedDevicesGraph extends ChangeNotifier {
     return getRoute(DiscoverDevice(id: fromId), DiscoverDevice(id: toId));
   }
 
-
   /// Returns the device with the given [id] or null if no device with the given [id] exists
   DiscoverDevice? getDeviceById(String id) {
     if (!contains(DiscoverDevice(id: id))) return null;
