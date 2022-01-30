@@ -92,6 +92,12 @@ class ConnectedDevicesGraph extends ChangeNotifier {
 
   bool containsById(String id) => contains(DiscoverDevice(id: id));
 
+  bool isConnectedToMe(DiscoverDevice device) =>
+      _graph.edges(_me).contains(device);
+
+  bool isConnectedToMeById(String id) =>
+      isConnectedToMe(DiscoverDevice(id: id));
+
   /// Returns a list of all devices in the graph which are connected to me
   ///
   /// This function is used to get a list of all devices which are connected to me.
@@ -119,6 +125,10 @@ class ConnectedDevicesGraph extends ChangeNotifier {
     route.first.isSender = true;
     route.last.isReceiver = true;
     return route;
+  }
+
+  MessageRoute? getRouteById(String fromId, String toId) {
+    return getRoute(DiscoverDevice(id: fromId), DiscoverDevice(id: toId));
   }
 
   DiscoverDevice? getDeviceById(String id) {

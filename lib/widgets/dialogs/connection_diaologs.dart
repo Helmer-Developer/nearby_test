@@ -37,4 +37,40 @@ abstract class ConnectionDialogs {
       ),
     );
   }
+
+  static Future<bool?> connectWithAlreadyExistingDevice(
+    String id,
+    BuildContext context,
+  ) async {
+    return showModalBottomSheet<bool>(
+      isDismissible: false,
+      context: context,
+      builder: (context) => Column(
+        children: [
+          Text(
+            AppLocalizations.of(context)!
+                .connectToAlreadyExistingDeviceSheetTitle(id),
+          ),
+          ButtonBar(
+            children: [
+              ElevatedButton(
+                onPressed: () => Navigator.pop<bool>(context, true),
+                child: Text(
+                  AppLocalizations.of(context)!
+                      .connectToAlreadyExistingDeviceSheetAcceptButton,
+                ),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop<bool>(context, false),
+                child: Text(
+                  AppLocalizations.of(context)!
+                      .connectToAlreadyExistingDeviceSheetRejectButton,
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
 }

@@ -25,6 +25,24 @@
     "@rejectConnectionButton": {
         "description": "Reject button text"
     },
+    "connectToAlreadyExistingDeviceSheetTitle": "The Device: {id} is already a part of the network connected with another device. Do you want to request a connection to it?",
+    "@connectToAlreadyExistingDeviceSheetTitle": {
+        "description": "Title of the sheet to ask the user if he wants to connect to a device that is already part of the network",
+        "placeholders": {
+            "id": {
+                "type": "String",
+                "example" : "exampleId"
+            }
+        }
+    },
+    "connectToAlreadyExistingDeviceSheetAcceptButton": "Yes",
+    "@connectToAlreadyExistingDeviceSheetAcceptButton": {
+        "description": "Accept button text"
+    },
+    "connectToAlreadyExistingDeviceSheetRejectButton": "No",
+    "@connectToAlreadyExistingDeviceSheetRejectButton": {
+        "description": "Reject button text"
+    },
     "requestLocationPermissionDialogTitle": "Location",
     "@requestLocationPermissionDialogTitle": {
         "description": "Title of the location permission request dialog"

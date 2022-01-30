@@ -42,6 +42,7 @@ class NearbyTestApp extends ConsumerStatefulWidget {
 
 class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
   final nearby = Nearby();
+  bool advertiseOrDiscover = false;
 
   Future<void> initialise() async {
     if (!await nearby.checkLocationPermission()) {
@@ -60,13 +61,16 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
   }
 
   Future<void> swithcAdDi() async {
-    while (true) {
-      advertise(nearby, ref, context);
-      await Future.delayed(const Duration(seconds: 5));
-      if (!mounted) return;
-      discover(nearby, ref, context);
-      await Future.delayed(const Duration(seconds: 5));
-    }
+    Timer.periodic(const Duration(seconds: 11), (timer) async {
+      if (advertiseOrDiscover) {
+        advertise(nearby, ref, context);
+        await Future.delayed(const Duration(seconds: 5));
+        if (!mounted) return;
+        discover(nearby, ref, context);
+        await Future.delayed(const Duration(seconds: 5));
+        nearby.stopDiscovery();
+      }
+    });
   }
 
   @override
@@ -91,6 +95,14 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
     final logs = ref.watch(logProvider).logs;
     return Scaffold(
       appBar: AppBar(
+        leading: Switch(
+          value: advertiseOrDiscover,
+          onChanged: (value) {
+            setState(() {
+              advertiseOrDiscover = value;
+            });
+          },
+        ),
         title: Text(AppLocalizations.of(context)!.appTitle),
         actions: [
           IconButton(

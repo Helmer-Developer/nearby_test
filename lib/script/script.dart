@@ -41,11 +41,39 @@ void discover(Nearby nearby, WidgetRef ref, BuildContext context) {
   nearby.startDiscovery(
     me.ownName,
     strategy,
-    onEndpointFound: (endpointId, name, serviceId) {
+    onEndpointFound: (endpointId, name, serviceId) async {
       log.addLog('Device found: $endpointId');
       if (graph.containsById(endpointId)) {
-        log.addLog('Device: $endpointId already in graph');
-        return;
+        if (graph.isConnectedToMeById(endpointId)) {
+          log.addLog('Device is already connected to me');
+          return;
+        } else {
+          log.addLog(
+            'Device is not connected to me asking user if he wants to connect directly',
+          );
+          final userWantsToConnect =
+              await ConnectionDialogs.connectWithAlreadyExistingDevice(
+            endpointId,
+            context,
+          );
+          if (userWantsToConnect != null && userWantsToConnect) {
+            log.addLog('User wants to connect directly');
+            nearby.requestConnection(
+              me.ownName,
+              endpointId,
+              onConnectionInitiated: (endpointId, connectionInfo) =>
+                  onConnectionInitiated(
+                endpointId,
+                connectionInfo,
+                ref,
+                context,
+              ),
+              onConnectionResult: (endpointId, status) =>
+                  onConnectionResult(endpointId, status, ref),
+              onDisconnected: (endpointId) => onDisconnected(endpointId, ref),
+            );
+          }
+        }
       }
       nearby.requestConnection(
         me.ownName,
