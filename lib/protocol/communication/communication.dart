@@ -85,6 +85,7 @@ class Communications {
         messageRoute.map<String>((node) => node.deviceId).toList();
     final ownIndex = routeDeviceIdList.indexOf(ownId);
     sendMessageToId(message, routeDeviceIdList[ownIndex + 1]);
+    return null;
   }
 
   ///Sends [message] to [id]
@@ -124,5 +125,6 @@ class Communications {
         return messageForMe.interpret() as String;
       }
     }
+    return null;
   }
 }
