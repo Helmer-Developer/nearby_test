@@ -1,8 +1,6 @@
 part of '../ui.dart';
 
 ///The abstract class for containing all dialogs associated with the Nearby Connections API
-///
-///Currently containing only [acceptConnection]
 abstract class ConnectionDialogs {
   ///Asking the user whether they want to connect to another device
   ///

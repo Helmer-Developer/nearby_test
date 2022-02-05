@@ -1,6 +1,6 @@
 part of '../script.dart';
 
-void onDisconnected(String endpointId, WidgetRef ref) {
+void _onDisconnected(String endpointId, WidgetRef ref) {
   final log = ref.read(logProvider);
   final graph = ref.read(graphProvider);
   log.addLog('Device: $endpointId disconnected');

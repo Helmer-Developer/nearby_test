@@ -1,6 +1,6 @@
 part of '../script.dart';
 
-Future<void> onConnectionInitiated(
+Future<void> _onConnectionInitiated(
   String endpointId,
   ConnectionInfo connectionInfo,
   WidgetRef ref,

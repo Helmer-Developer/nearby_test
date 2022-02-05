@@ -1,3 +1,7 @@
+/// Library for the UI component of the application.
+/// 
+/// Includes all important UI components for this project.
+
 library ui;
 
 import 'package:flutter/material.dart';

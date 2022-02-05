@@ -1,6 +1,6 @@
 part of '../script.dart';
 
-void onConnectionResult(String endpointId, Status status, WidgetRef ref) {
+void _onConnectionResult(String endpointId, Status status, WidgetRef ref) {
   final me = ref.read(meProvider);
   final log = ref.read(logProvider);
   final graph = ref.read(graphProvider);

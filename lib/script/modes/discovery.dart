@@ -26,11 +26,11 @@ void discovery(Nearby nearby, WidgetRef ref, BuildContext context) {
           );
           if (userWantsToConnect != null && userWantsToConnect) {
             log.addLog('User wants to connect directly');
-            requestConnection(nearby, endpointId, ref, context);
+            _requestConnection(nearby, endpointId, ref, context);
           }
         }
       }
-     requestConnection(nearby, endpointId, ref, context);
+     _requestConnection(nearby, endpointId, ref, context);
     },
     onEndpointLost: (endpointId) {
       log.addLog('Endpoint lost: $endpointId');

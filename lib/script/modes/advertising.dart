@@ -9,10 +9,10 @@ void advertising(Nearby nearby, WidgetRef ref, BuildContext context) {
     me.ownName,
     strategy,
     onConnectionInitiated: (endpointId, connectionInfo) =>
-        onConnectionInitiated(endpointId, connectionInfo, ref, context),
+        _onConnectionInitiated(endpointId, connectionInfo, ref, context),
     onConnectionResult: (endpointId, status) =>
-        onConnectionResult(endpointId, status, ref),
-    onDisconnected: (endpointId) => onDisconnected(endpointId, ref),
+        _onConnectionResult(endpointId, status, ref),
+    onDisconnected: (endpointId) => _onDisconnected(endpointId, ref),
     serviceId: 'com.example.nearby_test',
   );
 }
