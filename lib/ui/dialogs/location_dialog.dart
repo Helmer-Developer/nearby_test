@@ -1,4 +1,4 @@
-part of 'dialogs.dart';
+part of '../ui.dart';
 
 ///Dialog to inform the user about required location permission
 ///

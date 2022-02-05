@@ -7,7 +7,7 @@ import 'package:nearby_connections/nearby_connections.dart';
 import 'package:nearby_test/provider/provider.dart';
 import 'package:nearby_test/screens/graph_screen.dart';
 import 'package:nearby_test/script/script.dart';
-import 'package:nearby_test/widgets/dialogs/dialogs.dart';
+import 'package:nearby_test/ui/ui.dart';
 
 ///The main entry point for a dart application
 ///
@@ -44,7 +44,7 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
   final nearby = Nearby();
   bool advertiseOrDiscover = false;
 
-  Future<void> initialise() async {
+  Future<void> initialize() async {
     if (!await nearby.checkLocationPermission()) {
       await showDialog(
         context: context,
@@ -56,11 +56,11 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
       builder: (context) => const NickNameDialog(),
     );
     await nearby.enableLocationServices();
-    swithcAdDi();
-    getneigbours(ref);
+    switchAdDi();
+    getNeighbors(ref);
   }
 
-  Future<void> swithcAdDi() async {
+  Future<void> switchAdDi() async {
     Timer.periodic(const Duration(seconds: 11), (timer) async {
       if (advertiseOrDiscover) {
         advertise(nearby, ref, context);
@@ -76,7 +76,7 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
   @override
   void initState() {
     super.initState();
-    initialise();
+    initialize();
   }
 
   @override

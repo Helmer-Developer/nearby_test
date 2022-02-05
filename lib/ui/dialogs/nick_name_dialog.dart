@@ -1,8 +1,8 @@
-part of 'dialogs.dart';
+part of '../ui.dart';
 
 ///Dialog to collect nickname of user
 ///
-///Promts the user with a dialog and a text field to enter a nickname
+///Prompts the user with a dialog and a text field to enter a nickname
 class NickNameDialog extends ConsumerStatefulWidget {
   const NickNameDialog({Key? key}) : super(key: key);
 
@@ -37,10 +37,6 @@ class _NickNameDialogState extends ConsumerState<NickNameDialog> {
         TextButton(
           onPressed: controller.value.text.isNotEmpty
               ? () {
-                  ///Storing nickname in a global variable
-                  ///
-                  ///Definitely not a long-term solution; will change in the future
-                  ///Not safe and permantent storing
                   ref.read(meProvider).ownName = controller.value.text;
                   Navigator.pop(context);
                 }

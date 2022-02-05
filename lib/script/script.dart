@@ -10,7 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nearby_connections/nearby_connections.dart';
 import 'package:nearby_test/protocol/protocol.dart';
 import 'package:nearby_test/provider/provider.dart';
-import 'package:nearby_test/widgets/dialogs/dialogs.dart';
+import 'package:nearby_test/ui/ui.dart';
 
 final Communications communication = Communications(NcaService());
 const Strategy strategy = Strategy.P2P_CLUSTER;
@@ -129,7 +129,7 @@ Future<void> onConnectionInitiated(
       log.addLog(
         'Received payload $decodedPayload from Device: $endpointId.',
       );
-      if (decodedPayload == 'idrequest') {
+      if (decodedPayload == 'idRequest') {
         nearby.sendBytesPayload(
           endpointId,
           Uint8List.fromList(endpointId.codeUnits),
@@ -185,7 +185,7 @@ void onConnectionResult(String endpointId, Status status, WidgetRef ref) {
       if (me.ownId == 'me' || me.ownId == 'unknown') {
         nearby.sendBytesPayload(
           endpointId,
-          Uint8List.fromList('idrequest'.codeUnits),
+          Uint8List.fromList('idRequest'.codeUnits),
         );
         log.addLog(
           'Send ID request to Device: $endpointId, because own ID is unknown',
@@ -225,7 +225,7 @@ void onDisconnected(String endpointId, WidgetRef ref) {
   );
 }
 
-Future<void> getneigbours(WidgetRef ref) async {
+Future<void> getNeighbors(WidgetRef ref) async {
   while (true) {
     final graph = ref.read(graphProvider);
     final me = ref.read(meProvider);

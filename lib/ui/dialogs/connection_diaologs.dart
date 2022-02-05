@@ -1,4 +1,4 @@
-part of './dialogs.dart';
+part of '../ui.dart';
 
 ///The abstract class for containing all dialogs associated with the Nearby Connections API
 ///

@@ -11,8 +11,8 @@ class Me extends ChangeNotifier {
     notifyListeners();
   }
 
-  set ownName(String ownName) {
-    _ownName = ownName;
+  set ownName(String newName) {
+    _ownName = newName;
     notifyListeners();
   }
 }

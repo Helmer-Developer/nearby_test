@@ -97,7 +97,7 @@ class ConnectedDevicesGraph extends ChangeNotifier {
   bool isConnectedToMe(DiscoverDevice device) =>
       _graph.edges(_me).contains(device);
 
-  /// Returns a boolean indicating if the deivce with the given [id] is directly connected to the root node [me]
+  /// Returns a boolean indicating if the device with the given [id] is directly connected to the root node [me]
   bool isConnectedToMeById(String id) =>
       isConnectedToMe(DiscoverDevice(id: id));
 
