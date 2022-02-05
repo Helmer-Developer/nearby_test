@@ -63,10 +63,10 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
   Future<void> switchAdDi() async {
     Timer.periodic(const Duration(seconds: 11), (timer) async {
       if (advertiseOrDiscover) {
-        advertise(nearby, ref, context);
+        advertising(nearby, ref, context);
         await Future.delayed(const Duration(seconds: 5));
         if (!mounted) return;
-        discover(nearby, ref, context);
+        discovery(nearby, ref, context);
         await Future.delayed(const Duration(seconds: 5));
         nearby.stopDiscovery();
       }

@@ -1,7 +1,7 @@
 part of '../protocol.dart';
 
 class Communications {
-  Communications(this.ncpService);
+  const Communications(this.ncpService);
 
   final NcpService ncpService;
 
