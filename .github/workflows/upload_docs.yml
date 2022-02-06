@@ -26,7 +26,7 @@ jobs:
             build
             ${{env.PUB_CACHE}}
       - run: flutter pub get
-      - run: dart doc
+      - run: dart doc .
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
