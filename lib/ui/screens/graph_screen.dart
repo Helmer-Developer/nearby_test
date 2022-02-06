@@ -1,5 +1,9 @@
 part of '../ui.dart';
 
+
+/// GraphScreen visualizes the data of the current map.
+/// 
+/// Displays all device of the network and their relations to each other.
 class GraphScreen extends ConsumerWidget {
   const GraphScreen({Key? key}) : super(key: key);
 

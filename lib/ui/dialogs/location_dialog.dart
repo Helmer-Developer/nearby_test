@@ -1,8 +1,9 @@
 part of '../ui.dart';
 
-///Dialog to inform the user about required location permission
+/// Dialog to inform the user about required location permission
 ///
-///Prompts the user with a dialog to ask for location permission
+/// Prompts the user with a dialog to ask for location permission
+/// Location permission is required to use the Nearby Connections API
 class LocationDialog extends StatelessWidget {
   LocationDialog({
     Key? key,

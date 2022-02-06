@@ -1,8 +1,10 @@
 part of '../ui.dart';
 
-///Dialog to collect nickname of user
+/// Dialog to collect nickname of user
 ///
-///Prompts the user with a dialog and a text field to enter a nickname
+/// Prompts the user with a dialog and a text field to enter a nickname
+/// Automatically updates the nickname in the [Me] provider instance
+/// Automatically disables the submit button if the nickname is empty
 class NickNameDialog extends ConsumerStatefulWidget {
   const NickNameDialog({Key? key}) : super(key: key);
 

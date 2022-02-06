@@ -1,6 +1,10 @@
 part of '../ui.dart';
 
 ///The abstract class for containing all dialogs associated with the Nearby Connections API
+///
+/// Includes:
+/// - [acceptConnection] to accept a connection request
+/// - [connectWithAlreadyExistingDevice] to connect to a device that is already part of the network
 abstract class ConnectionDialogs {
   ///Asking the user whether they want to connect to another device
   ///
@@ -36,6 +40,10 @@ abstract class ConnectionDialogs {
     );
   }
 
+  /// Asking the user wether they want to directly connect to another device that is already part of the network.
+  /// 
+  /// Needs an [id] and a [context].
+  /// Shows a bottom sheet where the user can select whether they want to connect to the device or not.
   static Future<bool?> connectWithAlreadyExistingDevice(
     String id,
     BuildContext context,
