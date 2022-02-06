@@ -80,7 +80,7 @@ void main() {
                 isReceiver: true,
               ),
             ],
-            id: 'id',
+            messageId: 'id',
           );
         },
         prints(
@@ -106,7 +106,7 @@ void main() {
                 isReceiver: true,
               ),
             ],
-            id: 'id',
+            messageId: 'id',
           );
         },
         prints(

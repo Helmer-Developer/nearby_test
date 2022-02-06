@@ -14,11 +14,11 @@ class Communications {
     required String ownId,
     required List<DiscoverDevice> devices,
     required MessageRoute route,
-    final String? id,
+    final String? messageId,
   }) {
     final List<Map> data = devices.map((device) => device.toMap()).toList();
     final Message message = Message(
-      id: id ?? const Uuid().v4(),
+      id: messageId ?? const Uuid().v4(),
       senderId: ownId,
       receiverId: receiverId,
       route: route,
@@ -36,10 +36,10 @@ class Communications {
     required String receiverId,
     required String ownId,
     required MessageRoute route,
-    final String? id,
+    final String? messageId,
   }) {
     final Message message = Message(
-      id: id ?? const Uuid().v4(),
+      id: messageId ?? const Uuid().v4(),
       senderId: ownId,
       receiverId: receiverId,
       route: route,
@@ -58,10 +58,10 @@ class Communications {
     required String ownId,
     required String text,
     required MessageRoute route,
-    final String? id,
+    final String? messageId,
   }) {
     final Message message = Message(
-      id: id ?? const Uuid().v4(),
+      id: messageId ?? const Uuid().v4(),
       senderId: ownId,
       receiverId: receiverId,
       route: route,
