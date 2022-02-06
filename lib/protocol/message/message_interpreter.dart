@@ -14,17 +14,13 @@ extension MessageInterpreter on Message {
         if (message.payload is String) {
           return message.payload as String;
         } else {
-          throw Exception(
-            'Message payload is not a String as messageType suggests',
-          );
+          throw 'Message payload is not a String as messageType suggests';
         }
       case MessageType.neighborsRequest:
         if (message.payload == null) {
           return;
         } else {
-          throw Exception(
-            'Message payload is not null as messageType suggests',
-          );
+          throw 'Message payload is not null as messageType suggests';
         }
       case MessageType.neighborsResponse:
         if (message.payload is List) {
@@ -37,9 +33,7 @@ extension MessageInterpreter on Message {
               .toList();
           return devices;
         } else {
-          throw Exception(
-            'Message payload is not a List<Map> as messageType suggests',
-          );
+          throw 'Message payload is not a List<Map> as messageType suggests';
         }
     }
   }
