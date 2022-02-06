@@ -25,9 +25,8 @@ jobs:
             .dart_tool
             build
             ${{env.PUB_CACHE}}
-      - run: flutter pub global activate dartdoc
       - run: flutter pub get
-      - run: dartdoc
+      - run: dart doc
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2

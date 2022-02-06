@@ -5,7 +5,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nearby_connections/nearby_connections.dart';
 import 'package:nearby_test/provider/provider.dart';
-import 'package:nearby_test/screens/graph_screen.dart';
 import 'package:nearby_test/script/script.dart';
 import 'package:nearby_test/ui/ui.dart';
 
