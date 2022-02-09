@@ -21,7 +21,7 @@ Future<void> _onConnectionInitiated(
       await ConnectionDialogs.acceptConnection(endpointId, context);
   if (userResponse == null || (!userResponse)) return;
   graph.addDeviceWithMe(
-    DiscoverDevice(
+    DiscoveredDevice(
       id: endpointId,
       username: connectionInfo.endpointName,
       connectionStatus: ConnectionStatus.waiting,

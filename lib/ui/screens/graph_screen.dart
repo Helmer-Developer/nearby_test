@@ -1,8 +1,7 @@
 part of '../ui.dart';
 
-
 /// GraphScreen visualizes the data of the current map.
-/// 
+///
 /// Displays all device of the network and their relations to each other.
 class GraphScreen extends ConsumerWidget {
   const GraphScreen({Key? key}) : super(key: key);
@@ -30,14 +29,14 @@ class GraphScreen extends ConsumerWidget {
             graph: newGraph,
             algorithm: FruchtermanReingoldAlgorithm(),
             builder: (node) {
-              final device = node.key!.value as DiscoverDevice;
+              final device = node.key!.value as DiscoveredDevice;
               return ActionChip(
                 label: Text(device.toString()),
                 onPressed: () {
                   if (graph.me == device) return;
                   final route = graph.getRoute(
-                    DiscoverDevice(id: graph.me.id),
-                    DiscoverDevice(id: device.id),
+                    DiscoveredDevice(id: graph.me.id),
+                    DiscoveredDevice(id: device.id),
                   );
                   if (route == null) return;
                   communication.sendTextToId(

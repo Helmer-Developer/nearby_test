@@ -27,8 +27,9 @@ extension MessageInterpreter on Message {
           final jsonDevices = message.payload as List;
           final devices = jsonDevices
               .map(
-                (jsonDevice) =>
-                    DiscoverDevice.fromMap(jsonDevice as Map<String, dynamic>),
+                (jsonDevice) => DiscoveredDevice.fromMap(
+                  jsonDevice as Map<String, dynamic>,
+                ),
               )
               .toList();
           return devices;

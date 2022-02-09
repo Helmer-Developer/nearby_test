@@ -62,7 +62,7 @@ void main() {
             receiverId: 'receiver',
             ownId: 'me',
             devices: [
-              DiscoverDevice(
+              DiscoveredDevice(
                 id: '1',
                 username: '1',
                 connectionStatus: ConnectionStatus.connected,

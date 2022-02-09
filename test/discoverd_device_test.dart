@@ -9,7 +9,7 @@ void main() {
     test('CopyWith test', () {
       const String nickName = 'test-name';
       final String id = const Uuid().v4();
-      final device = DiscoverDevice(id: id, username: nickName);
+      final device = DiscoveredDevice(id: id, username: nickName);
       expect(device.id, id, reason: 'id and device id shall be the same');
       expect(
         device.username,
@@ -28,7 +28,7 @@ void main() {
         reason: 'device connectionStatus shall now be connected',
       );
       final String newId = const Uuid().v4();
-      DiscoverDevice newDevice = device.copyWith();
+      DiscoveredDevice newDevice = device.copyWith();
       newDevice = device.copyWith(id: newId, connectionStatus: null);
       expect(newDevice.id, newId);
       expect(
@@ -39,7 +39,7 @@ void main() {
       );
     });
     test('to and from json test (for communication trough NCP)', () {
-      final device = DiscoverDevice(
+      final device = DiscoveredDevice(
         id: const Uuid().v4(),
         username: 'test-username',
         connectionStatus: ConnectionStatus.connected,
@@ -49,20 +49,20 @@ void main() {
       final data = Uint8List.fromList(json.codeUnits);
       final newJson = String.fromCharCodes(data);
       expect(newJson.runtimeType, String);
-      final newDevice = DiscoverDevice.fromJson(newJson);
+      final newDevice = DiscoveredDevice.fromJson(newJson);
       expect(device.id, newDevice.id);
       expect(device.connectionStatus, newDevice.connectionStatus);
       expect(device.username, newDevice.username);
     });
     test('toString test', () {
-      final device = DiscoverDevice(
+      final device = DiscoveredDevice(
         id: const Uuid().v4(),
         username: 'test-username',
         connectionStatus: ConnectionStatus.connected,
       );
       expect(
         device.toString(),
-        'DiscoverDevice(id: ${device.id}, username: ${device.username}, connectionStatus: ${device.connectionStatus})',
+        'DiscoveredDevice(id: ${device.id}, username: ${device.username}, connectionStatus: ${device.connectionStatus})',
         reason:
             'toString shall return a string representation of the device including the id',
       );

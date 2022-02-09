@@ -9,7 +9,7 @@ void _onDisconnected(String endpointId, WidgetRef ref) {
     return;
   }
   graph.removeDevice(
-    DiscoverDevice(id: endpointId),
+    DiscoveredDevice(id: endpointId),
   );
   log.addLog(
     'Remove Device: $endpointId from graph, because it disconnected',

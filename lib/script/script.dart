@@ -30,8 +30,8 @@ Future<void> getNeighbors(WidgetRef ref) async {
       if (node.id != me.ownId &&
           node.connectionStatus == ConnectionStatus.connected) {
         final route = graph.getRoute(
-          DiscoverDevice(id: me.ownId),
-          DiscoverDevice(id: node.id),
+          DiscoveredDevice(id: me.ownId),
+          DiscoveredDevice(id: node.id),
         );
         if (route != null) {
           communication.requestNeighbors(

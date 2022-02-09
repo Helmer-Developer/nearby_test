@@ -67,7 +67,7 @@ void main() {
       final graph = dummyGraph();
       final devices = dummyDevices();
       graph.replaceDevice(
-        DiscoverDevice(
+        DiscoveredDevice(
           id: devices[1].id,
           username: devices[1].username,
           connectionStatus: ConnectionStatus.error,
@@ -81,7 +81,7 @@ void main() {
     test('toString test', () {
       final graph = ConnectedDevicesGraph('me', 'me');
       final me = graph.me;
-      final device = DiscoverDevice(
+      final device = DiscoveredDevice(
         id: '1',
         username: '1',
         connectionStatus: ConnectionStatus.error,
@@ -125,8 +125,8 @@ void main() {
         reason: 'the graph should contain a device with id newId',
       );
       final route = graph.getRoute(
-        DiscoverDevice(id: 'newId'),
-        DiscoverDevice(id: '3'),
+        DiscoveredDevice(id: 'newId'),
+        DiscoveredDevice(id: '3'),
       );
       expect(
         route?.length,
@@ -164,7 +164,7 @@ void main() {
 
 ConnectedDevicesGraph dummyGraph() {
   final graph = ConnectedDevicesGraph('me', 'me');
-  final List<DiscoverDevice> devices = dummyDevices();
+  final List<DiscoveredDevice> devices = dummyDevices();
   graph.addDeviceWithMe(devices[0]);
   graph.addDeviceWithMe(devices[1]);
   graph.addDeviceWithAncestors(devices[1], [devices[2], devices[3]]);
@@ -178,9 +178,9 @@ ConnectedDevicesGraph dummyGraph() {
   return graph;
 }
 
-List<DiscoverDevice> dummyDevices() => List.generate(
+List<DiscoveredDevice> dummyDevices() => List.generate(
       8,
-      (index) => DiscoverDevice(
+      (index) => DiscoveredDevice(
         id: '$index',
         username: '$index',
         connectionStatus: ConnectionStatus.connected,

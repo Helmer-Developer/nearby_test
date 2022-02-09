@@ -4,30 +4,30 @@ part of '../protocol.dart';
 ///
 ///[id] and [username] are required
 ///provides all necessary functions like converting to json and back to dart object
-class DiscoverDevice {
+class DiscoveredDevice {
   String id;
   String? username;
   ConnectionStatus? connectionStatus;
-  DiscoverDevice({
+  DiscoveredDevice({
     required this.id,
     this.username,
     this.connectionStatus,
   });
 
   ///Function to create new DiscoverdDevice while replacing some or no parameters
-  DiscoverDevice copyWith({
+  DiscoveredDevice copyWith({
     String? id,
     String? username,
     ConnectionStatus? connectionStatus = ConnectionStatus.connected,
   }) {
-    return DiscoverDevice(
+    return DiscoveredDevice(
       id: id ?? this.id,
       username: username ?? this.username,
       connectionStatus: connectionStatus ?? this.connectionStatus,
     );
   }
 
-  ///converts [DiscoverDevice] to a JS Object-alike structure
+  ///converts [DiscoveredDevice] to a JS Object-alike structure
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -37,8 +37,8 @@ class DiscoverDevice {
   }
 
   ///converts map (JS Object-alike structure) to a dart object
-  factory DiscoverDevice.fromMap(Map<String, dynamic> map) {
-    return DiscoverDevice(
+  factory DiscoveredDevice.fromMap(Map<String, dynamic> map) {
+    return DiscoveredDevice(
       id: map['id'] as String,
       username: map['username'] as String,
       connectionStatus: map['connectionStatus'] != null
@@ -53,20 +53,20 @@ class DiscoverDevice {
   String toJson() => json.encode(toMap());
 
   ///converts json string to dart object
-  factory DiscoverDevice.fromJson(String source) =>
-      DiscoverDevice.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory DiscoveredDevice.fromJson(String source) =>
+      DiscoveredDevice.fromMap(json.decode(source) as Map<String, dynamic>);
 
   ///converts object to a readable string
   @override
   String toString() =>
-      'DiscoverDevice(id: $id, username: $username, connectionStatus: $connectionStatus)';
+      'DiscoveredDevice(id: $id, username: $username, connectionStatus: $connectionStatus)';
 
   ///overrides equality operator (due to dart's strict equality)
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is DiscoverDevice && other.id == id;
+    return other is DiscoveredDevice && other.id == id;
   }
 
   ///overrides [hashCode] as dart's best practice suggests

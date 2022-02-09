@@ -13,7 +13,7 @@ void main() {
           RouteNode(deviceId: '2', isSender: false, isReceiver: true),
         ],
         payload: [
-          DiscoverDevice(
+          DiscoveredDevice(
             id: 'test',
             username: 'test',
             connectionStatus: ConnectionStatus.connected,
@@ -135,7 +135,7 @@ void main() {
           RouteNode(deviceId: '2', isSender: false, isReceiver: true),
         ],
         payload: [
-          DiscoverDevice(
+          DiscoveredDevice(
             id: 'device',
             username: 'device',
             connectionStatus: ConnectionStatus.connected,
@@ -146,14 +146,14 @@ void main() {
       final interpretation = message.interpret();
       expect(
         interpretation.runtimeType,
-        List<DiscoverDevice>,
+        List<DiscoveredDevice>,
         reason:
             'interpretation should be a list because MessageType is MessageType.neighborsResponse',
       );
       expect(
         interpretation,
         [
-          DiscoverDevice(
+          DiscoveredDevice(
             id: 'device',
             username: 'device',
             connectionStatus: ConnectionStatus.connected,
@@ -198,7 +198,7 @@ void main() {
     });
     test('payload: neighborsResponse', () {
       message.payload = [
-        DiscoverDevice(
+        DiscoveredDevice(
           id: 'device',
           username: 'device',
           connectionStatus: ConnectionStatus.connected,
@@ -208,14 +208,14 @@ void main() {
       final interpretation = message.interpret();
       expect(
         interpretation.runtimeType,
-        List<DiscoverDevice>,
+        List<DiscoveredDevice>,
         reason:
             'interpretation should be a list because MessageType is MessageType.neighborsResponse',
       );
       expect(
         interpretation,
         [
-          DiscoverDevice(
+          DiscoveredDevice(
             id: 'device',
             username: 'device',
             connectionStatus: ConnectionStatus.connected,

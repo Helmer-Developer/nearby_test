@@ -13,7 +13,7 @@ void _onConnectionResult(String endpointId, Status status, WidgetRef ref) {
     if (status == Status.CONNECTED) {
       log.addLog('Handshake with Device: $endpointId succeeded');
       graph.replaceDevice(
-        DiscoverDevice(
+        DiscoveredDevice(
           id: endpointId,
           username: oldDevice?.username,
           connectionStatus: ConnectionStatus.connected,
@@ -34,7 +34,7 @@ void _onConnectionResult(String endpointId, Status status, WidgetRef ref) {
     } else if (status == Status.ERROR || status == Status.REJECTED) {
       log.addLog('Handshake with Device: $endpointId failed');
       graph.replaceDevice(
-        DiscoverDevice(
+        DiscoveredDevice(
           id: endpointId,
           username: oldDevice?.username,
           connectionStatus: ConnectionStatus.error,

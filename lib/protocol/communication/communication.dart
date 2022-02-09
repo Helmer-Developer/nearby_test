@@ -12,7 +12,7 @@ class Communications {
   void sendNeighborsToId({
     required String receiverId,
     required String ownId,
-    required List<DiscoverDevice> devices,
+    required List<DiscoveredDevice> devices,
     required MessageRoute route,
     final String? messageId,
   }) {
@@ -116,9 +116,9 @@ class Communications {
           route: messageForMe.route.reversed.toList(),
         );
       } else if (messageForMe.messageType == MessageType.neighborsResponse) {
-        final response = messageForMe.interpret() as List<DiscoverDevice>;
+        final response = messageForMe.interpret() as List<DiscoveredDevice>;
         graph.addDeviceWithAncestors(
-          DiscoverDevice(id: senderId),
+          DiscoveredDevice(id: senderId),
           response,
         );
       } else if (messageForMe.messageType == MessageType.text) {

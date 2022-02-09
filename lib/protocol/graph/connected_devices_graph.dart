@@ -8,7 +8,7 @@ part of '../protocol.dart';
 class ConnectedDevicesGraph extends ChangeNotifier {
   /// Constructor to initialize the graph with [ownId] and [ownUsername] as the root node (me)
   ConnectedDevicesGraph(String ownId, String ownUsername) {
-    _me = DiscoverDevice(
+    _me = DiscoveredDevice(
       id: ownId,
       username: ownUsername,
       connectionStatus: ConnectionStatus.connected,
@@ -16,24 +16,24 @@ class ConnectedDevicesGraph extends ChangeNotifier {
     _graph.addEdges(_me, {});
   }
 
-  /// [DiscoverDevice] object representing this device (me node)
-  late final DiscoverDevice _me;
+  /// [DiscoveredDevice] object representing this device (me node)
+  late final DiscoveredDevice _me;
 
-  DiscoverDevice get me => _me;
+  DiscoveredDevice get me => _me;
 
   /// [graph] with connected devices as nodes and edges between them
-  /// comparing the [DiscoverDevice.id]
-  final _graph = DirectedGraph<DiscoverDevice>(
+  /// comparing the [DiscoveredDevice.id]
+  final _graph = DirectedGraph<DiscoveredDevice>(
     {},
     comparator: (a, b) => a.id.compareTo(b.id),
   );
 
-  DirectedGraph<DiscoverDevice> get graph => _graph;
+  DirectedGraph<DiscoveredDevice> get graph => _graph;
 
-  /// Adds a [DiscoverDevice] to the graph with an edge to [me]
+  /// Adds a [DiscoveredDevice] to the graph with an edge to [me]
   ///
   /// Only use this function if the device is a directly connected to the root node [me]
-  void addDeviceWithMe(DiscoverDevice device) {
+  void addDeviceWithMe(DiscoveredDevice device) {
     if (_graph.contains(device)) return;
     _graph.addEdges(device, {_me});
     _graph.addEdges(_me, {device});
@@ -48,19 +48,19 @@ class ConnectedDevicesGraph extends ChangeNotifier {
   }
 
   /// Removes the [device] from the graph
-  void removeDevice(DiscoverDevice device) {
+  void removeDevice(DiscoveredDevice device) {
     _graph.remove(device);
     notifyListeners();
   }
 
-  void removeDeviceById(String id) => removeDevice(DiscoverDevice(id: id));
+  void removeDeviceById(String id) => removeDevice(DiscoveredDevice(id: id));
 
-  /// Adds a [DiscoverDevice] to the graph with an edge to all its ancestors
+  /// Adds a [DiscoveredDevice] to the graph with an edge to all its ancestors
   ///
   /// Use this function if you want to add devices which are ancestors of already added devices.
   void addDeviceWithAncestors(
-    DiscoverDevice device,
-    List<DiscoverDevice> ancestors,
+    DiscoveredDevice device,
+    List<DiscoveredDevice> ancestors,
   ) {
     _graph.addEdges(device, ancestors.toSet());
     for (final ancestor in ancestors) {
@@ -69,8 +69,8 @@ class ConnectedDevicesGraph extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Replaces the [DiscoverDevice] with the same [DiscoverDevice.id] with the given properties from [device]
-  void replaceDevice(DiscoverDevice device) {
+  /// Replaces the [DiscoveredDevice] with the same [DiscoveredDevice.id] with the given properties from [device]
+  void replaceDevice(DiscoveredDevice device) {
     (_graph.vertices.firstWhere((e) => e == device))
       ..connectionStatus = device.connectionStatus
       ..username = device.username;
@@ -87,34 +87,34 @@ class ConnectedDevicesGraph extends ChangeNotifier {
 
   /// Returns a boolean indicating if the graph contains the [device]
   ///
-  /// Note: Only compares the [DiscoverDevice.id] due to == operator override
-  bool contains(DiscoverDevice device) => _graph.contains(device);
+  /// Note: Only compares the [DiscoveredDevice.id] due to == operator override
+  bool contains(DiscoveredDevice device) => _graph.contains(device);
 
   /// Returns a boolean indicating if the graph contains a device with the given [id]
-  bool containsById(String id) => contains(DiscoverDevice(id: id));
+  bool containsById(String id) => contains(DiscoveredDevice(id: id));
 
   /// Returns a boolean indicating if the given [device] is directly connected to the root node [me]
-  bool isConnectedToMe(DiscoverDevice device) =>
+  bool isConnectedToMe(DiscoveredDevice device) =>
       _graph.edges(_me).contains(device);
 
   /// Returns a boolean indicating if the device with the given [id] is directly connected to the root node [me]
   bool isConnectedToMeById(String id) =>
-      isConnectedToMe(DiscoverDevice(id: id));
+      isConnectedToMe(DiscoveredDevice(id: id));
 
   /// Returns a list of all devices in the graph which are connected to me
   ///
   /// This function is used to get a list of all devices which are connected to me.
   /// Returns all vertices which have a edge to me.
-  List<DiscoverDevice> connectedDevices() {
+  List<DiscoveredDevice> connectedDevices() {
     return _graph.edges(_me).toList();
   }
 
   /// Returns the shortest path form [from] to [to]
   ///
-  /// Returns a [List] of [RouteNode]s (converted from [DiscoverDevice]s
+  /// Returns a [List] of [RouteNode]s (converted from [DiscoveredDevice]s
   /// with [RouteNode.isSender] and [RouteNode.isReceiver] set to true at first and last node)
   /// or null if no path exists
-  MessageRoute? getRoute(DiscoverDevice from, DiscoverDevice to) {
+  MessageRoute? getRoute(DiscoveredDevice from, DiscoveredDevice to) {
     final path = _graph.path(from, to);
     if (path.isEmpty) return null;
     final route = path
@@ -133,16 +133,16 @@ class ConnectedDevicesGraph extends ChangeNotifier {
 
   /// Returns the shortest path form [fromId] to [toId]
   ///
-  /// Returns a [List] of [RouteNode]s (converted from [DiscoverDevice]s
+  /// Returns a [List] of [RouteNode]s (converted from [DiscoveredDevice]s
   /// with [RouteNode.isSender] and [RouteNode.isReceiver] set to true at first and last node)
   /// or null if no path exists
   MessageRoute? getRouteById(String fromId, String toId) {
-    return getRoute(DiscoverDevice(id: fromId), DiscoverDevice(id: toId));
+    return getRoute(DiscoveredDevice(id: fromId), DiscoveredDevice(id: toId));
   }
 
   /// Returns the device with the given [id] or null if no device with the given [id] exists
-  DiscoverDevice? getDeviceById(String id) {
-    if (!contains(DiscoverDevice(id: id))) return null;
+  DiscoveredDevice? getDeviceById(String id) {
+    if (!contains(DiscoveredDevice(id: id))) return null;
     return _graph.vertices.firstWhere(
       (device) => device.id == id,
     );
