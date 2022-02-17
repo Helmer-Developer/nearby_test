@@ -30,9 +30,9 @@ class ConnectedDevicesGraph extends ChangeNotifier {
 
   DirectedGraph<DiscoveredDevice> get graph => _graph;
 
-  /// Adds a [DiscoveredDevice] to the graph with an edge to [me]
+  /// Adds a [DiscoveredDevice] to the graph with an edge to the root node [me]
   ///
-  /// Only use this function if the device is a directly connected to the root node [me]
+  /// Only use this function if the device is a directly connected one.
   void addDeviceWithMe(DiscoveredDevice device) {
     if (_graph.contains(device)) return;
     _graph.addEdges(device, {_me});
