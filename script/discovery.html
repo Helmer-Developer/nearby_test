@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the discovery function from the script library, for the Dart programming language.">
+  <title>discovery function - script library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">nearby_test</a></li>
+    <li><a href="../script/script-library.html">script</a></li>
+    <li class="self-crumb">discovery function</li>
+  </ol>
+  <div class="self-name">discovery</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-function">discovery</span> function 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+ 
+</h1></div>
+
+    <section class="multi-line-signature">
+        
+
+<span class="returntype">void</span>
+<span class="name ">discovery</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="discovery-param-nearby"><span class="type-annotation">Nearby</span> <span class="parameter-name">nearby</span>, </span></li>
+<li><span class="parameter" id="discovery-param-ref"><span class="type-annotation">WidgetRef</span> <span class="parameter-name">ref</span>, </span></li>
+<li><span class="parameter" id="discovery-param-context"><span class="type-annotation">BuildContext</span> <span class="parameter-name">context</span></span></li>
+</ol>)
+
+    </section>
+    
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">void discovery(Nearby nearby, WidgetRef ref, BuildContext context) {
+  final me = ref.read(meProvider);
+  final log = ref.read(logProvider);
+  final graph = ref.read(graphProvider);
+  log.addLog(&#39;Discovering started due to function call&#39;);
+  nearby.stopAdvertising();
+  nearby.startDiscovery(
+    me.ownName,
+    strategy,
+    onEndpointFound: (endpointId, name, serviceId) async {
+      log.addLog(&#39;Device found: $endpointId&#39;);
+      if (graph.containsById(endpointId)) {
+        if (graph.isConnectedToMeById(endpointId)) {
+          log.addLog(&#39;Device is already connected to me&#39;);
+          return;
+        } else {
+          log.addLog(
+            &#39;Device is not connected to me asking user if he wants to connect directly&#39;,
+          );
+          final userWantsToConnect =
+              await ConnectionDialogs.connectWithAlreadyExistingDevice(
+            endpointId,
+            context,
+          );
+          if (userWantsToConnect != null &amp;&amp; userWantsToConnect) {
+            log.addLog(&#39;User wants to connect directly&#39;);
+            _requestConnection(nearby, endpointId, ref, context);
+          }
+        }
+      }
+     _requestConnection(nearby, endpointId, ref, context);
+    },
+    onEndpointLost: (endpointId) {
+      log.addLog(&#39;Endpoint lost: $endpointId&#39;);
+    },
+    serviceId: &#39;com.example.nearby_test&#39;,
+  );
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../index.html">nearby_test</a></li>
+  <li><a href="../script/script-library.html">script</a></li>
+  <li class="self-crumb">discovery function</li>
+</ol>
+
+
+    <h5>script library</h5>
+    <ol>
+
+
+
+  <li class="section-title"><a href="../script/script-library.html#constants">Constants</a></li>
+  <li><a href="../script/strategy-constant.html">strategy</a></li>
+
+  <li class="section-title"><a href="../script/script-library.html#properties">Properties</a></li>
+  <li><a href="../script/communication.html">communication</a></li>
+
+  <li class="section-title"><a href="../script/script-library.html#functions">Functions</a></li>
+  <li><a href="../script/advertising.html">advertising</a></li>
+  <li><a href="../script/discovery.html">discovery</a></li>
+  <li><a href="../script/getNeighbors.html">getNeighbors</a></li>
+
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-left-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    nearby_test
+      0.0.1+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+

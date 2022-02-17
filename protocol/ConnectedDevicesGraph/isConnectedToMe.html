@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the isConnectedToMe method from the ConnectedDevicesGraph class, for the Dart programming language.">
+  <title>isConnectedToMe method - ConnectedDevicesGraph class - protocol library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">nearby_test</a></li>
+    <li><a href="../../protocol/protocol-library.html">protocol</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph-class.html">ConnectedDevicesGraph</a></li>
+    <li class="self-crumb">isConnectedToMe method</li>
+  </ol>
+  <div class="self-name">isConnectedToMe</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-method">isConnectedToMe</span> method 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+
+<span class="returntype">bool</span>
+<span class="name ">isConnectedToMe</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="isConnectedToMe-param-device"><span class="type-annotation"><a href="../../protocol/DiscoveredDevice-class.html">DiscoveredDevice</a></span> <span class="parameter-name">device</span></span></li>
+</ol>)
+
+      
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Returns a boolean indicating if the given <code>device</code> is directly connected to the root node <a href="../../protocol/ConnectedDevicesGraph/me.html">me</a></p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">bool isConnectedToMe(DiscoveredDevice device) =&gt;
+    _graph.edges(_me).contains(device);</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../../index.html">nearby_test</a></li>
+  <li><a href="../../protocol/protocol-library.html">protocol</a></li>
+  <li><a href="../../protocol/ConnectedDevicesGraph-class.html">ConnectedDevicesGraph</a></li>
+  <li class="self-crumb">isConnectedToMe method</li>
+</ol>
+
+
+    <h5>ConnectedDevicesGraph class</h5>
+    <ol>
+
+    <li class="section-title"><a href="../../protocol/ConnectedDevicesGraph-class.html#constructors">Constructors</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/ConnectedDevicesGraph.html">ConnectedDevicesGraph</a></li>
+
+
+    <li class="section-title">
+      <a href="../../protocol/ConnectedDevicesGraph-class.html#instance-properties">Properties</a>
+    </li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/graph.html">graph</a></li>
+    <li class="inherited"><a href="../../protocol/ConnectedDevicesGraph/hashCode.html">hashCode</a></li>
+    <li class="inherited"><a href="../../protocol/ConnectedDevicesGraph/hasListeners.html">hasListeners</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/me.html">me</a></li>
+    <li class="inherited"><a href="../../protocol/ConnectedDevicesGraph/runtimeType.html">runtimeType</a></li>
+
+    <li class="section-title"><a href="../../protocol/ConnectedDevicesGraph-class.html#instance-methods">Methods</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/addDeviceWithAncestors.html">addDeviceWithAncestors</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/addDeviceWithMe.html">addDeviceWithMe</a></li>
+    <li class="inherited"><a href="../../protocol/ConnectedDevicesGraph/addListener.html">addListener</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/clear.html">clear</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/connectedDevices.html">connectedDevices</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/contains.html">contains</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/containsById.html">containsById</a></li>
+    <li class="inherited"><a href="../../protocol/ConnectedDevicesGraph/dispose.html">dispose</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/getDeviceById.html">getDeviceById</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/getRoute.html">getRoute</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/getRouteById.html">getRouteById</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/isConnectedToMe.html">isConnectedToMe</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/isConnectedToMeById.html">isConnectedToMeById</a></li>
+    <li class="inherited"><a href="../../protocol/ConnectedDevicesGraph/noSuchMethod.html">noSuchMethod</a></li>
+    <li class="inherited"><a href="../../protocol/ConnectedDevicesGraph/notifyListeners.html">notifyListeners</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/removeDevice.html">removeDevice</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/removeDeviceById.html">removeDeviceById</a></li>
+    <li class="inherited"><a href="../../protocol/ConnectedDevicesGraph/removeListener.html">removeListener</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/replaceDevice.html">replaceDevice</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/replaceOwnId.html">replaceOwnId</a></li>
+    <li><a href="../../protocol/ConnectedDevicesGraph/toString.html">toString</a></li>
+
+    <li class="section-title inherited"><a href="../../protocol/ConnectedDevicesGraph-class.html#operators">Operators</a></li>
+    <li class="inherited"><a href="../../protocol/ConnectedDevicesGraph/operator_equals.html">operator ==</a></li>
+
+
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    nearby_test
+      0.0.1+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+

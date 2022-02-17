@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the Message class from the protocol library, for the Dart programming language.">
+  <title>Message class - protocol library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">nearby_test</a></li>
+    <li><a href="../protocol/protocol-library.html">protocol</a></li>
+    <li class="self-crumb">Message class</li>
+  </ol>
+  <div class="self-name">Message</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-class">Message</span> class 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>Class to streamline all information between a device connection</p>
+<p>Shall be the only class which is exchanged via the NCA</p>
+</section>
+
+
+    <section>
+      <dl class="dl-horizontal">
+
+
+
+
+        <dt>Available Extensions</dt>
+        <dd><ul class="comma-separated clazz-relationships">
+          <li><a href="../protocol/MessageInterpreter.html">MessageInterpreter</a></li>
+        </ul></dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="constructors">
+      <h2>Constructors</h2>
+
+      <dl class="constructor-summary-list">
+        <dt id="Message" class="callable">
+          <span class="name"><a href="../protocol/Message/Message.html">Message</a></span><span class="signature">(<span class="parameter" id="-param-id">{<span>required</span> <span class="type-annotation">String</span> <span class="parameter-name">id</span>, </span><span class="parameter" id="-param-senderId"><span>required</span> <span class="type-annotation">String</span> <span class="parameter-name">senderId</span>, </span><span class="parameter" id="-param-receiverId"><span>required</span> <span class="type-annotation">String</span> <span class="parameter-name">receiverId</span>, </span><span class="parameter" id="-param-route"><span>required</span> <span class="type-annotation"><a href="../protocol/MessageRoute.html">MessageRoute</a></span> <span class="parameter-name">route</span>, </span><span class="parameter" id="-param-payload"><span>required</span> <span class="type-annotation">dynamic</span> <span class="parameter-name">payload</span>, </span><span class="parameter" id="-param-messageType"><span>required</span> <span class="type-annotation"><a href="../protocol/MessageType.html">MessageType</a></span> <span class="parameter-name">messageType</span>}</span>)</span>
+        </dt>
+        <dd>
+           
+        </dd>
+        <dt id="Message.fromJson" class="callable">
+          <span class="name"><a href="../protocol/Message/Message.fromJson.html">Message.fromJson</a></span><span class="signature">(<span class="parameter" id="fromJson-param-jsonString"><span class="type-annotation">String</span> <span class="parameter-name">jsonString</span></span>)</span>
+        </dt>
+        <dd>
+          Convert Json to <a href="../protocol/Message-class.html">Message</a> 
+          <div class="constructor-modifier features">factory</div>
+        </dd>
+        <dt id="Message.fromMap" class="callable">
+          <span class="name"><a href="../protocol/Message/Message.fromMap.html">Message.fromMap</a></span><span class="signature">(<span class="parameter" id="fromMap-param-map"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">map</span></span>)</span>
+        </dt>
+        <dd>
+          Convert <code>Map</code> to <a href="../protocol/Message-class.html">Message</a> 
+          <div class="constructor-modifier features">factory</div>
+        </dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="hashCode" class="property">
+  <span class="name"><a href="../protocol/Message/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; int</span> 
+
+</dt>
+<dd>
+  Override hashCode 
+  <div class="features">read-only, override</div>
+
+</dd>
+
+        <dt id="id" class="property">
+  <span class="name"><a href="../protocol/Message/id.html">id</a></span>
+  <span class="signature">&#8596; String</span> 
+
+</dt>
+<dd>
+  Unique id to identify a message <a href="../protocol/Message/id.html">[...]</a>
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="messageType" class="property">
+  <span class="name"><a href="../protocol/Message/messageType.html">messageType</a></span>
+  <span class="signature">&#8596; <a href="../protocol/MessageType.html">MessageType</a></span> 
+
+</dt>
+<dd>
+  representing the type of the message <a href="../protocol/Message/messageType.html">[...]</a>
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="payload" class="property">
+  <span class="name"><a href="../protocol/Message/payload.html">payload</a></span>
+  <span class="signature">&#8596; dynamic</span> 
+
+</dt>
+<dd>
+  payload of the message needs to be convertible to a json like object <a href="../protocol/Message/payload.html">[...]</a>
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="receiverId" class="property">
+  <span class="name"><a href="../protocol/Message/receiverId.html">receiverId</a></span>
+  <span class="signature">&#8596; String</span> 
+
+</dt>
+<dd>
+  Unique id to identify the receiver 
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="route" class="property">
+  <span class="name"><a href="../protocol/Message/route.html">route</a></span>
+  <span class="signature">&#8596; <a href="../protocol/MessageRoute.html">MessageRoute</a></span> 
+
+</dt>
+<dd>
+  List of <code>RouteNode</code> representing the rout chosen by the sender 
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="../protocol/Message/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; Type</span> 
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object. 
+  <div class="features">read-only, inherited</div>
+
+</dd>
+
+        <dt id="senderId" class="property">
+  <span class="name"><a href="../protocol/Message/senderId.html">senderId</a></span>
+  <span class="signature">&#8596; String</span> 
+
+</dt>
+<dd>
+  Unique id to identify the sender 
+  <div class="features">read / write</div>
+
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-methods">
+      <h2>Methods</h2>
+      <dl class="callables">
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="../protocol/Message/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation">Invocation</span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a non-existent method or property is accessed. <a href="../protocol/Message/noSuchMethod.html">[...]</a>
+  <div class="features">inherited</div>
+
+</dd>
+
+        <dt id="toJson" class="callable">
+  <span class="name"><a href="../protocol/Message/toJson.html">toJson</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; String</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Convert <a href="../protocol/Message-class.html">Message</a> to Json 
+  
+
+</dd>
+
+        <dt id="toMap" class="callable">
+  <span class="name"><a href="../protocol/Message/toMap.html">toMap</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Convert <a href="../protocol/Message-class.html">Message</a> to <code>Map</code> 
+  
+
+</dd>
+
+        <dt id="toString" class="callable">
+  <span class="name"><a href="../protocol/Message/toString.html">toString</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; String</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Override toString <a href="../protocol/Message/toString.html">[...]</a>
+  <div class="features">override</div>
+
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="operators">
+      <h2>Operators</h2>
+      <dl class="callables">
+        <dt id="operator ==" class="callable">
+  <span class="name"><a href="../protocol/Message/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">Object</span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; bool</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Override == 
+  <div class="features">override</div>
+
+</dd>
+
+      </dl>
+    </section>
+
+
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../index.html">nearby_test</a></li>
+  <li><a href="../protocol/protocol-library.html">protocol</a></li>
+  <li class="self-crumb">Message class</li>
+</ol>
+
+
+    <h5>protocol library</h5>
+    <ol>
+  <li class="section-title"><a href="../protocol/protocol-library.html#classes">Classes</a></li>
+  <li><a href="../protocol/Communications-class.html">Communications</a></li>
+  <li><a href="../protocol/ConnectedDevicesGraph-class.html">ConnectedDevicesGraph</a></li>
+  <li><a href="../protocol/DiscoveredDevice-class.html">DiscoveredDevice</a></li>
+  <li><a href="../protocol/DummyNcpService-class.html">DummyNcpService</a></li>
+  <li><a href="../protocol/Message-class.html">Message</a></li>
+  <li><a href="../protocol/NcaService-class.html">NcaService</a></li>
+  <li><a href="../protocol/NcpService-class.html">NcpService</a></li>
+  <li><a href="../protocol/RouteNode-class.html">RouteNode</a></li>
+
+  <li class="section-title"><a href="../protocol/protocol-library.html#extensions">Extensions</a></li>
+  <li><a href="../protocol/MessageInterpreter.html">MessageInterpreter</a></li>
+
+
+
+
+
+  <li class="section-title"><a href="../protocol/protocol-library.html#enums">Enums</a></li>
+  <li><a href="../protocol/ConnectionStatus.html">ConnectionStatus</a></li>
+  <li><a href="../protocol/MessageType.html">MessageType</a></li>
+
+  <li class="section-title"><a href="../protocol/protocol-library.html#typedefs">Typedefs</a></li>
+  <li><a href="../protocol/MessageRoute.html">MessageRoute</a></li>
+
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <ol>
+
+    <li class="section-title"><a href="../protocol/Message-class.html#constructors">Constructors</a></li>
+    <li><a href="../protocol/Message/Message.html">Message</a></li>
+    <li><a href="../protocol/Message/Message.fromJson.html">fromJson</a></li>
+    <li><a href="../protocol/Message/Message.fromMap.html">fromMap</a></li>
+
+
+    <li class="section-title">
+      <a href="../protocol/Message-class.html#instance-properties">Properties</a>
+    </li>
+    <li><a href="../protocol/Message/hashCode.html">hashCode</a></li>
+    <li><a href="../protocol/Message/id.html">id</a></li>
+    <li><a href="../protocol/Message/messageType.html">messageType</a></li>
+    <li><a href="../protocol/Message/payload.html">payload</a></li>
+    <li><a href="../protocol/Message/receiverId.html">receiverId</a></li>
+    <li><a href="../protocol/Message/route.html">route</a></li>
+    <li class="inherited"><a href="../protocol/Message/runtimeType.html">runtimeType</a></li>
+    <li><a href="../protocol/Message/senderId.html">senderId</a></li>
+
+    <li class="section-title"><a href="../protocol/Message-class.html#instance-methods">Methods</a></li>
+    <li class="inherited"><a href="../protocol/Message/noSuchMethod.html">noSuchMethod</a></li>
+    <li><a href="../protocol/Message/toJson.html">toJson</a></li>
+    <li><a href="../protocol/Message/toMap.html">toMap</a></li>
+    <li><a href="../protocol/Message/toString.html">toString</a></li>
+
+    <li class="section-title"><a href="../protocol/Message-class.html#operators">Operators</a></li>
+    <li><a href="../protocol/Message/operator_equals.html">operator ==</a></li>
+
+
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    nearby_test
+      0.0.1+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+

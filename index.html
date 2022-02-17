@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 5.0.0">
+  <meta name="description" content="nearby_test API docs, for the Dart programming language.">
+  <title>nearby_test - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href=""
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li class="self-crumb">nearby_test package</li>
+  </ol>
+  <div class="self-name">nearby_test</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="nearby_test">nearby_test</h1>
+<p><a href="https://github.com/Helmer-Developer/nearby_test/actions/workflows/analyze_and_test_workflow.yml"><img src="https://github.com/Helmer-Developer/nearby_test/actions/workflows/analyze_and_test_workflow.yml/badge.svg" alt="Analyze and Test"></a>
+<a href="https://codecov.io/gh/Helmer-Developer/nearby_test"><img src="https://codecov.io/gh/Helmer-Developer/nearby_test/branch/master/graph/badge.svg?token=ZGLSVHLR2M" alt="codecov"></a></p>
+<h2 id="idea">Idea</h2>
+<p>The basic idea is actually relatively simple to describe: Different Android™ devices each establish a communication link with their available neighbors, thus forming the basis for a network that functions independently of any other infrastructure or ISP. The connected devices can then exchange messages on the network beyond the boundaries of their own connection area. For reasons of simplification and the limited possibilities to use Android™ device functions, the "Nearby" API of Google Mobile Services (GMS) is used, which only works on Android™ devices with preinstalled Google Apps. However, this should not be a problem in Europe, since the distribution is close to 100%. It is important to note that the GMS is not open source software like the Android™ Open Source Project (AOSP), but a proprietary product.</p>
+<h2 id="nearby-connections-api">Nearby Connections API</h2>
+<p>The Nearby Connections API (NCA) is an interface of the GMS and enables Android™ devices to find each other, connect and exchange data in real time. It is possible to establish connections and identify devices with IDs and exchange data packets with little effort. NCA is particularly beneficial for this project because it unifies a number of smartphone connectivity options, making communication more abstract.
+Documentation and further information:
+<a href="https://developers.google.com/nearby">https://developers.google.com/nearby</a>
+<a href="https://developers.google.com/nearby/connections/overview">https://developers.google.com/nearby/connections/overview</a></p>
+<h2 id="flutter">Flutter</h2>
+<p>Flutter is a software development kit from Google for developing cross plaftorm apps, based on a single code base. The NCA is also available for native Android™ development, however, in addition to pre-existing knowledge, Flutter has further advantages, such as Hot Reload. Which can recompile code changes in under a second and run them on the device without the need to restart the app, providing a significant advantage in terms of speed and productivity.
+Documentation and further information:
+<a href="https://flutter.dev/">https://flutter.dev/</a>
+<a href="https://flutter.dev/docs">https://flutter.dev/docs</a></p>
+<h2 id="dvelopment-so-far">Dvelopment so far</h2>
+<p>The development so far has mainly been about working out the basics of all the different components. The focus was especially on the connection of two or more devices and the simple exchange of data. In addition, there are also the discoveries of various pitfalls and subtleties, for which unpopular Google APIs are well known.</p>
+<h2 id="next-steps">Next steps</h2>
+<p>The next steps include several points. The most important will be to develop a unified and decentralized method that creates a map of the network showing a device's own position relative to all others.
+Furthermore, a protocol must be developed, which standardizes the communication between the devices and thus enables communication over several "nodes" in a network. This protocol then contains information about the sender, the receiver, the route of a message and information about what type of request it is, e.g. whether it is a simple text communication or whether it is a request to create a map.</p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="protocol">
+  <span class="name"><a href="protocol/protocol-library.html">protocol</a></span> 
+
+</dt>
+<dd>The library containing all information and classes about the Nearby Connections Protocol (NCP) 
+</dd>
+
+          <dt id="provider">
+  <span class="name"><a href="provider/provider-library.html">provider</a></span> 
+
+</dt>
+<dd>Library which is responsible for all shared and changing data in the application. 
+</dd>
+
+          <dt id="script">
+  <span class="name"><a href="script/script-library.html">script</a></span> 
+
+</dt>
+<dd>Library which defines the steps a device performs during being part of a network in a scripted manner. 
+</dd>
+
+          <dt id="ui">
+  <span class="name"><a href="ui/ui-library.html">ui</a></span> 
+
+</dt>
+<dd>Library for the UI component of the application. <a href="ui/ui-library.html">[...]</a>
+</dd>
+
+        </dl>
+      </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li class="self-crumb">nearby_test package</li>
+</ol>
+
+
+    <h5 class="hidden-xs"><span class="package-name">nearby_test</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="protocol/protocol-library.html">protocol</a></li>
+      <li><a href="provider/provider-library.html">provider</a></li>
+      <li><a href="script/script-library.html">script</a></li>
+      <li><a href="ui/ui-library.html">ui</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    nearby_test
+      0.0.1+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+
