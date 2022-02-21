@@ -27,7 +27,7 @@ void main() {
         ['me', '1', '2'],
         reason: 'the route from me to 2 should be [me, 1, 2]',
       );
-      graph.removeDeviceById(device[1].id);
+      graph.removeDeviceById(devices[1].id);
       expect(
         graph.getRoute(me, devices[2])!.map<String>((e) => e.deviceId).toList(),
         ['me', '0', '4', '2'],
