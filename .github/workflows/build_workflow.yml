@@ -16,7 +16,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
-          key: ${FLUTTER_KEY}-build
+          key: ${{ secrets.FLUTTER_KEY }}-build
       - name: Install flutter SDK    
         uses: subosito/flutter-action@v1
         with:
