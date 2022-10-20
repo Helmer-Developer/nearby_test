@@ -3,7 +3,6 @@
 library protocol;
 
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
 import 'package:directed_graph/directed_graph.dart';

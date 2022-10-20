@@ -80,10 +80,10 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
 
   @override
   Widget build(BuildContext context) {
-    final _scrollController = ScrollController();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
-      _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent,
+    final scrollController = ScrollController();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollController.animateTo(
+        scrollController.position.maxScrollExtent,
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeOut,
       );
@@ -126,7 +126,7 @@ class _NearbyTestAppState extends ConsumerState<NearbyTestApp> {
         ],
       ),
       body: ListView.builder(
-        controller: _scrollController,
+        controller: scrollController,
         itemCount: logs.length,
         itemBuilder: (context, index) {
           final log = logs[index];

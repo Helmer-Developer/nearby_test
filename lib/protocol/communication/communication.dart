@@ -14,7 +14,7 @@ class Communications {
     required String ownId,
     required List<DiscoveredDevice> devices,
     required MessageRoute route,
-    final String? messageId,
+    String? messageId,
   }) {
     final List<Map> data = devices.map((device) => device.toMap()).toList();
     final Message message = Message(
@@ -36,7 +36,7 @@ class Communications {
     required String receiverId,
     required String ownId,
     required MessageRoute route,
-    final String? messageId,
+    String? messageId,
   }) {
     final Message message = Message(
       id: messageId ?? const Uuid().v4(),
@@ -58,7 +58,7 @@ class Communications {
     required String ownId,
     required String text,
     required MessageRoute route,
-    final String? messageId,
+    String? messageId,
   }) {
     final Message message = Message(
       id: messageId ?? const Uuid().v4(),
